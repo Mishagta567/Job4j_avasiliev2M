@@ -1,4 +1,5 @@
 package ru.job4j;
+
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -6,41 +7,29 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Первоый тестовый класс для проверки настроек.
- * @author   AVasiliev
- * @since    06.12.2017
- * @version  1.2 - тестирование
+ * Test.
+ *
+ * @author Petr Arsentev (parsentev@yandex.ru)
+ * @version $Id$
+ * @since 0.1
  */
-
-public class CalculateTest {      
+public class CalculateTest {
    /**
-    * main просто выводит почти стандартную фразу
-    * "World, Hello again"
+    * Test add.
     */
-   
-   public static void main(String[] args) {      
-      System.out.println("World, Hello again");
+   @Test
+   public void whenAddOneToOneThenTwo() {
+      ByteArrayOutputStream out = new ByteArrayOutputStream();
+      System.setOut(new PrintStream(out));
+      Calculate.main(null);
+      assertThat(
+         out.toString(),
+         is(
+               String.format(
+                     "Hello World%s",
+                     System.getProperty("line.separator")
+               )
+         )
+      );
    }
-   
-   /**
-     * Method Для тестирования echo.
-     * @param Александр Васильев
-     * @return "Echo, echo, echo : Petr Arsentev".
-     *
-     */   
-   public void whenTakeNameThenTreeEchoPlusName() {
-      String input = "Petr Arsentev";
-      String expect = "Echo, echo, echo : Petr Arsentev"; 
-      Calculate calc = new Calculate();
-      String result = calc.echo(input);
-      assertThat(result, is(expect));
-   }
-   
-   /**
-     * Method echo.     
-     */
-    public String echo(String name) {
-        return "E, e, e: " + name;
-    }
-   
 }
