@@ -1,7 +1,27 @@
 package ru.job4j;
+/**
+ * Первоый тестовый класс для проверки настроек.
+ * @author   AVasiliev
+ * @since    05.12.2017
+ * @version  1.2
+ */
 
 public class Calculate {      
-   public static void main (String[] args) {      
+   /**
+    * main просто выводит почти стандартную фразу
+    * "World, Hello again"
+    */
+   
+   public static void main(String[] args) {      
       System.out.println("World, Hello again");
    }
+   
+   /**
+     * Method echo.
+     * @param name Your name.
+     * @return Echo plus your name.
+     */
+    public String echo(String name) {
+        return "Echo, echo, echo : " + name;
+    }   
 }
