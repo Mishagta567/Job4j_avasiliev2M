@@ -3,7 +3,7 @@ package ru.job4j;
  * Первоый тестовый класс для проверки настроек.
  * @author   AVasiliev
  * @since    05.12.2017
- * @version  1.2
+ * @version  1.0.0
  */
 
 public class Calculate {

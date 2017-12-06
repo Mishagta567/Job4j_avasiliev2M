@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
  *
  * @author Petr Arsentev (parsentev@yandex.ru)
  * @version $Id$
- * @since 0.1
+ * @since 06/12/2017
  */
 public class CalculateTest {
    /**
