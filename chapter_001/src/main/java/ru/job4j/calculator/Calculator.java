@@ -25,7 +25,7 @@ public class Calculator {
     public void divide(double first, double second) {
        this.result = first / second;
     }
-
+    // Вернуть результат
    public double getResult() {
       return this.result;
    }
