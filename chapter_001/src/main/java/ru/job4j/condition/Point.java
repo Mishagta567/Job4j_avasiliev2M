@@ -17,6 +17,8 @@ public class Point {
    public Point(int x, int y) {
       this.pX = x;
       this.pY = y;
+      // System.out.println("From constructor: this.x = " + this.pX);
+      // System.out.println("From constructor: this.y = " + this.pY);
    }
    // Вычслим расстояние между точками:
    public double distanceTo(Point that) {
@@ -36,12 +38,15 @@ public class Point {
       Point a = new Point(1, 2);
       Point b = new Point(3, 4);
       // сделаем вызов метода
-      System.out.println("main: x1 = " + a.pX);
-      System.out.println("main: y1 = " + a.pY);
-      System.out.println("main: x2 = " + b.pX);
-      System.out.println("main: y2 = " + b.pY);
+      //System.out.println("main: x1 = " + a.pX);
+      //System.out.println("main: y1 = " + a.pY);
+      //System.out.println("main: x2 = " + b.pX);
+      //System.out.println("main: y2 = " + b.pY);
 
       double result = a.distanceTo(b);
+      System.out.println("Расстояние между точками А и В : " + result);
+      // Насколько я понял - this относится к тому классу, из которого вызывается метод. Если вызовем из b
+      result = b.distanceTo(a);
       System.out.println("Расстояние между точками А и В : " + result);
    }
 }
