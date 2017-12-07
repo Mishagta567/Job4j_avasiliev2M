@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
  * @since 07/12/2017
  */
 public class MaxTest {
-
+   // Странно: почему-то НЕ отправляется.
    @Test
    public void whenFirstLessThenSecond() {
       Max maxim = new Max();
