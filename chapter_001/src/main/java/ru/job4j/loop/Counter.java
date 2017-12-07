@@ -27,7 +27,7 @@ public class Counter {
       //
       for (int i = 0; ((vStart + i) <= vFinish); i++) {
          if ((vStart + 1) % 2 == 0) {
-            vResult = vResult + vStart + i;
+            vResult += vStart + i;
          }
       }
       return vResult;
