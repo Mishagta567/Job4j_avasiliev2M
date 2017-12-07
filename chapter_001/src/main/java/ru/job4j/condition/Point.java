@@ -19,16 +19,29 @@ public class Point {
       this.pY = y;
    }
    // Вычслим расстояние между точками:
-   public double findDistanse(Point A1, Point B1) {
-      //double result = 9.01D;
-      return Math.sqrt(Math.pow((A1.pX - B1.pX), 2) + Math.pow((A1.pY - B1.pY), 2 ));
-      //return result;
+   public double distanceTo(Point that) {
+      // Точка А - это текущая точка. К ней мы обращаемся через оператор this.
+      // Точка В - это входящая точка. К ней мы можем обратиться напрямую через имя переменной that.
+      // сделаем вывод на консоль.
+      System.out.println("distTo: this.x = " + this.pX);
+      System.out.println("distTo: this.y = " + this.pY);
+      System.out.println("distTo: that.x = " + that.pX);
+      System.out.println("distTo: that.y = " + that.pY);
+      return Math.sqrt(
+            Math.pow(this.pX - that.pX, 2) + Math.pow(this.pY - that.pY, 2)
+      );
    }
 
    public static void main(String[] args) {
-      Point A = new Point(1, 1);
-      Point B = new Point(4, 4);
-      //double dist = A.findDistanse(A, B);
-      System.out.print(A.findDistanse(A, B));
+      Point a = new Point(1, 2);
+      Point b = new Point(3, 4);
+      // сделаем вызов метода
+      System.out.println("main: x1 = " + a.pX);
+      System.out.println("main: y1 = " + a.pY);
+      System.out.println("main: x2 = " + b.pX);
+      System.out.println("main: y2 = " + b.pY);
+
+      double result = a.distanceTo(b);
+      System.out.println("Расстояние между точками А и В : " + result);
    }
 }
