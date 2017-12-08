@@ -13,13 +13,31 @@ public class Factorial {
     */
    public int calc(int n) {
       int vResult = 1;
+      // Да, это условие совсем не обязательно
+      //if (n == 0) {
+      //   vResult = 1;
+      //} else {
+         for (int i = 1; i <= n; i++) {
+            vResult = vResult * i;
+         }
+      //}
+      return vResult;
+   }
+
+   /*
+   * для наглядного теста с n > 0.
+   public static void main(String[] args) {
+      int n = 5;
+      int vResult = 1;
       if (n == 0) {
          vResult = 1;
       } else {
          for (int i = 1; i <= n; i++) {
             vResult = vResult * i;
+            System.out.println("i= " + i + ", n= " + n);
          }
       }
-      return vResult;
-   }
+      System.out.println(vResult);
+   } */
+
 }
