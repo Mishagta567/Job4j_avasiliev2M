@@ -11,23 +11,10 @@ public class Counter {
     * Метод должен вычислять сумму четныx чисел в диапазоне от start до finish;    *
     */
    public int add(int start, int finish) {
-      int vStart, vFinish;
-
-      // Убедимся что start > finish
-      if (start >= finish) {
-         vStart  = start;
-         vFinish = finish;
-      } else {
-         vStart  = finish;
-         vFinish = start;
-      }
-
-      // Теперь собственно и посчитаем.
       int vResult = 0;
-      //
-      for (int i = 0; ((vStart + i) <= vFinish); i++) {
-         if ((vStart + 1) % 2 == 0) {
-            vResult += vStart + i;
+      for (int i = start; i <= finish; i++) {
+         if ((i % 2) == 0) {
+            vResult += i;
          }
       }
       return vResult;

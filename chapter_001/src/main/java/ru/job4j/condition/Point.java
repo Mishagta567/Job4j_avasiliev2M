@@ -48,5 +48,7 @@ public class Point {
       // Насколько я понял - this относится к тому классу, из которого вызывается метод. Если вызовем из b
       result = b.distanceTo(a);
       System.out.println("Расстояние между точками А и В : " + result);
+
+      //String.format(" ^ %s^^^%s", "W");
    }
 }

@@ -19,10 +19,12 @@ public class CalculatorTest {
       calc.add(1D, 1D);
       double result = calc.getResult();
       // Здесь специально ошибка что бы проверить работу теста. Тест что-то не работает
-      double expected = 5D;
+      double expected = 2D;
       assertThat(result, is(expected));
    }
+
    // Задание: сделать аналоги для deduct
+   @Test
    public void whenThreeDeductOneThenTwo() {
       Calculator calc = new Calculator();
       calc.deduct(3D, 1D);
@@ -30,7 +32,9 @@ public class CalculatorTest {
       double expected = 2D;
       assertThat(result, is(expected));
    }
+
    // Задание: сделать аналоги для multiply
+   @Test
    public void whenThenThreeMultiplyTwoThenSix() {
       Calculator calc = new Calculator();
       calc.multiply(3D, 2D);
@@ -38,7 +42,9 @@ public class CalculatorTest {
       double expected = 6D;
       assertThat(result, is(expected));
    }
+
    // Задание: сделать аналоги для divide
+   @Test
    public void whenThenSixDivideTwoThenThree() {
       Calculator calc = new Calculator();
       calc.divide(6D, 2D);

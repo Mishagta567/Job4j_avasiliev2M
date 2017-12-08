@@ -9,19 +9,19 @@ package ru.job4j.loop;
 public class Board {
 
    /**
-    * Нарисуем псевдо доску
-    *
+    * Нарисуем псевдо доску    *
     */
    public String paint(int width, int height) {
       StringBuilder screen = new StringBuilder();
       String ln = System.lineSeparator();
       for (int hg = 1;  hg <= height; hg++) {
-         for (int wd = 1; wd <= width; wd++ ) {
+         for (int wd = 1; wd <= width; wd++) {
             // условие проверки, что писать пробел или X
             // на нечетной по высоте ставим Х для нечетных wd  ,
             // на   четных по высоте ставим Х для   четных wd
-            if ((wd % 2 == 1) && (hg % 2 == 1) ||
-                (wd % 2 == 0) && (hg % 2 == 0)  ) {
+            if ((wd % 2 == 1) && (hg % 2 == 1)
+                  ||  ///// --- здесь новая строка.
+                (wd % 2 == 0) && (hg % 2 == 0)) {
                screen.append("X");
             } else {
                screen.append(" ");

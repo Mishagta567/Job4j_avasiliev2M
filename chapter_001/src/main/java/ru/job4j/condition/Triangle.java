@@ -70,10 +70,18 @@ public class Triangle {
     * @return
     */
    private boolean exist(double ab, double ac, double bc) {
-      if      (ab == 0 || ac == 0 || bc == 0) return false;
-      else if ((ab + ac) == bc)  return false;
-      else if (ab == (ac + bc))  return false;
-      else if ((ab + bc) == ac)  return false;
-      else return true;
+      boolean rst = true;
+      if      (ab == 0 || ac == 0 || bc == 0) {
+         rst = false;
+      } else if ((ab + ac) == bc)  {
+         rst = false;
+      } else if (ab == (ac + bc))  {
+         rst = false;
+      } else if ((ab + bc) == ac)  {
+         rst = false;
+      } else                       {
+         rst = true;
+      }
+      return rst;
    }
 }

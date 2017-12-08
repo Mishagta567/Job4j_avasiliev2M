@@ -6,7 +6,7 @@ package ru.job4j.condition;
  * @version  1.0.0
  */
 
-public class PointWrond {
+public class PointWrong {
    private int pX;
    private int pY;
    /**
@@ -14,21 +14,21 @@ public class PointWrond {
    * В main мы должны инициализировать две точки и вычислить расстояние между ними
    */
    // Видимо это конструктор для инициализации значения pX и pY
-   public PointWrond(int x, int y) {
+   public PointWrong(int x, int y) {
       this.pX = x;
       this.pY = y;
    }
    // Вычслим расстояние между точками:
-   public double findDistanse(PointWrond A1, PointWrond B1) {
+   public double findDistanse(PointWrong a1, PointWrong b1) {
       //double result = 9.01D;
-      return Math.sqrt(Math.pow((A1.pX - B1.pX), 2) + Math.pow((A1.pY - B1.pY), 2 ));
+      return Math.sqrt(Math.pow((a1.pX - b1.pX), 2) + Math.pow((a1.pY - b1.pY), 2));
       //return result;
    }
 
    public static void main(String[] args) {
-      PointWrond A = new PointWrond(1, 1);
-      PointWrond B = new PointWrond(1, 4);
+      PointWrong aa = new PointWrong(1, 1);
+      PointWrong bb = new PointWrong(1, 4);
       //double dist = A.findDistanse(A, B);
-      System.out.print(A.findDistanse(A, B));
+      System.out.print(aa.findDistanse(aa, bb));
    }
 }

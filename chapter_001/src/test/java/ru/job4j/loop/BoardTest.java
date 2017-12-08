@@ -1,6 +1,5 @@
 package ru.job4j.loop;
 
-import static org.junit.Assert.*;
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -18,7 +17,7 @@ public class BoardTest {
       String rsl = board.paint(3, 3);
       String ln = System.lineSeparator();
       assertThat(rsl, is(
-            String.format(" X %sX X%s X %s", ln, ln, ln)
+            String.format("X X%s X %sX X%s", ln, ln, ln)
             )
       );
    }
