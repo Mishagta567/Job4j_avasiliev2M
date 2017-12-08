@@ -14,6 +14,9 @@ public class Calculate {
 
    public static void main(String[] args) {
       System.out.println("Hello World");
+      //System.out.println(Math.floor(4 % 2));
+      int[] myArr = {1, 2, 3};
+      System.out.print(myArr.length);
    }
 
    /**
