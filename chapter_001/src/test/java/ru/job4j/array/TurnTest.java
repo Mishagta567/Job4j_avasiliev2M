@@ -20,8 +20,8 @@ public class TurnTest {
       //напишите здесь тест, проверяющий переворот массива с нечётным числом элементов, например {1, 2, 3, 4, 5}.
       Turn turn = new Turn();
       int[] oldArr = {1, 2, 3, 4, 5};
-      int[] newArr = new int[5];
-      newArr = turn.back(oldArr);
+      int[] newArr = turn.back(oldArr); //new int[5];
+      //newArr = turn.back(oldArr);
       assertThat(oldArr, is(newArr));
    }
 }

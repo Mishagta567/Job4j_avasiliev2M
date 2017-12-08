@@ -23,9 +23,4 @@ public class Turn {
       }
       return array;
    }
-
-   //public static void main(String[] arg) {
-   //   Turn turn = new Turn();
-   //   for ();
-   //}
 }
