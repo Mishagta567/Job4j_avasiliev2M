@@ -9,19 +9,21 @@ public class TurnTest {
    public void whenTurnArrayWithEvenAmountOfElementsThenTurnedArray() {
       //напишите здесь тест, проверяющий переворот массива с чётным числом элементов, например {2, 6, 1, 4}.
       Turn turn = new Turn();
-      int[] oldArr = {2, 6, 1, 4};
-      int[] newArr = new int[4];
-      newArr = turn.back(oldArr);
-      assertThat(oldArr, is(newArr));
+      int[] startArr = {2, 6, 1, 4};
+      int[] endArr   = {4, 1, 6, 2};
+      int[] rstArr = turn.back(startArr);
+      //rstArr = turn.back(startArr);
+      assertThat(endArr, is(rstArr));
    }
 
    @Test
    public void whenTurnArrayWithOddAmountOfElementsThenTurnedArray() {
       //напишите здесь тест, проверяющий переворот массива с нечётным числом элементов, например {1, 2, 3, 4, 5}.
       Turn turn = new Turn();
-      int[] oldArr = {1, 2, 3, 4, 5};
-      int[] newArr = turn.back(oldArr); //new int[5];
-      //newArr = turn.back(oldArr);
-      assertThat(oldArr, is(newArr));
+      int[] startArr = {1, 2, 3, 4, 5};
+      int[] endArr   = {5, 4, 3, 2, 1};
+      int[] rstArr = turn.back(startArr); //new int[5];
+      //newArr = turn.back(startArr);
+      assertThat(endArr, is(rstArr));
    }
 }
