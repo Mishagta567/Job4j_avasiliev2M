@@ -14,7 +14,7 @@ public class BubbleSort {
    public int[] sort(int[] myArray) {
       int tmp, lgth = myArray.length;
       // Повторим это дело
-      for (int n = 0; n < (lgth - 1) ; n++) {
+      for (int n = 0; n < (lgth - 1); n++) {
          for (int m = 0; m <= (lgth - 2); m++) {
             if (myArray[m] > myArray[m + 1]) {
                // переставляем значения в массиве местами

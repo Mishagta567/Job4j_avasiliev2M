@@ -15,7 +15,7 @@ public class FindLoop {
 
       int rst = -1; // если элемента нет в массиве, то возвращаем -1.
 
-      for (int i : data){
+      for (int i : data) {
          if (data[i] == el) {
             rst = i;
             break;

@@ -15,7 +15,7 @@ public class Matrix {
       int[][] rst = new int[size][size];
       for (int n = 1; n <= size; n++) {
          for (int m = 1; m <= size; m++) {
-            rst[n-1][m-1] = n * m;
+            rst[n - 1][m - 1] = n * m;
          }
       }
       return rst;
