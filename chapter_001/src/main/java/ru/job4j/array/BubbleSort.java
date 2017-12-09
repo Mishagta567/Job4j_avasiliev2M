@@ -12,15 +12,15 @@ public class BubbleSort {
     * Метод должен вычислять сумму четныx чисел в диапазоне от start до finish;    *
     */
    public int[] sort(int[] myArray) {
-      int tempA, lgth = myArray.length;
+      int tmp, lgth = myArray.length;
       // Повторим это дело
-      for (int loopA = 0; loopA < (lgth - 1) ; loopA++) {
-         for (int loopB = 0; loopB <= (lgth - 2); loopB++) {
-            if (myArray[loopB] > myArray[loopB + 1]) {
+      for (int mainLoop = 0; mainLoop < (lgth - 1) ; mainLoop++) {
+         for (int i = 0; i <= (lgth - 2); i++) {
+            if (myArray[i] > myArray[i + 1]) {
                // переставляем значения в массиве местами
-               tempA = myArray[loopB];
-               myArray[loopB]     = myArray[loopB + 1];
-               myArray[loopB + 1] = tempA;
+               tmp = myArray[i];
+               myArray[i]     = myArray[i + 1];
+               myArray[i + 1] = tmp;
             }
          }
       }
