@@ -39,12 +39,4 @@ public class ArrayDuplicate {
       array = Arrays.copyOf(array, lgth + 1 - dublNumbers );
       return array;
    }
-
-   public static void main(String[] arg) {
-      ArrayDuplicate ar = new ArrayDuplicate();
-      String[] start = {"Привет", "Мир", "Привет", "XXXXX", "Мир"};
-      String[] rslt = ar.remove(start);
-      //System.out.println(rslt);
-   }
-
 }
