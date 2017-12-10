@@ -19,7 +19,7 @@ public class ArrayDuplicate {
       int lgth = array.length - 1;
       int dublNumbers = 0;
       String tmp;
-      for (int n = 0; n < lgth ; n++) {
+      for (int n = 0; n < lgth; n++) {
          for (int m = n + 1; m <= lgth; m++) {
             // Проверяем только если мы уже не залезли в "удаленное"
             if ((n < lgth - dublNumbers)
@@ -37,7 +37,7 @@ public class ArrayDuplicate {
             }
          }
       }
-      array = Arrays.copyOf(array, lgth + 1 - dublNumbers );
+      array = Arrays.copyOf(array, lgth + 1 - dublNumbers);
       return array;
    }
 }
