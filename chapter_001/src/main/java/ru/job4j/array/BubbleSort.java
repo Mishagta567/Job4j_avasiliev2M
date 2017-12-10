@@ -14,13 +14,13 @@ public class BubbleSort {
    public int[] sort(int[] myArray) {
       int tmp, lgth = myArray.length;
       // Повторим это дело
-      for (int n = 0; n < (lgth - 1); n++) {
-         for (int m = 0; m <= (lgth - 2); m++) {
-            if (myArray[m] > myArray[m + 1]) {
+      for (int outter = 0; outter < (lgth - 1); outter++) {
+         for (int inner = 0; inner <= (lgth - 2); inner++) {
+            if (myArray[inner] > myArray[inner + 1]) {
                // переставляем значения в массиве местами
-               tmp = myArray[m];
-               myArray[m]     = myArray[m + 1];
-               myArray[m + 1] = tmp;
+               tmp = myArray[inner];
+               myArray[inner]     = myArray[inner + 1];
+               myArray[inner + 1] = tmp;
             }
          }
       }

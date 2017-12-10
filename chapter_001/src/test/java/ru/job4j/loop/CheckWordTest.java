@@ -24,6 +24,15 @@ public class CheckWordTest {
       assertThat(rst, is(exp));
    }
 
+   // Проверка с отсутсвием sub
+   @Test
+   public void whenSubstrDoesntExist2() {
+      CheckWord ch = new CheckWord();
+      boolean rst = ch.contains("hello", "heloo");
+      boolean exp = false;
+      assertThat(rst, is(exp));
+   }
+
    // теперь с индексами:
    // Проверка с наличием sub
    @Test
