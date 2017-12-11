@@ -35,16 +35,21 @@ public class CheckWord {
       for (int i = 0; i < lngthSub; i++) {
          chSub[i] = sub.charAt(i);
       }
-
+      int concidNum = 0;
       boolean ifExist = false;
+
       // делаем два цикла. В пермов проходим все буквы до буквы (lenght - LengthSub + 1)
       for (int n = 0; n < (lngth - lngthSub + 1); n++) {
          // во втором проходм все буквы Sub
          for (int m = 0; m < lngthSub; m++) {
-            if ((ch[n + m] == chSub[m])
-                 && (m == (lngthSub - 1))) {
-               ifExist = true;
-               break;
+            if (ch[n + m] != chSub[m]) {
+               concidNum = 0;
+            } else {
+               concidNum++;
+               if (concidNum == lngthSub) {
+                  ifExist = true;
+                  break;
+               }
             }
             // нет смысла продолжать проверки, если найдено совпадение
             if (ifExist) {
