@@ -73,11 +73,11 @@ public class Triangle {
       boolean rst = true;
       if      (ab == 0 || ac == 0 || bc == 0) {
          rst = false;
-      } else if ((ab + ac) == bc)  {
+      } else if ((ab + ac) <= bc)  {
          rst = false;
-      } else if (ab == (ac + bc))  {
+      } else if (ab >= (ac + bc))  {
          rst = false;
-      } else if ((ab + bc) == ac)  {
+      } else if ((ab + bc) <= ac)  {
          rst = false;
       } else                       {
          rst = true;
