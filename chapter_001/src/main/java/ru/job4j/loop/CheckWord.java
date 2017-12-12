@@ -31,7 +31,7 @@ public class CheckWord {
       //for (int i = 0; i < lngth; i++) {         ch[i] = origin.charAt(i);      }
       //
       int lngthSub  = sub.length();
-      char[] chSub = sub.toCharArray();//new char[lngthSub];
+      char[] chSub = sub.toCharArray(); //new char[lngthSub];
       //for (int i = 0; i < lngthSub; i++) {         chSub[i] = sub.charAt(i);      }
       // число совпавших букв:
       int concidNum = 0;
