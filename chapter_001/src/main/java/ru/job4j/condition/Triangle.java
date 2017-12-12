@@ -69,6 +69,8 @@ public class Triangle {
     * @param bc Длина от точки b c.
     * @return
     */
+   // Если считать что длины НЕ привязаны к реальным точкам, а берутся с потолка или от неправильно-работющего метода,
+   // тогда условие конечно можно поправить
    private boolean exist(double ab, double ac, double bc) {
       boolean rst = true;
       if      (ab == 0 || ac == 0 || bc == 0) {
