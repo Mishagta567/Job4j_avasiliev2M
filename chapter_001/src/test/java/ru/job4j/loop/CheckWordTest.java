@@ -10,7 +10,7 @@ public class CheckWordTest {
    @Test
    public void whenSubstrExist() {
       CheckWord ch = new CheckWord();
-      boolean rst = ch.contains("Привет", "иве");
+      boolean rst = ch.contains("Привет всем всем", " все");
       boolean exp = true;
       assertThat(rst, is(exp));
    }
@@ -20,15 +20,6 @@ public class CheckWordTest {
    public void whenSubstrDoesntExist() {
       CheckWord ch = new CheckWord();
       boolean rst = ch.contains("Привет", "ххх");
-      boolean exp = false;
-      assertThat(rst, is(exp));
-   }
-
-   // Проверка с отсутсвием sub
-   @Test
-   public void whenSubstrDoesntExist2() {
-      CheckWord ch = new CheckWord();
-      boolean rst = ch.contains("hello", "heloo");
       boolean exp = false;
       assertThat(rst, is(exp));
    }

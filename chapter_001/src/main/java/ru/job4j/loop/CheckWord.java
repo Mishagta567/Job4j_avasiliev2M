@@ -1,5 +1,7 @@
 package ru.job4j.loop;
 
+import sun.security.util.Length;
+
 /**
  * Первоый тестовый класс для проверки настроек.
  * @author   AVasiliev
@@ -25,16 +27,13 @@ public class CheckWord {
    public boolean contains(String origin, String sub) {
       // Сначала преобразуем их в массивы
       int lngth  = origin.length();
-      char[] ch = new char[6];
-      for (int i = 0; i < lngth; i++) {
-         ch[i] = origin.charAt(i);
-      }
+      char[] ch = origin.toCharArray(); //new char[lngth];
+      //for (int i = 0; i < lngth; i++) {         ch[i] = origin.charAt(i);      }
       //
       int lngthSub  = sub.length();
-      char[] chSub = new char[6];
-      for (int i = 0; i < lngthSub; i++) {
-         chSub[i] = sub.charAt(i);
-      }
+      char[] chSub = sub.toCharArray();//new char[lngthSub];
+      //for (int i = 0; i < lngthSub; i++) {         chSub[i] = sub.charAt(i);      }
+      // число совпавших букв:
       int concidNum = 0;
       boolean ifExist = false;
 
@@ -63,5 +62,49 @@ public class CheckWord {
       }
       return ifExist;
    }
+   /*
+   public void main(String[] arg) {
+      private String origin = "Слон любит траву";
+      private String sub = " люб";
 
+      // Сначала преобразуем их в массивы
+      int lngth  = origin.length();
+      char[] ch = new char[lngth];
+      for (int i = 0; i < lngth; i++) {
+         ch[i] = origin.charAt(i);
+      }
+      //
+      int lngthSub  = sub.length();
+      char[] chSub = new char[lngthSub];
+      for (int i = 0; i < lngthSub; i++) {
+         chSub[i] = sub.charAt(i);
+      }
+      int concidNum = 0;
+      boolean ifExist = false;
+
+      // делаем два цикла. В пермов проходим все буквы до буквы (lenght - LengthSub + 1)
+      for (int n = 0; n < (lngth - lngthSub + 1); n++) {
+         // во втором проходм все буквы Sub
+         for (int m = 0; m < lngthSub; m++) {
+            if (ch[n + m] != chSub[m]) {
+               concidNum = 0;
+            } else {
+               concidNum++;
+               System.out.println("Boo");
+               if (concidNum == lngthSub) {
+                  ifExist = true;
+                  break;
+               }
+            }
+            // нет смысла продолжать проверки, если найдено совпадение
+            if (ifExist) {
+               break;
+            }
+         }
+         // нет смысла продолжать проверки, если найдено совпадение
+         if (ifExist) {
+            break;
+         }
+      }
+   } */
 }
