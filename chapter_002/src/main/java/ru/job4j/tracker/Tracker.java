@@ -9,11 +9,6 @@ import java.util.*;
  */
 public class Tracker {
    /**
-    * Задача: написать еще методы для:
-    *  ==================================================================    *
-    *  public Item findById(String id);            - получение заявки по id -
-    * ====================================================================
-    *
     * Массив для хранение заявок.
     */   
    private final Item[] items = new Item[100];      
@@ -40,7 +35,7 @@ public class Tracker {
    /**
     * public void replace(String id, Item item);  - редактирование заявок -
     */
-   public void replace(String id, Item item) {
+   public void replace(long id, Item item) {
       for (Item itm : items) {
          if (itm != null && item.getId().equals(id)) {
             itm = item;
@@ -101,8 +96,6 @@ public class Tracker {
       return result;
    }
 
-
-
    /**
      * Метод генерирует уникальный ключ для заявки.
      * Так как у заявки нет уникальности полей, имени и описание. Для идентификации нам нужен уникальный ключ.
@@ -127,7 +120,6 @@ public class Tracker {
       return result;
    }
 
-
    /**
     * Метода для вывода всех заявок.
     */
@@ -139,8 +131,4 @@ public class Tracker {
       }
       return result;
    }
-   
-   // Необходимо добавить логику на редактирование, удаление, поиск по имени заявки, описанию или дате создания.
-   // Добавление коментариев к заявке.    
-   
 }
