@@ -73,7 +73,7 @@ public class Triangle {
    // тогда условие конечно можно поправить
    private boolean exist(double ab, double ac, double bc) {
       boolean rst = true;
-      if (ab == 0 || ac == 0 || bc == 0 || (bc >= (ab + ac) ) || (ab >= (ac + bc)) || (ac >= (ab + bc)))  {
+      if (ab == 0 || ac == 0 || bc == 0 || (bc >= (ab + ac)) || (ab >= (ac + bc)) || (ac >= (ab + bc)))  {
          rst = false;
       }
       return rst;
