@@ -24,20 +24,7 @@ public class Tracker {
     */
    private int position = 0;
 
-   public static void main(String[] args) {
-      String[] arr = new String[10];
-      int[] arr2 = new int[arr.length - 1];
-      arr[0] = "0";
-      arr[1] = "1";
-      arr[2] = "2";
-      for (int ln = 0; (ln < arr.length); ln++) {
-         if (arr[ln] != null) {
-            System.out.println(ln);
-         }
-      }
-   }
-
-   /**
+    /**
     * Метод реализаущий добавление заявки в хранилище
     * У Петра           public Item add(Item item) {
     * Я переделал на    public void add(Item item) {
