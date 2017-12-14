@@ -9,7 +9,7 @@ package ru.job4j.array;
 
 public class Turn {
    /**
-    * Метод должен вычислять сумму четныx чисел в диапазоне от start до finish;    *
+    * Метод должен вычислять сумму четныx чисел в диапазоне от tracker до finish;    *
     */
    public int[] back(int[] array) {
       int tempA, tempB, lgth = array.length - 1;

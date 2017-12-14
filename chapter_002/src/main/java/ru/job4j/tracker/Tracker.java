@@ -70,8 +70,8 @@ public class Tracker {
       int eqlsLength = 0;
 
       for (int indx = 0; indx < items.length; indx++) {
-         if ( (items[indx] != null) &&
-               items[indx].getName().equals(key)) {
+         if ((items[indx] != null)
+              && items[indx].getName().equals(key)) {
             result[indx] = items[indx];
             eqlsLength++;
          }
@@ -103,13 +103,13 @@ public class Tracker {
      */
    private String generateId() {
       //Реализовать метод генерации.
-      return String.valueOf(System.currentTimeMillis() ); // + RN.next());
+      return String.valueOf(System.currentTimeMillis()); // + RN.next());
    }
 
    /**
     * Метод для нахождения заявки
     */
-   protected Item frindById (String id) {
+   protected Item frindById(String id) {
       Item result = null;
       for (Item item : items) {
          if (item != null && item.getId().equals(id)) {
@@ -125,7 +125,7 @@ public class Tracker {
     */
    public Item[] getAll() {
       Item[] result = new Item[this.position];
-      for (int index = 0; index != this.position; index++ ) {
+      for (int index = 0; index != this.position; index++) {
          result[index] = this.items[index];
          
       }

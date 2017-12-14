@@ -11,7 +11,7 @@ import javafx.stage.Screen;
 
 public class Paint {
    /**
-    * Метод должен вычислять сумму четныx чисел в диапазоне от start до finish;    *
+    * Метод должен вычислять сумму четныx чисел в диапазоне от tracker до finish;    *
     */
    public String piramid(int h) {   // 3
       // Рисуем

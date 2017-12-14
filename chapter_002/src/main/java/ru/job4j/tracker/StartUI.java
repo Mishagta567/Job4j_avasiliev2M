@@ -13,21 +13,21 @@ import ru.job4j.models.*;
 public class StartUI {
    /**
     * Константы меню для добавления новой заявки.
-    *   AddItm     - 0 - добавить заявку
+    *   ADD     - 0 - добавить заявку
     *   Show       - 1 - показать ВСЕ заявки
     *   Edit       - 2 - изменить заявку
     *   Delete     - 3 - удалить заявку
     *   FindByName - 4 - найти по имени
     *   FindByID   - 5 - найти по ID
-    *   Exit       - 6 - выйти
+    *   EXIT       - 6 - выйти
     */
-   private static final String AddItm        = "0";
-   private static final String Show          = "1";
-   private static final String Edit          = "2";
-   private static final String Delete        = "3";
-   private static final String FindByName    = "4";
-   private static final String FindByID      = "5";
-   private static final String Exit          = "6";
+   private static final String ADD           = "0";
+   private static final String SHOW          = "1";
+   private static final String EDIT          = "2";
+   private static final String DELETE        = "3";
+   private static final String FINDBYNAME    = "4";
+   private static final String FINDBYID      = "5";
+   private static final String EXIT = "6";
 
    /**
     * Получение данных от пользователя.
@@ -57,12 +57,12 @@ public class StartUI {
       while (!exit) {
          this.showMenu();
          String answer = this.input.ask("Введите пункт меню : ");
-         if (AddItm.equals(answer)) {
+         if (ADD.equals(answer)) {
             //добавление заявки вынесено в отдельный метод.
             this.createItem();
 //            } else if (...) {
 //             Добавить остальные действия системы по меню.
-         } else if (Exit.equals(answer)) {
+         } else if (EXIT.equals(answer)) {
             exit = true;
          }
       }
@@ -93,7 +93,7 @@ public class StartUI {
 
    /**
     * Запускт программы.
-    * @param args
+    * @param args bla bla bla
     */
    public static void main(String[] args) {
       new StartUI(new ConsoleInput(), new Tracker()).init();

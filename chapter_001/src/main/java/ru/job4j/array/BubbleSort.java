@@ -9,7 +9,7 @@ package ru.job4j.array;
 
 public class BubbleSort {
    /**
-    * Метод должен вычислять сумму четныx чисел в диапазоне от start до finish;    *
+    * Метод должен вычислять сумму четныx чисел в диапазоне от tracker до finish;    *
     */
    public int[] sort(int[] myArray) {
       int tmp, lgth = myArray.length;

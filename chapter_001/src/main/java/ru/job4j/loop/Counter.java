@@ -8,7 +8,7 @@ package ru.job4j.loop;
 
 public class Counter {
    /**
-    * Метод должен вычислять сумму четныx чисел в диапазоне от start до finish;    *
+    * Метод должен вычислять сумму четныx чисел в диапазоне от tracker до finish;    *
     */
    public int add(int start, int finish) {
       int vResult = 0;
