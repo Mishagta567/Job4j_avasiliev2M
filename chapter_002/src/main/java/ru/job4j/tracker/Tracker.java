@@ -1,6 +1,8 @@
 package ru.job4j.tracker;
 
 import ru.job4j.models.*;
+
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -17,7 +19,7 @@ public class Tracker {
    /**
     * Указатель ячейки для новой заявки.
     */
-   private int position = 0;
+   public int position = 0;
 
     /**
     * Метод реализаущий добавление заявки в хранилище
@@ -28,38 +30,63 @@ public class Tracker {
     */
    public void add(Item item) {
       item.setId(this.generateId());
-      this.items[this.position++] = item;
+      this.items[this.position] = item;
+      this.position++;
       // return item;
    }
 
    /**
     * public void replace(String id, Item item);  - редактирование заявок -
     */
-   public void replace(long id, Item item) {
-      for (Item itm : items) {
-         if (itm != null && item.getId().equals(id)) {
+   public void replace(String id, Item item) {
+      //String rslt = "No";
+      /** for (Item itm : items) {
+         if (itm != null && itm.getId().equals(id)) {
             itm = item;
+            rslt = "Yes";
+            break;
+         }
+      } */
+      for (int ind = 0; ind < position; ind++) {
+         if (items[ind].getId().equals(id)) {
+            items[ind] = item;
+            // rslt = "Yes";
+            break;
          }
       }
+      // return rslt;
    }
 
    /**
     * public void delete(String id);              - удаление заявки с данным id
     */
-   public void delete(String id) {
-      Item tmp  = new Item();
-      int lngth = items.length;
-      for (Item itm : items) {
-         if (itm != null && itm.getId().equals(id)) {
+   public String delete(String id) {
+      String rst = "No";
+      //Item tmp  = new Item();
+      //int lngth = items.length;
+      for (int ind = 0; ind < position; ind++) {
+         if (items[ind].getId().equals(id)) {
             // перестановка и удаление последней ячейки
-            itm = items[position];
-            items[position] = null; // не знаю - можно ли так делать
+            if (ind < position ) {
+               items[ind] = items[items.length - 1];
+               //items[ind] = null;           // Что-то НЕ РАБОТАЕТ
+               //tmp = Arrays.copyOf(items, position);
+               position--;
+               rst = "Yes";
+               //System.
+            }
+            else {
+                  rst = "Yes but...";
+             }
+            break;
+            //else {               rst = "Yes, but...";            }
             // Если хочется - по идее - можно обрезать массив. Но мне не очень нравится эта идея
             // if (position > 0) {
             //   System.arraycopy(items, 0, items, 0, position-- - 1);
             // }
          }
       }
+      return rst;
    }
 
    /**
@@ -69,14 +96,14 @@ public class Tracker {
       Item[] result  = new Item[items.length];
       int eqlsLength = 0;
 
-      for (int indx = 0; indx < items.length; indx++) {
+      //for (int indx = 0; indx < items.length; indx++) {
+      for (int indx = 0; indx < position; indx++) {
          if ((items[indx] != null)
               && items[indx].getName().equals(key)) {
-            result[indx] = items[indx];
-            eqlsLength++;
+            result[eqlsLength++] = items[indx];
          }
       }
-      System.arraycopy(items, 0, result, 0, eqlsLength);
+      //System.arraycopy(items, 0, result, 0, eqlsLength);
       return result;
    }
 
@@ -86,8 +113,10 @@ public class Tracker {
    public Item[] findAll() {
       int notNullLength = 0;
       Item[] result  = new Item[items.length];
-      for (int indx = 0; indx < items.length; indx++) {
-         if (items[indx] != null) {
+      //for (int indx = 0; indx < items.length; indx++) {   Ниже не лучше: ?
+      for (int indx = 0; indx < this.position; indx++) {
+         if ((items[indx] != null)
+               && !(items[indx].getId().equals("null"))) {
             result[indx] = items[indx];
             notNullLength++;
          }
@@ -103,21 +132,24 @@ public class Tracker {
      */
    private String generateId() {
       //Реализовать метод генерации.
-      return String.valueOf(System.currentTimeMillis()); // + RN.next());
+      return String.valueOf(System.currentTimeMillis() + this.position); // + RN.next());
    }
 
    /**
     * Метод для нахождения заявки
     */
    protected Item frindById(String id) {
-      Item result = null;
-      for (Item item : items) {
-         if (item != null && item.getId().equals(id)) {
-            result = item;
-            break;
+         Item result  = new Item();
+         //for (int indx = 0; indx < items.length; indx++) {
+         for (int indx = 0; indx < position; indx++) {
+            if ((items[indx] != null)
+                  && items[indx].getId().equals(id)) {
+               result = items[indx];
+               break;
+            }
          }
-      }
-      return result;
+         //System.arraycopy(items, 0, result, 0, eqlsLength);
+         return result;
    }
 
    /**
@@ -125,8 +157,8 @@ public class Tracker {
     */
    public Item[] getAll() {
       Item[] result = new Item[this.position];
-      for (int index = 0; index != this.position; index++) {
-         result[index] = this.items[index];
+      for (int indx = 0; indx != this.position; indx++) {
+         result[indx] = this.items[indx];
          
       }
       return result;
