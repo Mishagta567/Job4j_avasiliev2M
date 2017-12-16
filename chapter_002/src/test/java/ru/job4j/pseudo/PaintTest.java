@@ -1,8 +1,11 @@
 package ru.job4j.pseudo;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.StringJoiner;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -12,14 +15,28 @@ import static org.junit.Assert.assertThat;
  * @since 0.1
  */
 public class PaintTest {
+   // получаем ссылку на стандартный вывод в консоль.
+   PrintStream stdout = System.out;
+   // Создаем буфур для хранения вывода.
+   ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+   @Before
+   public void loadOutput() {
+      System.out.println("execute before method");
+      System.setOut(new PrintStream(this.out));
+   }
+
+   @After
+   public void backOutput() {
+      System.setOut(this.stdout);
+      System.out.println("execute after method");
+   }
+
    @Test
    public void whenDrawMain() {
-      // получаем ссылку на стандартный вывод в консоль.
-      PrintStream stdout = System.out;
-      // Создаем буфур для хранения вывода.
-      ByteArrayOutputStream out = new ByteArrayOutputStream();
+
       //Заменяем стандартный вывод на вывод в пямять для тестирования.
-      System.setOut(new PrintStream(out));
+      //System.setOut(new PrintStream(out));
       // выполняем действия пишушиее в консоль.
       new Paint().draw(new Square());
       new Paint().draw(new Triangle());
@@ -50,14 +67,13 @@ public class PaintTest {
 
       assertThat( new String(out.toByteArray()), is(result));
       // возвращаем обратно стандартный вывод в консоль.
-      System.setOut(stdout);
+      //System.setOut(stdout);
    }
 
    @Test
    public void whenDrawSquare() {
-       PrintStream stdout = System.out;
-       ByteArrayOutputStream out = new ByteArrayOutputStream();
-       System.setOut(new PrintStream(out));
+
+       //System.setOut(new PrintStream(out));
        new Paint().draw(new Square());
        assertThat(
             new String(out.toByteArray()),
@@ -74,14 +90,13 @@ public class PaintTest {
                      .toString()
             )
       );
-      System.setOut(stdout);
+      //System.setOut(stdout);
    }
 
    @Test
    public void whenDrawTriangle() {
-      PrintStream stdout = System.out;
-      ByteArrayOutputStream out = new ByteArrayOutputStream();
-      System.setOut(new PrintStream(out));
+
+      //System.setOut(new PrintStream(out));
       new Paint().draw(new Triangle());
       assertThat(
          new String(out.toByteArray()),
@@ -98,6 +113,6 @@ public class PaintTest {
                .toString()
              )
        );
-       System.setOut(stdout);
+       //System.setOut(stdout);
    }
 }
