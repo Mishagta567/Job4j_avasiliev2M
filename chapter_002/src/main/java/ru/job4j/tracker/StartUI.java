@@ -1,6 +1,8 @@
 package ru.job4j.tracker;
 
 import ru.job4j.models.*;
+//import ru.job4j.tracker.Tracker;
+
 // import ru.job4j.models.Tracker;
 
 /**
@@ -28,11 +30,13 @@ public class StartUI {
    private static final String FINDBYNAME    = "4";
    private static final String FINDBYID      = "5";
    private static final String EXIT = "6";
+   private static boolean runTest = false;
 
    /**
     * Получение данных от пользователя.
     */
    private final Input input;
+   public StubInput stInput;
 
    /**
     *    Хранилище заявок.
@@ -44,6 +48,7 @@ public class StartUI {
     * @param input ввод данных.
     * @param tracker хранилище заявок.
     */
+
    public StartUI(Input input, Tracker tracker) {
       this.input   = input;
       this.tracker = tracker;
@@ -60,8 +65,16 @@ public class StartUI {
          if (ADD.equals(answer)) {
             //добавление заявки вынесено в отдельный метод.
             this.createItem();
-//            } else if (...) {
-//             Добавить остальные действия системы по меню.
+         } else if (SHOW.equals(answer)) {
+            System.out.println("Здесь нужно вывести список всех заявок");
+         } else if (EDIT.equals(answer)) {
+            this.editItem();
+         } else if (DELETE.equals(answer)) {
+            this.deleteItem();
+         } else if (FINDBYNAME.equals(answer)) {
+            this.findByName();
+         } else if (FINDBYID.equals(answer)) {
+            this.findById();
          } else if (EXIT.equals(answer)) {
             exit = true;
          }
@@ -72,23 +85,66 @@ public class StartUI {
     * Метод реализует добавленяи новый заявки в хранилище.
     */
    private void createItem() {
-      System.out.println("------------ Добавление новой языки --------------");
-      String name = this.input.ask("Введите имя заявки :");
-      String desc = this.input.ask("Введите описание заявки :");
+      System.out.println("------------ Add new task --------------");
+      String name = this.input.ask("Task name: ");
+      String desc = this.input.ask("Task description: ");
       Item item = new Item(name, desc);
       this.tracker.add(item);
-      System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
+      System.out.println("------------ New task c getId : " + item.getId() + "-----------");
+   }
+
+   private void editItem() {
+      System.out.println("------------ Task change --------------");
+      String name = this.input.ask("Task name: ");
+      String desc = this.input.ask("Task description: ");
+      String id   = this.input.ask("Task ID: ");
+      Item item = new Item(name, desc);
+      this.tracker.replace(id, item);
+      //this.tracker.add(item);
+      System.out.println("----- Task with getId= " + item.getId() + " changed. ----");
+   }
+
+   private void deleteItem() {
+      System.out.println("------------ Task delete --------------");
+      String id   = this.input.ask("Task ID: ");
+      this.tracker.delete(id);
+      System.out.println("----- Task with getId : " + id + " deleted -----");
+   }
+
+   private void findByName() {
+      System.out.println("--------- Task serach by name ---------");
+      String name = this.input.ask("Task name: ");
+      Item[] findItem = this.tracker.findByName(name);
+      System.out.println("-- Tasks with name: " + name + " --");
+      for (int ind = 0; ind < findItem.length; ind++) {
+         System.out.printf("Task: %s %S", findItem[ind].getName(), findItem[ind].getDescription());
+         System.out.println(" ");
+      }
+   }
+
+   private void findById() {
+      System.out.println("------------ Search by ID --------------");
+      String id = this.input.ask("Task ID: ");
+      Item findItem = this.tracker.frindById(id);
+      System.out.println("------ Tasks with ID: " + id + " ------");
+      System.out.printf("Task Name: %s, description: %s", findItem.getName(), findItem.getDescription());
+      System.out.println(" ");
    }
 
    private void showMenu() {
-      System.out.println("Меню:");
-      System.out.println("0 - добавить заявку.");
-      System.out.println("1 - показать все заявки.");
-      System.out.println("2 - изменить заявку.");
-      System.out.println("3 - удалить заявку.");
-      System.out.println("4 - найти по имени.");
-      System.out.println("5 - найти по ID.");
-      System.out.println("6 - выйти.");
+      System.out.println("Menu:");
+      System.out.println("0 - add task.");
+      System.out.println("1 - show all tasks.");
+      System.out.println("2 - change tasks.");
+      System.out.println("3 - delete tasks.");
+      System.out.println("4 - find by name.");
+      System.out.println("5 - fidn by ID.");
+      System.out.println("6 - exit.");
+   }
+
+   // set и get для
+   public void setRunTest(boolean ind) {
+      this.runTest = ind;
    }
 
    /**
@@ -97,6 +153,7 @@ public class StartUI {
     */
    public static void main(String[] args) {
       new StartUI(new ConsoleInput(), new Tracker()).init();
+      //System.out.println("1-2-3");
    }
-   
+
 }

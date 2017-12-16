@@ -1,7 +1,7 @@
 package ru.job4j.tracker;
 
-//import ru.job4j.models.Item;
-//import ru.job4j.models.Task;
+//import ru.job4j.models.Vitem;
+//import ru.job4j.models.Vtask;
 // import ru.job4j.models.Tracker;
 
 import java.util.Scanner;
@@ -23,6 +23,7 @@ public class ConsoleInput implements Input {
    public String ask(String question) {
       System.out.println(question);
       return scanner.nextLine();
+      //return "6";
    }
    
 }

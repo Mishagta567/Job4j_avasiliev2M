@@ -1,7 +1,7 @@
 package ru.job4j.tracker;
 
-//import ru.job4j.models.Item;
-//import ru.job4j.models.Task;
+//import ru.job4j.models.Vitem;
+//import ru.job4j.models.Vtask;
 // import ru.job4j.models.Tracker;
 
 /**
@@ -15,16 +15,16 @@ public class StubInput implements Input {
    /**
     *
     */
-   private String[] ansrs;
+   private String[] anwrs;
    private int position = 0;
 
    public StubInput(String[] answers) {
-      this.ansrs = answers;
+      this.anwrs = answers;
    }
 
    @Override
    public String ask(String quastion) {
-      return ansrs[position++];
+      return anwrs[position++];
    }
    
 }

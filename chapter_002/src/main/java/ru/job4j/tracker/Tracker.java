@@ -23,8 +23,8 @@ public class Tracker {
 
     /**
     * Метод реализаущий добавление заявки в хранилище
-    * У Петра           public Item add(Item item) {
-    * Я переделал на    public void add(Item item) {
+    * У Петра           public Vitem add(Vitem item) {
+    * Я переделал на    public void add(Vitem item) {
     *
     * @param item новая заявка
     */
@@ -36,11 +36,11 @@ public class Tracker {
    }
 
    /**
-    * public void replace(String id, Item item);  - редактирование заявок -
+    * public void replace(String id, Vitem item);  - редактирование заявок -
     */
    public void replace(String id, Item item) {
       //String rslt = "No";
-      /** for (Item itm : items) {
+      /** for (Vitem itm : items) {
          if (itm != null && itm.getId().equals(id)) {
             itm = item;
             rslt = "Yes";
@@ -50,6 +50,7 @@ public class Tracker {
       for (int ind = 0; ind < position; ind++) {
          if (items[ind].getId().equals(id)) {
             items[ind] = item;
+            items[ind].setId(id);
             // rslt = "Yes";
             break;
          }
@@ -62,22 +63,21 @@ public class Tracker {
     */
    public String delete(String id) {
       String rst = "No";
-      //Item tmp  = new Item();
+      //Vitem tmp  = new Vitem();
       //int lngth = items.length;
       for (int ind = 0; ind < position; ind++) {
          if (items[ind].getId().equals(id)) {
             // перестановка и удаление последней ячейки
-            if (ind < position ) {
+            if (ind < position) {
                items[ind] = items[items.length - 1];
                //items[ind] = null;           // Что-то НЕ РАБОТАЕТ
                //tmp = Arrays.copyOf(items, position);
                position--;
                rst = "Yes";
                //System.
-            }
-            else {
+            } else {
                   rst = "Yes but...";
-             }
+            }
             break;
             //else {               rst = "Yes, but...";            }
             // Если хочется - по идее - можно обрезать массив. Но мне не очень нравится эта идея
@@ -90,7 +90,7 @@ public class Tracker {
    }
 
    /**
-    * public Item[] findByName(String key);              - получение списка по имени
+    * public Vitem[] findByName(String key);              - получение списка по имени
     */
    public Item[] findByName(String key) {
       Item[] result  = new Item[items.length];
@@ -108,7 +108,7 @@ public class Tracker {
    }
 
    /**
-    * public Item[] findAll();              - получение списка всех заявок
+    * public Vitem[] findAll();              - получение списка всех заявок
     */
    public Item[] findAll() {
       int notNullLength = 0;
@@ -159,8 +159,8 @@ public class Tracker {
       Item[] result = new Item[this.position];
       for (int indx = 0; indx != this.position; indx++) {
          result[indx] = this.items[indx];
-         
       }
       return result;
    }
+
 }
