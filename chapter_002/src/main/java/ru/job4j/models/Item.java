@@ -14,7 +14,6 @@ public class Item {
     */
    private String name, description, comments;  // добавили comments
    private String id;
-    
    private long create;
    public Item() {
    }

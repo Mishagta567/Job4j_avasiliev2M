@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 
 public class TrackerTest {
 
-   // public void add(Item item) {
+   // public void add(Vitem item) {
    @Test
    public void whenAddNewItemThenTrackerHasSameItem() {
       Tracker tracker = new Tracker();
@@ -17,7 +17,7 @@ public class TrackerTest {
       assertThat(tracker.getAll()[0], is(item));
    }
 
-   // public void replace(String id, Item item) {
+   // public void replace(String id, Vitem item) {
    @Test
    public void whenReplaceItem() {
       Tracker tracker = new Tracker();
@@ -51,12 +51,12 @@ public class TrackerTest {
       assertThat(tracker.getAll()[0], is(item));
    }
 
-   // public public Item[] findByName(String key) {
+   // public public Vitem[] findByName(String key) {
 
    @Test
    public void whenFindByName() {
       Tracker tracker = new Tracker();
-      //Item[] findTtr = new Item[1];
+      //Vitem[] findTtr = new Vitem[1];
       Item item  = new Item("test1", "Description-1", 123L);
       Item scnd  = new Item("test2", "Description-2", 456L);
       Item third = new Item("test3", "Description-2", 789L);
@@ -68,11 +68,11 @@ public class TrackerTest {
       assertThat(rstItem[0], is(scnd));
    }
 
-   // public Item[] findAll() {
+   // public Vitem[] findAll() {
    @Test   
    public void whenFindAll() {
       Tracker tracker = new Tracker();
-      //Item[] findTr = new Item[];
+      //Vitem[] findTr = new Vitem[];
       Item item  = new Item("test1", "Description-1", 123L);
       tracker.add(item);
       assertThat(tracker.findAll()[0], is(item));
