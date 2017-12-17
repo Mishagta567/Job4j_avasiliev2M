@@ -38,8 +38,8 @@ public class Tracker {
    /**
     * public void replace(String id, Item0 Item0);  - редактирование заявок -
     */
-   public void replace(String id, Item item) {
-      //String rslt = "No";
+   public boolean replace(String id, Item item) {
+      boolean rslt = false;
       /** for (Item0 itm : items) {
          if (itm != null && itm.getId().equals(id)) {
             itm = Item0;
@@ -51,32 +51,32 @@ public class Tracker {
          if (items[ind].getId().equals(id)) {
             items[ind] = item;
             items[ind].setId(id);
-            // rslt = "Yes";
+            rslt = true;
             break;
          }
       }
-      // return rslt;
+      return rslt;
    }
 
    /**
     * public void delete0(String id);              - удаление заявки с данным id
     */
-   public String delete(String id) {
-      String rst = "No";
+   public boolean delete(String id) {
+      boolean rst = false;
       //Item0 tmp  = new Item0();
       //int lngth = items.length;
       for (int ind = 0; ind < position; ind++) {
          if (items[ind].getId().equals(id)) {
             // перестановка и удаление последней ячейки
             if (ind < position) {
-               items[ind] = items[items.length - 1];
+               items[ind] = items[position - 1];
+               Item itm = new Item();
+               items[position - 1] = itm;
                //items[ind] = null;           // Что-то НЕ РАБОТАЕТ
                //tmp = Arrays.copyOf(items, position);
                position--;
-               rst = "Yes";
+               rst = true;
                //System.
-            } else {
-                  rst = "Yes but...";
             }
             break;
             //else {               rst = "Yes, but...";            }
@@ -94,17 +94,17 @@ public class Tracker {
     */
    public Item[] findByName(String key) {
       Item[] result  = new Item[items.length];
-      int eqlsLength = 0;
-
+      int resultLngth = 0;
       //for (int indx = 0; indx < items.length; indx++) {
       for (int indx = 0; indx < position; indx++) {
-         if ((items[indx] != null)
-              && items[indx].getName().equals(key)) {
-            result[eqlsLength++] = items[indx];
+         if (items[indx].getName().equals(key)) {
+            result[resultLngth++] = items[indx];
          }
       }
+      Item[] fnl = new Item[resultLngth];
+      fnl = Arrays.copyOf(result, resultLngth);
       //System.arraycopy(items, 0, result, 0, eqlsLength);
-      return result;
+      return fnl;
    }
 
    /**

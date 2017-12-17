@@ -45,7 +45,7 @@ public class TrackerTest {
       tracker.add(scnd);
       String scndId = (String) scnd.getId();
       //System.out.println(tracker.position);
-      String reslt = tracker.delete(scndId); // ", Result= " + reslt +
+      boolean reslt = tracker.delete(scndId); // ", Result= " + reslt +
       //System.out.println("Item0= " + itemId + ", scndId= " + scndId + ", position: " + tracker.position);
       //System.out.println(tracker.getAll()[0].getName() + " - " + tracker.getAll()[0].getDescription());
       assertThat(tracker.getAll()[0], is(item));
