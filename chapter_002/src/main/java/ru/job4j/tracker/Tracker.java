@@ -69,8 +69,10 @@ public class Tracker {
          if (items[ind].getId().equals(id)) {
             // перестановка и удаление последней ячейки
             if (ind < position) {
+               // на место удалаемой записи переношу последнюю
                items[ind] = items[position - 1];
                Item itm = new Item();
+               // на место последней записываю пустую запись.
                items[position - 1] = itm;
                //items[ind] = null;           // Что-то НЕ РАБОТАЕТ
                //tmp = Arrays.copyOf(items, position);

@@ -36,6 +36,7 @@ public class TrackerTest {
    // public void delete0(String id) {
    @Test
    public void whenDelete() {
+      // Тест на удаление записи
       Tracker tracker = new Tracker();
       Item item = new Item("test1", "Description-1", 123L);
       tracker.add(item);
@@ -43,12 +44,12 @@ public class TrackerTest {
       //
       Item scnd = new Item("test2", "Description-2", 456L);
       tracker.add(scnd);
-      String scndId = (String) scnd.getId();
+      String recodId = (String) item.getId();
       //System.out.println(tracker.position);
-      boolean reslt = tracker.delete(scndId); // ", Result= " + reslt +
+      boolean reslt = tracker.delete(recodId); // ", Result= " + reslt +
       //System.out.println("Item0= " + itemId + ", scndId= " + scndId + ", position: " + tracker.position);
       //System.out.println(tracker.getAll()[0].getName() + " - " + tracker.getAll()[0].getDescription());
-      assertThat(tracker.getAll()[0], is(item));
+      assertThat(tracker.getAll()[0], is(scnd));
    }
 
    // public public Item0[] findByName(String key) {
