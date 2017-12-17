@@ -25,8 +25,5 @@ public class StartUITest {
       //Item item = new Item("N-1", "Decr-11");
       //Item scnd = new Item("Name-2", "Descr-2", 456L);
        //assertThat(tracker.getAll()[0], is(item));
-
-
-
    }
 }

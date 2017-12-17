@@ -13,7 +13,7 @@ package ru.job4j.tracker;
 
 public class StubInput implements Input {
    /**
-    *
+    * Класс для симуляции действий пользователя.
     */
    private String[] anwrs;
    private int position = 0;
