@@ -20,6 +20,7 @@ public class Item {
    public Item(String name, String description) {
       this.name = name;
       this.description = description;
+      this.create = 0L;
    }
    public Item(String name, String description, long create) {
       this.name = name;

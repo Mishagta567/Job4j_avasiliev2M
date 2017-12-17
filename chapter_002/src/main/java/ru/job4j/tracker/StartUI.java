@@ -95,7 +95,7 @@ public class StartUI {
    }
 
    private void replaceItem() {
-      System.out.println("------------ Task change BY ID ------------");
+      System.out.println("------------ Replace task BY ID ------------");
       String name = this.input.ask("Task name: ");
       String desc = this.input.ask("Task description: ");
       String id   = this.input.ask("Task ID: ");
