@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 
 public class TrackerTest {
 
-   // public void add(Vitem item) {
+   // public void add(Item0 Item0) {
    @Test
    public void whenAddNewItemThenTrackerHasSameItem() {
       Tracker tracker = new Tracker();
@@ -17,7 +17,7 @@ public class TrackerTest {
       assertThat(tracker.getAll()[0], is(item));
    }
 
-   // public void replace(String id, Vitem item) {
+   // public void replace(String id, Item0 Item0) {
    @Test
    public void whenReplaceItem() {
       Tracker tracker = new Tracker();
@@ -33,7 +33,7 @@ public class TrackerTest {
       assertThat(tracker.getAll()[0], is(rplc));
    }
 
-   // public void delete(String id) {
+   // public void delete0(String id) {
    @Test
    public void whenDelete() {
       Tracker tracker = new Tracker();
@@ -46,17 +46,17 @@ public class TrackerTest {
       String scndId = (String) scnd.getId();
       //System.out.println(tracker.position);
       String reslt = tracker.delete(scndId); // ", Result= " + reslt +
-      //System.out.println("item= " + itemId + ", scndId= " + scndId + ", position: " + tracker.position);
+      //System.out.println("Item0= " + itemId + ", scndId= " + scndId + ", position: " + tracker.position);
       //System.out.println(tracker.getAll()[0].getName() + " - " + tracker.getAll()[0].getDescription());
       assertThat(tracker.getAll()[0], is(item));
    }
 
-   // public public Vitem[] findByName(String key) {
+   // public public Item0[] findByName(String key) {
 
    @Test
    public void whenFindByName() {
       Tracker tracker = new Tracker();
-      //Vitem[] findTtr = new Vitem[1];
+      //Item0[] findTtr = new Item0[1];
       Item item  = new Item("test1", "Description-1", 123L);
       Item scnd  = new Item("test2", "Description-2", 456L);
       Item third = new Item("test3", "Description-2", 789L);
@@ -68,11 +68,11 @@ public class TrackerTest {
       assertThat(rstItem[0], is(scnd));
    }
 
-   // public Vitem[] findAll() {
+   // public Item0[] findAll() {
    @Test   
    public void whenFindAll() {
       Tracker tracker = new Tracker();
-      //Vitem[] findTr = new Vitem[];
+      //Item0[] findTr = new Item0[];
       Item item  = new Item("test1", "Description-1", 123L);
       tracker.add(item);
       assertThat(tracker.findAll()[0], is(item));

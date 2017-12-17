@@ -65,7 +65,7 @@ public class PaintTest {
       pic.append(ln);
       String result = pic.toString();
 
-      assertThat( new String(out.toByteArray()), is(result));
+      assertThat(new String(out.toByteArray()), is(result));
       // возвращаем обратно стандартный вывод в консоль.
       //System.setOut(stdout);
    }

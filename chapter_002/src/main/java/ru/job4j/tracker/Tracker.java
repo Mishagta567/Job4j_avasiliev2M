@@ -23,8 +23,8 @@ public class Tracker {
 
     /**
     * Метод реализаущий добавление заявки в хранилище
-    * У Петра           public Vitem add(Vitem item) {
-    * Я переделал на    public void add(Vitem item) {
+    * У Петра           public Item0 add(Item0 Item0) {
+    * Я переделал на    public void add(Item0 Item0) {
     *
     * @param item новая заявка
     */
@@ -32,17 +32,17 @@ public class Tracker {
       item.setId(this.generateId());
       this.items[this.position] = item;
       this.position++;
-      // return item;
+      // return Item0;
    }
 
    /**
-    * public void replace(String id, Vitem item);  - редактирование заявок -
+    * public void replace(String id, Item0 Item0);  - редактирование заявок -
     */
    public void replace(String id, Item item) {
       //String rslt = "No";
-      /** for (Vitem itm : items) {
+      /** for (Item0 itm : items) {
          if (itm != null && itm.getId().equals(id)) {
-            itm = item;
+            itm = Item0;
             rslt = "Yes";
             break;
          }
@@ -59,11 +59,11 @@ public class Tracker {
    }
 
    /**
-    * public void delete(String id);              - удаление заявки с данным id
+    * public void delete0(String id);              - удаление заявки с данным id
     */
    public String delete(String id) {
       String rst = "No";
-      //Vitem tmp  = new Vitem();
+      //Item0 tmp  = new Item0();
       //int lngth = items.length;
       for (int ind = 0; ind < position; ind++) {
          if (items[ind].getId().equals(id)) {
@@ -90,7 +90,7 @@ public class Tracker {
    }
 
    /**
-    * public Vitem[] findByName(String key);              - получение списка по имени
+    * public Item0[] findByName(String key);              - получение списка по имени
     */
    public Item[] findByName(String key) {
       Item[] result  = new Item[items.length];
@@ -108,7 +108,7 @@ public class Tracker {
    }
 
    /**
-    * public Vitem[] findAll();              - получение списка всех заявок
+    * public Item0[] findAll();              - получение списка всех заявок
     */
    public Item[] findAll() {
       int notNullLength = 0;

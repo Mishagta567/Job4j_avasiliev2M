@@ -86,48 +86,48 @@ public class StartUI {
     */
    private void createItem() {
       System.out.println("------------ Add new task --------------");
-      String name = this.input.ask("Task name: ");
-      String desc = this.input.ask("Task description: ");
+      String name = this.input.ask("Task0 name: ");
+      String desc = this.input.ask("Task0 description: ");
       Item item = new Item(name, desc);
       this.tracker.add(item);
       System.out.println("------------ New task c getId : " + item.getId() + "-----------");
    }
 
    private void editItem() {
-      System.out.println("------------ Task change --------------");
-      String name = this.input.ask("Task name: ");
-      String desc = this.input.ask("Task description: ");
-      String id   = this.input.ask("Task ID: ");
+      System.out.println("------------ Task0 change --------------");
+      String name = this.input.ask("Task0 name: ");
+      String desc = this.input.ask("Task0 description: ");
+      String id   = this.input.ask("Task0 ID: ");
       Item item = new Item(name, desc);
       this.tracker.replace(id, item);
-      //this.tracker.add(item);
-      System.out.println("----- Task with getId= " + item.getId() + " changed. ----");
+      //this.tracker.add(Item0);
+      System.out.println("----- Task0 with getId= " + item.getId() + " changed. ----");
    }
 
    private void deleteItem() {
-      System.out.println("------------ Task delete --------------");
-      String id   = this.input.ask("Task ID: ");
+      System.out.println("------------ Task0 delete0 --------------");
+      String id   = this.input.ask("Task0 ID: ");
       this.tracker.delete(id);
-      System.out.println("----- Task with getId : " + id + " deleted -----");
+      System.out.println("----- Task0 with getId : " + id + " deleted -----");
    }
 
    private void findByName() {
-      System.out.println("--------- Task serach by name ---------");
-      String name = this.input.ask("Task name: ");
+      System.out.println("--------- Task0 serach by name ---------");
+      String name = this.input.ask("Task0 name: ");
       Item[] findItem = this.tracker.findByName(name);
       System.out.println("-- Tasks with name: " + name + " --");
       for (int ind = 0; ind < findItem.length; ind++) {
-         System.out.printf("Task: %s %S", findItem[ind].getName(), findItem[ind].getDescription());
+         System.out.printf("Task0: %s %S", findItem[ind].getName(), findItem[ind].getDescription());
          System.out.println(" ");
       }
    }
 
    private void findById() {
       System.out.println("------------ Search by ID --------------");
-      String id = this.input.ask("Task ID: ");
+      String id = this.input.ask("Task0 ID: ");
       Item findItem = this.tracker.frindById(id);
       System.out.println("------ Tasks with ID: " + id + " ------");
-      System.out.printf("Task Name: %s, description: %s", findItem.getName(), findItem.getDescription());
+      System.out.printf("Task0 Name: %s, description: %s", findItem.getName(), findItem.getDescription());
       System.out.println(" ");
    }
 
@@ -136,7 +136,7 @@ public class StartUI {
       System.out.println("0 - add task.");
       System.out.println("1 - show all tasks.");
       System.out.println("2 - change tasks.");
-      System.out.println("3 - delete tasks.");
+      System.out.println("3 - delete0 tasks.");
       System.out.println("4 - find by name.");
       System.out.println("5 - fidn by ID.");
       System.out.println("6 - exit.");
