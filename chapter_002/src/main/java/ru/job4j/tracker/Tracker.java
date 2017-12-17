@@ -69,13 +69,17 @@ public class Tracker {
          if (items[ind].getId().equals(id)) {
             // перестановка и удаление последней ячейки
             if (ind < position) {
+               /**
                // на место удалаемой записи переношу последнюю
                items[ind] = items[position - 1];
-               // на место последней записываю пустую запись.
+               // на место последней записываю пустую запись. */
+               //items[ind] = null;           // Что-то НЕ РАБОТАЕТ
+               //tmp = Arrays.copyOf(items, position); */
+               for (int m = ind; m < position - 1; m++) {
+                  items[m] = items[m + 1];
+               }
                Item itm = new Item();
                items[position - 1] = itm;
-               //items[ind] = null;           // Что-то НЕ РАБОТАЕТ
-               //tmp = Arrays.copyOf(items, position);
                position--;
                rst = true;
                //System.
