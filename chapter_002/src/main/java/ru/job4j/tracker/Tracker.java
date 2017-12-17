@@ -144,8 +144,7 @@ public class Tracker {
          Item result  = new Item();
          //for (int indx = 0; indx < items.length; indx++) {
          for (int indx = 0; indx < position; indx++) {
-            if ((items[indx] != null)
-                  && items[indx].getId().equals(id)) {
+            if (items[indx].getId().equals(id)) {
                result = items[indx];
                break;
             }
