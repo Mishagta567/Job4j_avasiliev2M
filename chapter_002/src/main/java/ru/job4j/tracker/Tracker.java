@@ -71,8 +71,8 @@ public class Tracker {
             if (ind < position) {
                // на место удалаемой записи переношу последнюю
                items[ind] = items[position - 1];
-               Item itm = new Item();
                // на место последней записываю пустую запись.
+               Item itm = new Item();
                items[position - 1] = itm;
                //items[ind] = null;           // Что-то НЕ РАБОТАЕТ
                //tmp = Arrays.copyOf(items, position);
