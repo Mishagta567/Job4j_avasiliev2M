@@ -14,7 +14,7 @@ import ru.job4j.models.*;
 
 public class StartUI {
    /**
-    * Константы меню для добавления новой заявки.
+    * Константы для меню убрал.
     *   ADD     - 0 - добавить заявку
     *   Show       - 1 - показать ВСЕ заявки
     *   Edit       - 2 - изменить заявку
@@ -22,7 +22,7 @@ public class StartUI {
     *   FindByName - 4 - найти по имени
     *   FindByID   - 5 - найти по ID
     *   EXIT       - 6 - выйти
-    */
+    *
    private static final String ADD           = "0";
    private static final String SHOW          = "1";
    private static final String EDIT          = "2";
@@ -59,27 +59,21 @@ public class StartUI {
     */
    public void init() {
       boolean exit = false;
-      while (!exit) {
-         this.showMenu();
-         String answer = this.input.ask("Введите пункт меню : ");
-         if (ADD.equals(answer)) {
-            //добавление заявки
-            this.createItem();
-         } else if (SHOW.equals(answer)) {
-            // Вывод всех заявок
-            this.showAll();
-         } else if (EDIT.equals(answer)) {
-            this.replaceItem();
-         } else if (DELETE.equals(answer)) {
-            this.deleteItem();
-         } else if (FINDBYNAME.equals(answer)) {
-            this.findByName();
-         } else if (FINDBYID.equals(answer)) {
-            this.findById();
-         } else if (EXIT.equals(answer)) {
+      MenuTracker menu = new MenuTracker(this.input, this.tracker);
+      menu.fillActions();
+
+      //while (!exit) {
+         //this.showMenu();
+      do {
+         menu.show();
+         int key = Integer.valueOf(input.ask("Select: ")) ;
+         if (key == 7) {
             exit = true;
+            //System.out.println("ВЫходим !!!");
          }
-      }
+         menu.select(key - 1);
+
+      } while(! exit);
    }
 
    /**
@@ -152,18 +146,13 @@ public class StartUI {
 
    private void showMenu() {
       System.out.println("Menu:");
-      System.out.println("0 - add task.");
-      System.out.println("1 - show all tasks.");
-      System.out.println("2 - change tasks.");
-      System.out.println("3 - delete0 tasks.");
-      System.out.println("4 - find by name.");
-      System.out.println("5 - fidn by ID.");
-      System.out.println("6 - exit.");
-   }
-
-   // set и get для
-   public void setRunTest(boolean ind) {
-      this.runTest = ind;
+      System.out.println("1 - add task.");
+      System.out.println("2 - show all tasks.");
+      System.out.println("3 - change tasks.");
+      System.out.println("4 - delete0 tasks.");
+      System.out.println("5 - find by name.");
+      System.out.println("6 - fidn by ID.");
+      System.out.println("7 - exit.");
    }
 
    /**
@@ -171,8 +160,8 @@ public class StartUI {
     * @param args bla bla bla
     */
    public static void main(String[] args) {
-      new StartUI(new ConsoleInput(), new Tracker()).init();
-      //System.out.println("1-2-3");
+      Input input = new ConsoleInput();
+      new StartUI(input, new Tracker()).init();
    }
 
 }
