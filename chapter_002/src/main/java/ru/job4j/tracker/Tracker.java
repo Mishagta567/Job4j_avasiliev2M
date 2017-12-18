@@ -19,7 +19,8 @@ public class Tracker {
    /**
     * Указатель ячейки для новой заявки.
     */
-   public int position = 0;
+   private int position = 0;
+   private int rowcount = 1;
 
     /**
     * Метод реализаущий добавление заявки в хранилище
@@ -138,7 +139,8 @@ public class Tracker {
      */
    private String generateId() {
       //Реализовать метод генерации.
-      return String.valueOf(System.currentTimeMillis() + this.position); // + RN.next());
+      //return String.valueOf(System.currentTimeMillis() + this.position); // + RN.next());
+      return String.valueOf(rowcount++);
    }
 
    /**
