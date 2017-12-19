@@ -34,6 +34,7 @@ class EditItem implements UserAction {
 public class MenuTracker {
    private Input   input;
    private Tracker tracker;
+   private static int[]   range = {1, 2, 3, 4, 5, 6, 7};
    private UserAction[] actions = new UserAction[7];
 
    public MenuTracker(Input input, Tracker tracker) {
@@ -54,8 +55,9 @@ public class MenuTracker {
       this.actions[6] = new LoopExit();                  // NOT static
    }
 
-   public void select(int key) {
+   public int select(int key) {
       this.actions[key].execute(this.input, this.tracker);
+      return key;
    }
 
    public void show() {
@@ -180,6 +182,10 @@ public class MenuTracker {
       public String info() {
          return String.format("%s %s", this.key(), "Exit");
       }
+   }
+
+   public int[] getRange() {
+      return MenuTracker.range;
    }
 
 }

@@ -14,29 +14,11 @@ import ru.job4j.models.*;
 
 public class StartUI {
    /**
-    * Константы для меню убрал.
-    *   ADD     - 0 - добавить заявку
-    *   Show       - 1 - показать ВСЕ заявки
-    *   Edit       - 2 - изменить заявку
-    *   Delete     - 3 - удалить заявку
-    *   FindByName - 4 - найти по имени
-    *   FindByID   - 5 - найти по ID
-    *   EXIT       - 6 - выйти
-    *
-   private static final String ADD           = "0";
-   private static final String SHOW          = "1";
-   private static final String EDIT          = "2";
-   private static final String DELETE        = "3";
-   private static final String FINDBYNAME    = "4";
-   private static final String FINDBYID      = "5";
-   private static final String EXIT = "6";
-   private static boolean runTest = false;
-
-   /**
     * Получение данных от пользователя.
     */
    private final Input input;
    public StubInput stInput;
+   //private int[] range = new int[] {1, 2, 3, 4, 5, 6, 7};
 
    /**
     *    Хранилище заявок.
@@ -61,18 +43,18 @@ public class StartUI {
       boolean exit = false;
       MenuTracker menu = new MenuTracker(this.input, this.tracker);
       menu.fillActions();
+      int key = 0;
 
       //while (!exit) {
          //this.showMenu();
       do {
          menu.show();
-         int key = Integer.valueOf(input.ask("Select: ")) ;
-         if (key == 7) {
+         // int key = Integer.valueOf(input.ask("Select: ")) ;
+         key = menu.select(input.ask("Select", menu.getRange()) - 1);
+         if (key == 7 - 1) {
             exit = true;
             //System.out.println("ВЫходим !!!");
          }
-         menu.select(key - 1);
-
       } while(! exit);
    }
 
@@ -160,7 +142,7 @@ public class StartUI {
     * @param args bla bla bla
     */
    public static void main(String[] args) {
-      Input input = new ConsoleInput();
+      Input input = new ValidateInput(); //ConsoleInput();
       new StartUI(input, new Tracker()).init();
    }
 

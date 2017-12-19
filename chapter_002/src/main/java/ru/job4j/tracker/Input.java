@@ -13,5 +13,7 @@ public interface Input {
     */
    String ask(String question);
    //String ask();
+
+   int ask(String question, int[] range);
    
 }
