@@ -9,13 +9,10 @@ import ru.job4j.models.Task;    // Почему пришлось импорти�
  * @since    12.12.2017
  * @version  1.0.0
  */
-
-class EditItem implements UserAction {
-   @Override
-   public int key() {
-      return 3;
+class EditItem extends BaseAction {
+   public EditItem(int key, String name) {
+      super(key, name);
    }
-
    @Override
    public void execute(Input input, Tracker tracker) {
       String id = input.ask("Task ID to edit ");
@@ -24,10 +21,6 @@ class EditItem implements UserAction {
       Task task = new Task(name, desc);
       task.setId(id);
       tracker.replace(id, task);
-   }
-   @Override
-   public String info() {
-      return String.format("%s %s", this.key(), "Change Item");
    }
 }
 
@@ -45,15 +38,13 @@ public class MenuTracker {
 
    public void fillActions() {
       // how to fill it
-      this.actions[position++] = this.new AddItem();              // NOT static   this.new AddItem()
-      this.actions[position++] = new MenuTracker.ShowItems();     //     static
-
-      this.actions[position++] = new EditItem();                  // NOT static  Но Внешний !!!
-      this.actions[position++] = new MenuTracker.DeleteItem();    // NOT static
-      this.actions[position++] = new MenuTracker.FindById();      //     static
-
-      this.actions[position++] = new FindByName();                // NOT static
-      this.actions[position++] = new LoopExit();                  // NOT static
+      this.actions[position] = new AddItem(              position++ + 1, "Add new task");                 // NOT static   this.new AddItem()
+      this.actions[position] = new MenuTracker.ShowItems(position++ + 1, "Show all tasks"); //     static
+      this.actions[position] = new EditItem(             position++ + 1, "Edit tasks");                  // NOT static  Но Внешний !!!
+      this.actions[position] = new MenuTracker.DeleteItem(position++ + 1, "Delete task by ID");    // NOT static
+      this.actions[position] = new MenuTracker.FindById( position++ + 1, "Find task by ID");      //     static
+      this.actions[position] = new FindByName(           position++ + 1, "Find task by Name");                // NOT static
+      this.actions[position] = new LoopExit(             position++ + 1, "Exit");                  // NOT static
    }
 
    public void addAction(UserAction action) {
@@ -73,69 +64,64 @@ public class MenuTracker {
       }
    }
 
-   private class AddItem implements UserAction {
+   /** // Сохраним до окончания отладки
+   private class AddItemd implements UserAction {
       @Override
       public int key() {
          return 1;
       }
-
       @Override
       public void execute(Input input, Tracker tracker) {
          String name = input.ask("Enter the task name: ");
          String desc = input.ask("Enter the description: ");
          tracker.add(new Task(name, desc));
-
       }
-
       @Override
       public String info() {
          return String.format("%s %s", this.key(), "Add the new Item");
       }
-   }
+   }     //  */
 
-   private static class ShowItems implements UserAction {
-      @Override
-      public int key() {
-         return 2;
+   public class AddItem extends BaseAction {
+      public AddItem(int key, String name) {
+         super(key, name);
       }
 
+      @Override
+      public void execute(Input input, Tracker tracker) {
+         String name = input.ask("Enter name:");
+         String desc = input.ask("Enter description:");
+         tracker.add(new Item(name, desc));
+      }
+   }
+
+   private static class ShowItems extends BaseAction {
+      public ShowItems(int key, String name) {
+         super(key, name);
+      }
       @Override
       public void execute(Input input, Tracker tracker) {
          for (Item item : tracker.getAll()) {
             System.out.format("Name: %s, Descr: %s, ID: %s %s", item.getName(), item.getDescription(), item.getId(), System.lineSeparator());
          }
       }
-
-      @Override
-      public String info() {
-         return String.format("%s %s", this.key(), "Show all Items");
-      }
    }
 
-   private class DeleteItem implements UserAction {
-      @Override
-      public int key() {
-         return 4;
+   private class DeleteItem extends BaseAction {
+      public DeleteItem(int key, String name) {
+         super(key, name);
       }
-
       @Override
       public void execute(Input input, Tracker tracker) {
          String id = input.ask("Enter the task ID to delete");
          tracker.delete(id);
       }
-
-      @Override
-      public String info() {
-         return String.format("%s %s", this.key(), "Delete task");
-      }
    }
 
-   private static class FindById implements UserAction {
-      @Override
-      public int key() {
-         return 5;
+   private static class FindById extends BaseAction {
+      public FindById(int key, String name) {
+         super(key, name);
       }
-
       @Override
       public void execute(Input input, Tracker tracker) {
          String id = input.ask("Enter task ID for search");
@@ -143,19 +129,12 @@ public class MenuTracker {
          //System.out.printf("Name: %$, Descr: %s, ID: %s %s", itm.getName(), itm.getDescription(), itm.getId(), System.lineSeparator());
          System.out.println(String.format("Name: %s, Descr: %s, ID: %s", itm.getName(), itm.getDescription(), itm.getId()));
       }
-
-      @Override
-      public String info() {
-         return String.format("%s %s", this.key(), "Find task by ID");
-      }
    }
 
-   private class FindByName implements UserAction {
-      @Override
-      public int key() {
-         return 6;
+   private class FindByName extends BaseAction {
+      public FindByName(int key, String name) {
+         super(key, name);
       }
-
       @Override
       public void execute(Input input, Tracker tracker) {
          String id = input.ask("Enter the task Name for search");
@@ -165,27 +144,15 @@ public class MenuTracker {
             System.out.println(String.format("Name: %s, Descr: %s, ID: %s", itm[ind].getName(), itm[ind].getDescription(), itm[ind].getId()));
          }
       }
-
-      @Override
-      public String info() {
-         return String.format("%s %s", this.key(), "Find task by Name");
-      }
    }
 
-   private class LoopExit implements UserAction {
-      @Override
-      public int key() {
-         return 7;
+   private class LoopExit extends BaseAction {
+      public LoopExit(int key, String name) {
+         super(key, name);
       }
-
       @Override
       public void execute(Input input, Tracker tracker) {
          System.out.println("Exit");
-      }
-
-      @Override
-      public String info() {
-         return String.format("%s %s", this.key(), "Exit");
       }
    }
 
