@@ -43,8 +43,26 @@ public class StartUI {
       boolean exit = false;
       MenuTracker menu = new MenuTracker(this.input, this.tracker);
       menu.fillActions();
-      int key = 0;
+      UserAction deleteAllAction = new UserAction() {
+         @Override
+         public int key() {
+            return 8;
+         }
 
+         @Override
+         public void execute(Input input, Tracker tracker) {
+            // todo something
+            System.out.print("Message from execute");
+         }
+
+         @Override
+         public String info() {
+            return "8 Delete all records?";
+         }
+      };
+      menu.addAction(deleteAllAction);
+
+      int key = 0;
       //while (!exit) {
          //this.showMenu();
       do {

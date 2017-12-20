@@ -34,8 +34,9 @@ class EditItem implements UserAction {
 public class MenuTracker {
    private Input   input;
    private Tracker tracker;
-   private static int[]   range = {1, 2, 3, 4, 5, 6, 7};
-   private UserAction[] actions = new UserAction[7];
+   private static int[]   range = {1, 2, 3, 4, 5, 6, 7, 8};
+   private UserAction[] actions = new UserAction[8];
+   private int position = 0;
 
    public MenuTracker(Input input, Tracker tracker) {
       this.input = input;
@@ -44,15 +45,19 @@ public class MenuTracker {
 
    public void fillActions() {
       // how to fill it
-      this.actions[0] = this.new AddItem();              // NOT static   this.new AddItem()
-      this.actions[1] = new MenuTracker.ShowItems();     //     static
+      this.actions[position++] = this.new AddItem();              // NOT static   this.new AddItem()
+      this.actions[position++] = new MenuTracker.ShowItems();     //     static
 
-      this.actions[2] = new EditItem();                  // NOT static  Но Внешний !!!
-      this.actions[3] = new MenuTracker.DeleteItem();    // NOT static
-      this.actions[4] = new MenuTracker.FindById();      //     static
+      this.actions[position++] = new EditItem();                  // NOT static  Но Внешний !!!
+      this.actions[position++] = new MenuTracker.DeleteItem();    // NOT static
+      this.actions[position++] = new MenuTracker.FindById();      //     static
 
-      this.actions[5] = new FindByName();                // NOT static
-      this.actions[6] = new LoopExit();                  // NOT static
+      this.actions[position++] = new FindByName();                // NOT static
+      this.actions[position++] = new LoopExit();                  // NOT static
+   }
+
+   public void addAction(UserAction action) {
+      this.actions[position++] = action;
    }
 
    public int select(int key) {
