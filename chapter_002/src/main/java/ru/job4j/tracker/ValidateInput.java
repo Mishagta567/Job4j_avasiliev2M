@@ -29,7 +29,7 @@ public class ValidateInput extends ConsoleInput {
             //moe.printStackTrace();
             System.out.println("Enter number from menu:");
          } catch (NumberFormatException nfe) {
-            System.out.println("Not letters. Only number from 1 to 7: ");
+            System.out.println("Not letters. Only number (from 1 to 7): ");
          }
       } while (invalid);
       return value;

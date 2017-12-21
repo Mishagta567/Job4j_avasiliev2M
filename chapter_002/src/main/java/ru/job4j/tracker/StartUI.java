@@ -48,13 +48,11 @@ public class StartUI {
          public int key() {
             return 8;
          }
-
          @Override
          public void execute(Input input, Tracker tracker) {
             // todo something
             System.out.print("Message from execute");
          }
-
          @Override
          public String info() {
             return "8 Delete all records?";
