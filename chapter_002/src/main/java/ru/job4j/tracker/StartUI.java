@@ -158,8 +158,12 @@ public class StartUI {
     * @param args bla bla bla
     */
    public static void main(String[] args) {
-      Input input = new ValidateInput(); //ConsoleInput();
-      new StartUI(input, new Tracker()).init();
+      //Input input = new ValidateInput(); //ConsoleInput();
+      new StartUI(
+            new ValidateInput(
+                     new ConsoleInput()
+            ), new Tracker()
+      ).init();
    }
 
 }
