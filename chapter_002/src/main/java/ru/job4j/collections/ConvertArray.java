@@ -1,4 +1,4 @@
-package ru.job4j.collections;//package ru.job4j.collections;
+package ru.job4j.collections;
 
 import java.util.*;
 
@@ -18,7 +18,7 @@ public class ConvertArray {
    int[][] twoDlist = {{11, 12, 13}, {21, 22, 23}, {31, 32, 33}};
 
 
-   public List<Integer> toOneDemList (int[][] list) {
+   public List<Integer> toOneDemList(int[][] list) {
    //public void toList (int[][] twoDlist) {
       //for (int itm : twoDlist)
       int lngth = list.length;
@@ -38,7 +38,7 @@ public class ConvertArray {
       return rslt;
    }
 
-   public int[][] toTwoDemList (int[] list) {
+   public int[][] toTwoDemList(int[] list) {
 
       int lngth = list.length;
 
