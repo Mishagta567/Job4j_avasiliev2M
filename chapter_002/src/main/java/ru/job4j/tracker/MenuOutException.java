@@ -18,7 +18,7 @@ public class MenuOutException extends RuntimeException {
     *    Реализация контроля ввода от пользователя.
     */
    public MenuOutException(String msg) {
-      super (msg);
+      super(msg);
    }
 
 }

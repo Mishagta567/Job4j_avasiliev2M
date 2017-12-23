@@ -43,6 +43,7 @@ public class StartUI {
       boolean exit = false;
       MenuTracker menu = new MenuTracker(this.input, this.tracker);
       menu.fillActions();
+      /***
       UserAction deleteAllAction = new UserAction() {
          @Override
          public int key() {
@@ -51,14 +52,14 @@ public class StartUI {
          @Override
          public void execute(Input input, Tracker tracker) {
             // todo something
-            System.out.print("Message from execute");
+            //System.out.print("Message from execute");
          }
          @Override
          public String info() {
             return "8 Delete all records?";
          }
       };
-      menu.addAction(deleteAllAction);
+      menu.addAction(deleteAllAction); // */
 
       int key = 0;
       //while (!exit) {
@@ -71,7 +72,7 @@ public class StartUI {
             exit = true;
             //System.out.println("ВЫходим !!!");
          }
-      } while(! exit);
+      } while (!exit);
    }
 
    /**

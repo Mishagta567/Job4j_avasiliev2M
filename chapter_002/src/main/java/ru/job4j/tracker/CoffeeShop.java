@@ -33,7 +33,7 @@ public class CoffeeShop  {
       this.numberByOne = toChange;
    }
 
-     public static void main(String args[]) {
+     public static void main(String[] args) {
         CoffeeShop coffeSh = new CoffeeShop(41, 100);
         System.out.printf("Ваша сдача: %s - %s = %s %s", coffeSh.pay, coffeSh.prc, coffeSh.change, System.lineSeparator());
         System.out.printf("Выдача по монетам: 10 x %s, 5 x %s, 2 x %s, 1 x %s",
