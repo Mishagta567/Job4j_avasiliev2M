@@ -33,9 +33,9 @@ public class ConvertArray {
    }
 
    public List<List> toTwoDemList2(List<Integer> list) {
-      int lngth = list.size(); // Конечно нужно сделать округленный вверх корень
+      int lngth = list.size();
       int inputCollindex = 0;
-      int collLength = 3;
+      int collLength = (int) Math.ceil(Math.sqrt(lngth));   // округленный вверх корень из длины - размер матрицы.
       List<Integer> temp = new ArrayList<>();
 
       List<List> rslt = new ArrayList<List>();
@@ -93,6 +93,6 @@ public class ConvertArray {
 
 
    public static void main(String[] args) {
-         System.out.println("Yo");
+         System.out.println(Math.ceil(3.1));
       }
 }
