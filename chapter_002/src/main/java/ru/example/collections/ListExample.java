@@ -11,7 +11,17 @@ import java.util.*;
 
 public class ListExample {
 
+   class User {
+      private List<Integer> list;
+      User(List<Integer> lst) {
+         this.list = lst;
+      }
+   }
+
    public static void main(String[] arg) {
+      List<User> users = new ArrayList<User>();
+
+
       List<Integer> list = new ArrayList<Integer>();
       list.add(100);
       list.add(101);

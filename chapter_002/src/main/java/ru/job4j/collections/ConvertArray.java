@@ -62,6 +62,8 @@ public class ConvertArray {
       return rslt;
    }
 
+
+
    /*** Обычная реализация, которую теперь можно закоментировать.
    public List<Integer> toOneDemList(int[][] list) {
       //public void toList (int[][] twoDArr) {
