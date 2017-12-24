@@ -6,21 +6,57 @@ import java.util.*;
  * Первоый тестовый класс для проверки настроек.
  * @author   A_Vasiliev
  * @since    22.12.2017
- * @version  1.0.0
+ * @version  2.0.0
  */
 
 public class ConvertArray {
 
-   //List<Integer> oneDlist = Arrays.asList(1, 2, 3, 4, 5, 6);
-   //List<Integer[][]> twoDlist = new List<Integer[][]>;
+   int[] oneDArr = {1, 2, 3, 4, 5, 6};
+   int[][] twoDArr = {{11, 12, 13}, {21, 22, 23}, {31, 32, 33}};
 
-   int[]   oneDlist = {1, 2, 3, 4, 5, 6};
-   int[][] twoDlist = {{11, 12, 13}, {21, 22, 23}, {31, 32, 33}};
+   List<Integer> oneDlist = Arrays.asList(1, 2, 3, 4, 5, 6);  // чисто для примера
+   // Чуть навароченнее с определением 2-ух мерного листа
+   List<List> twoDlist = new ArrayList<List>();
 
+   // А это видимо более правильная: обработка коллекций:
+   public List<Integer> toOneDemList2(List<List> list) {
+      //int lngth = list.length;
+      int lngth = 0;
+      //  Это я не понял. Почему:      new "ArrayList"<Integer>();    ?
+      List<Integer> rslt = new ArrayList<>();
+      for (List lst : list) {
+         //По идее нужно было сделать loop c    rslt.add(lst.get(indx)); Но почему-то не сработало. А как влезать?
+         rslt.addAll(lst);
+      }
+      //System.out.println(lngth);
+      return rslt;
+   }
 
+   public List<List> toTwoDemList2(List<Integer> list) {
+      int lngth = list.size(); // Конечно нужно сделать округленный вверх корень
+      int inputCollindex = 0;
+      int collLength = 3;
+      List<Integer> temp = new ArrayList<>();
+
+      List<List> rslt = new ArrayList<List>();
+      for (int indLength = 0; indLength < collLength; indLength++) {
+         temp.clear();
+         for (int indHight = 0; indHight < collLength; indHight++) {
+            if (inputCollindex < lngth) {
+               temp.add(indHight, list.get(inputCollindex++));
+            } else {
+               temp.add(indHight, 0);
+            }
+         }
+         rslt.add(temp);
+      }
+      return rslt;
+   }
+
+   /*** Обычная реализация, которую теперь можно закоментировать.
    public List<Integer> toOneDemList(int[][] list) {
-   //public void toList (int[][] twoDlist) {
-      //for (int itm : twoDlist)
+      //public void toList (int[][] twoDArr) {
+      //for (int itm : twoDArr)
       int lngth = list.length;
 
       //  Это я не понял. Почему:      new "ArrayList"<Integer>();    ?
@@ -39,9 +75,7 @@ public class ConvertArray {
    }
 
    public int[][] toTwoDemList(int[] list) {
-
       int lngth = list.length;
-
       // Здесь нужно инициализировать 2-ух мерную коллекцию, но я не понял как. Нужно поправить.
       int[][] rslt = new int[lngth][lngth];
       int indx = 0;
@@ -55,10 +89,10 @@ public class ConvertArray {
       }
       //System.out.println(lngth);
       return rslt;
-   }
+   }  // */
 
-/***
+
    public static void main(String[] args) {
          System.out.println("Yo");
-      }     //  */
+      }
 }
