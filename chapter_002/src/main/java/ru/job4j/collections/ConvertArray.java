@@ -23,7 +23,7 @@ public class ConvertArray {
       //int lngth = list.length;
       int lngth = 0;
       //  Это я не понял. Почему:      new "ArrayList"<Integer>();    ?
-      List<Integer> rslt = new ArrayList<>();
+      List<Integer> rslt = new ArrayList<Integer>();
       for (List lst : list) {
          //По идее нужно было сделать loop c    rslt.add(lst.get(indx)); Но почему-то не сработало. А как влезать?
          rslt.addAll(lst);
@@ -49,6 +49,15 @@ public class ConvertArray {
             }
          }
          rslt.add(temp);
+      }
+      return rslt;
+   }
+
+   public List<Integer> convert(List<int[]> list) {
+      List<Integer> rslt = new ArrayList<Integer>();
+      for (int[] ls : list) {      //for (int indx = 0; indx < lngth; indx++) {
+         for (int indx = 0; indx < ls.length; indx++)
+         rslt.add((Integer) ls[indx]);
       }
       return rslt;
    }
