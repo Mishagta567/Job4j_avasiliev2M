@@ -43,9 +43,9 @@ public class ConvertArray {
          temp.clear();
          for (int indHight = 0; indHight < collLength; indHight++) {
             if (inputCollindex < lngth) {
-               temp.add(indHight, list.get(inputCollindex++));
+               temp.add(indHight, list.get(inputCollindex++));  // если есть элементы массива - добавляем их
             } else {
-               temp.add(indHight, 0);
+               temp.add(indHight, 0); // если нет - добавляем 0
             }
          }
          rslt.add(temp);
