@@ -38,11 +38,10 @@ public class ConsoleInput implements Input {
             break;
          }
       }
-      if (exist) {
-         return rst;
-      } else {
+      if (!exist) {
          throw new MenuOutException("Out of menu range");
       }
+      return rst;
    }
 
 }
