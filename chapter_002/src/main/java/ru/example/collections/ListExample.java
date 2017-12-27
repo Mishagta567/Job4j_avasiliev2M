@@ -11,26 +11,71 @@ import java.util.*;
 
 public class ListExample {
 
-   class User {
-      private List<Integer> list;
-      User(List<Integer> lst) {
-         this.list = lst;
+   static class User implements Comparable<User> {
+      private final String name;
+
+      User(String name) {
+         this.name = name;
+      }
+
+      @Override
+      public boolean equals(Object o) {
+         if (this == o) return true;
+         if (o == null || getClass() != o.getClass()) return false;
+
+         User user = (User) o;
+
+         return name != null ? name.equals(user.name) : user.name == null;
+      }
+
+      @Override
+      public int hashCode() {
+         return name != null ? name.hashCode() : 0;
+      }
+
+      @Override
+      public String toString() {
+         return "User{" +
+               "name=='" + name + '\'' +
+               '}';
+      }
+
+      @Override
+      public int compareTo(User o) {
+         return this.name.compareTo(o.name);
       }
    }
 
    public static void main(String[] arg) {
+      Set<User> users = new TreeSet<>();
+      users.addAll(Arrays.asList(new User("zuma"), new User("ivan"), new User("petr")));
+      //System.out.println(users);
+
+      /**
       List<User> users = new ArrayList<User>();
+      users.addAll(Arrays.asList(new User("zuma"), new User("ivan"), new User("petr")));
+      System.out.println(users);
+      users.sort(
+            new Comparator<User>() {
+               @Override
+               public int compare(User o1, User o2) {
+                  return o1.name.compareTo(o2.name);
+               }
+            }
+      );
+      System.out.println(users);
 
+       * boolean result = users.equals("Petr");
+      for (User user : users) {
+         System.out.println(user);
+      }
+      Iterator<User> it = users.iterator();
+      System.out.println(it.next());
 
-      List<Integer> list = new ArrayList<Integer>();
-      list.add(100);
-      list.add(101);
-      list.add(102);
-      list.add(103);
-      list.add(1, 1001);
+      Iterator<User> it = users.iterator();
+      while(it.hasNext()) {
+         System.out.println(it.next());
+      }  // */
 
-      Integer values = list.get(1);
-      System.out.println(values);
-      System.out.println(list.indexOf(102));
    }
 }
