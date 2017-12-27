@@ -1,7 +1,5 @@
 package ru.job4j.tracker;
 
-import ru.job4j.models.Item;
-
 /**
  * Задание. Вычисляем сколько сдачи мы должны отдать клиенту с кофейного аппарата.
  * @author   AVasiliev
@@ -13,30 +11,37 @@ public class CoffeeShop  {
    /**
     *
     */
-   private int prc, pay, change, numberByOne, numberByTwo, numberByFive, numberByTen;
+   private int price, paid;
 
    public CoffeeShop(int price, int paid) {
-      this.change  = paid - price;
-      int toChange = this.change;
-      this.prc = price;
-      this.pay = paid;
-      // Вычисляем сколько отдаем монет по 10
-      this.numberByTen = (int) Math.floor(this.change / 10);
-      toChange = toChange - this.numberByTen * 10;
-      // Вычисляем сколько отдаем монет по 5
-      this.numberByFive = (int) Math.floor(toChange / 5);
-      toChange = toChange - this.numberByFive * 5;
-      // Вычисляем сколько отдаем монет по 2
-      this.numberByTwo = (int) Math.floor(toChange / 2);
-      toChange = toChange - this.numberByTwo * 2;
-      // Вычисляем сколько отдаем монет по 1
-      this.numberByOne = toChange;
+      this.price = price;
+      this.paid = paid;
    }
 
+   public String getChange() {
+      int change, numberByOne, numberByTwo, numberByFive, numberByTen;
+      change  = this.paid - this.price;
+      int toChange = change;
+      String rslt = new String();
+      // Вычисляем сколько отдаем монет по 10
+      numberByTen = (int) Math.floor(change / 10);
+      toChange = toChange - numberByTen * 10;
+      // Вычисляем сколько отдаем монет по 5
+      numberByFive = (int) Math.floor(toChange / 5);
+      toChange = toChange - numberByFive * 5;
+      // Вычисляем сколько отдаем монет по 2
+      numberByTwo = (int) Math.floor(toChange / 2);
+      toChange = toChange - numberByTwo * 2;
+      // Вычисляем сколько отдаем монет по 1
+      numberByOne = toChange;
+
+      rslt = String.format("Вы заплатили: %s. Стоимость кофе: %s. Ваша сдача: %s.", this.paid, this.price, change);
+      rslt = String.format("%s Выдача по монетам: 10 x %s, 5 x %s, 2 x %s, 1 x %s", rslt, numberByTen, numberByFive, numberByTwo, numberByOne);
+      return rslt;
+   }
+/**
      public static void main(String[] args) {
         CoffeeShop coffeSh = new CoffeeShop(41, 100);
-        System.out.printf("Ваша сдача: %s - %s = %s %s", coffeSh.pay, coffeSh.prc, coffeSh.change, System.lineSeparator());
-        System.out.printf("Выдача по монетам: 10 x %s, 5 x %s, 2 x %s, 1 x %s",
-              coffeSh.numberByTen, coffeSh.numberByFive, coffeSh.numberByTwo, coffeSh.numberByOne);
-     }
+        System.out.println(coffeSh.getChange());
+     }  // */
 }
