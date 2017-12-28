@@ -6,9 +6,9 @@ import java.util.List;
 
 /**
  * Первоый тестовый класс для проверки настроек.
- * @author   A_Vasiliev
- * @since    22.12.2017
- * @version  1.0.0
+ * @author    A_Vasiliev
+ * @since     22.12.2017
+ * @version   1.0.0
  */
 
 public class UserConvert {
