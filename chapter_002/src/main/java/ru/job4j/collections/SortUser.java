@@ -67,4 +67,35 @@ public class SortUser {
       }
    return rslt;
    }
+
+   public List<User> sortNameLength (List<User> list) {
+      list.sort(
+            new Comparator<User>() {
+               int rslt;
+               @Override
+               public int compare(User o1, User o2) {
+                  //return o1.name.length().compareTo(o2.name.length());  // почему-то не дает
+                  rslt = o1.name.length() > o2.name.length() ? 1 : -1;
+                  rslt = o1.name.length() == o2.name.length() ? 0 : rslt;
+                  return rslt;
+               }
+            }
+      );
+      return list;
+   }
+
+   public List<User> sortByAllFields  (List<User> list) {
+       list.sort(
+            new Comparator<User>() {
+               int rslt;
+               @Override
+               public int compare(User o1, User o2) {
+                  rslt = o1.name.compareTo(o2.name);
+                  return rslt != 0 ? rslt : Integer.compare(o1.age, o2.age);
+               }
+            }
+      );
+      return list;
+   }
+
 }

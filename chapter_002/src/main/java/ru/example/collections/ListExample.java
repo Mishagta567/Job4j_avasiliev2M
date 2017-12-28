@@ -49,7 +49,7 @@ public class ListExample {
    public static void main(String[] arg) {
       Set<User> users = new TreeSet<>();
       users.addAll(Arrays.asList(new User("zuma"), new User("ivan"), new User("petr")));
-      //System.out.println(users);
+      System.out.println(users);
 
       /**
       List<User> users = new ArrayList<User>();
