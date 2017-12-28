@@ -20,8 +20,12 @@ public class ListExample {
 
       @Override
       public boolean equals(Object o) {
-         if (this == o) return true;
-         if (o == null || getClass() != o.getClass()) return false;
+         if (this == o) {
+            return true;
+         }
+         if (o == null || getClass() != o.getClass()) {
+            return false;
+         }
 
          User user = (User) o;
 
@@ -35,9 +39,9 @@ public class ListExample {
 
       @Override
       public String toString() {
-         return "User{" +
-               "name=='" + name + '\'' +
-               '}';
+         return "User{"
+               + "name=='" + name + '\''
+               + '}';
       }
 
       @Override

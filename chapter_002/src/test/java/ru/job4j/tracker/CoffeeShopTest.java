@@ -10,8 +10,8 @@ public class CoffeeShopTest {
 
    @Test
    public void loockForChange() {
-      CoffeeShop сoffeeSh = new CoffeeShop(41, 100);
-      String result = сoffeeSh.getChange();
+      CoffeeShop coffeeShop = new CoffeeShop(41, 100);
+      String result = coffeeShop.getChange();
       String expectResult = "Вы заплатили: 100. Стоимость кофе: 41. Ваша сдача: 59. Выдача по монетам: 10 x 5, 5 x 1, 2 x 2, 1 x 0";
       assertThat(expectResult, is(result));
    }

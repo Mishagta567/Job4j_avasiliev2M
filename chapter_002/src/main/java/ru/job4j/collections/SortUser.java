@@ -24,8 +24,12 @@ public class SortUser {
 
       @Override
       public boolean equals(Object o) {
-         if (this == o) return true;
-         if (o == null || getClass() != o.getClass()) return false;
+         if (this == o) {
+            return true;
+         }
+         if (o == null || getClass() != o.getClass()) {
+            return false;
+         }
 
          User user = (User) o;
 
@@ -39,10 +43,10 @@ public class SortUser {
 
       @Override
       public String toString() {
-         return "User{" +
-               "age: " + age +
-               ", name='" + name + '\'' +
-               '}';
+         return "User{"
+               + "age: " + age
+               + ", name='" + name + '\''
+               + '}';
       }
 
       @Override
@@ -68,7 +72,7 @@ public class SortUser {
    return rslt;
    }
 
-   public List<User> sortNameLength (List<User> list) {
+   public List<User> sortNameLength(List<User> list) {
       list.sort(
             new Comparator<User>() {
                int rslt;
@@ -84,7 +88,7 @@ public class SortUser {
       return list;
    }
 
-   public List<User> sortByAllFields  (List<User> list) {
+   public List<User> sortByAllFields(List<User> list) {
        list.sort(
             new Comparator<User>() {
                int rslt;

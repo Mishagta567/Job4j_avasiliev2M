@@ -56,8 +56,9 @@ public class ConvertArray {
    public List<Integer> convert(List<int[]> list) {
       List<Integer> rslt = new ArrayList<Integer>();
       for (int[] ls : list) {      //for (int indx = 0; indx < lngth; indx++) {
-         for (int indx = 0; indx < ls.length; indx++)
-         rslt.add((Integer) ls[indx]);
+         for (int indx = 0; indx < ls.length; indx++) {
+            rslt.add((Integer) ls[indx]);
+         }
       }
       return rslt;
    }
