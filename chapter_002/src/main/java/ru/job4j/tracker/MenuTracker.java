@@ -3,6 +3,10 @@ package ru.job4j.tracker;
 import ru.job4j.models.*;
 import ru.job4j.models.Task;    // Почему пришлось импортировать?
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Первоый тестовый класс для проверки настроек.
  * @author   AVasiliev
@@ -27,8 +31,10 @@ class EditItem extends BaseAction {
 public class MenuTracker {
    private Input   input;
    private Tracker tracker;
-   private static int[]   range = {1, 2, 3, 4, 5, 6, 7};
-   private UserAction[] actions = new UserAction[7];
+   //private static int[]   range = {1, 2, 3, 4, 5, 6, 7};
+   private static List<Integer> range = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+   //private UserAction[] actions = new UserAction[7];
+   List<UserAction> actions = new ArrayList<UserAction>();
    private int position = 0;
    private int menuPos  = 0;
 
@@ -38,22 +44,29 @@ public class MenuTracker {
    }
 
    public void fillActions() {
-      // how to fill it
+      /*** how to fill it
       this.actions[position] = new AddItem(position++ + 1, "Add new task");                 // NOT static   this.new AddItem()
       this.actions[position] = new MenuTracker.ShowItems(position++ + 1, "Show all tasks"); //     static
       this.actions[position] = new EditItem(position++ + 1, "Edit tasks");                  // NOT static  Но Внешний !!!
       this.actions[position] = new MenuTracker.DeleteItem(position++ + 1, "Delete task by ID");    // NOT static
       this.actions[position] = new MenuTracker.FindById(position++ + 1, "Find task by ID");      //     static
       this.actions[position] = new FindByName(position++ + 1, "Find task by Name");                // NOT static
-      this.actions[position] = new LoopExit(position++ + 1, "Exit");                  // NOT static
+      this.actions[position] = new LoopExit(position++ + 1, "Exit");                  // NOT static  **/
+      this.actions.add(new AddItem(position++ + 1, "Add new task"));                 // NOT static   this.new AddItem()
+      this.actions.add(new MenuTracker.ShowItems(position++ + 1, "Show all tasks")); //     static
+      this.actions.add(new EditItem(position++ + 1, "Edit tasks"));                  // NOT static  Но Внешний !!!
+      this.actions.add(new MenuTracker.DeleteItem(position++ + 1, "Delete task by ID"));    // NOT static
+      this.actions.add(new MenuTracker.FindById(position++ + 1, "Find task by ID"));      //     static
+      this.actions.add(new FindByName(position++ + 1, "Find task by Name"));                // NOT static
+      this.actions.add(new LoopExit(position++ + 1, "Exit"));                  // NOT static  **//
    }
 
    public void addAction(UserAction action) {
-      this.actions[position] = action;
+      this.actions.add(action);
    }
 
    public int select(int key) {
-      this.actions[key].execute(this.input, this.tracker);
+      this.actions.get(key).execute(this.input, this.tracker);
       return key;
    }
 
@@ -157,7 +170,7 @@ public class MenuTracker {
       }
    }
 
-   public int[] getRange() {
+   public List<Integer> getRange() {
       return MenuTracker.range;
    }
 

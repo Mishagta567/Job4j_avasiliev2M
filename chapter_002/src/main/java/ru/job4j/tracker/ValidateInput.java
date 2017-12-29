@@ -6,6 +6,8 @@ package ru.job4j.tracker;
 
 //import java.util.Scanner;
 
+import java.util.List;
+
 /**
  * Первоый тестовый класс для проверки настроек.
  * @author   AVasiliev
@@ -29,7 +31,7 @@ public class ValidateInput implements Input {
    }
 
    @Override
-   public int ask(String question, int[] range) {
+   public int ask(String question,  List<Integer> range) {
       boolean invalid = true;
       int value = -1;
       do {

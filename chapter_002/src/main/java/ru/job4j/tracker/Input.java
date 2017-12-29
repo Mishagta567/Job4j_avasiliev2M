@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 /**
  * Первоый тестовый класс для проверки настроек.
  * @author   AVasiliev
@@ -14,6 +16,6 @@ public interface Input {
    String ask(String question);
    //String ask();
 
-   int ask(String question, int[] range);
+   int ask(String question,  List<Integer> range);
    
 }

@@ -4,6 +4,8 @@ package ru.job4j.tracker;
 //import ru.job4j.models.Task0;
 // import ru.job4j.models.Tracker;
 
+import java.util.List;
+
 /**
  * Первоый тестовый класс для проверки настроек.
  * @author   AVasiliev
@@ -28,7 +30,7 @@ public class StubInput implements Input {
    }
 
    @Override
-   public int ask(String question, int[] range) {
+   public int ask(String question,  List<Integer> range) {
       int key = Integer.valueOf(this.ask(question));
       boolean exist = false;
 
