@@ -18,8 +18,9 @@ public class CoffeeShop  {
       this.paid = paid;
    }
 
-   public String getChange() {
+   public int[] getChange() {
       int change, numberByOne, numberByTwo, numberByFive, numberByTen;
+      int[] result = new int[4];
       change  = this.paid - this.price;
       int toChange = change;
       String rslt = new String();
@@ -34,12 +35,16 @@ public class CoffeeShop  {
       toChange = toChange - numberByTwo * 2;
       // Вычисляем сколько отдаем монет по 1
       numberByOne = toChange;
+      result[0] = numberByTen;
+      result[1] = numberByFive;
+      result[2] = numberByTwo;
+      result[3] = numberByOne;
 
       rslt = String.format("Вы заплатили: %s. Стоимость кофе: %s. Ваша сдача: %s.", this.paid, this.price, change);
       rslt = String.format("%s Выдача по монетам: 10 x %s, 5 x %s, 2 x %s, 1 x %s", rslt, numberByTen, numberByFive, numberByTwo, numberByOne);
-      return rslt;
+      return result;
    }
-/**
+// **
      public static void main(String[] args) {
         CoffeeShop coffeSh = new CoffeeShop(41, 100);
         System.out.println(coffeSh.getChange());
