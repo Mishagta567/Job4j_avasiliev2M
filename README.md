@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/Alexgta/avasiliev2.svg?branch=master)](https://travis-ci.org/Alexgta/avasiliev2) 
+[![codecov](https://codecov.io/gh/Alexgta/avasiliev2/branch/master/graph/badge.svg)](https://codecov.io/gh/Alexgta/avasiliev2)
+
 # avasiliev2
 avasiliev2
 
