@@ -38,7 +38,8 @@ public class ListCompare implements Comparator<List<Integer>> {
          rslt = leftSize > rightSize ? 1 : -1;
       } else {
          for (int indx = 0; indx < leftSize; indx++) {
-            if (left.get(indx).intValue() != right.get(indx).intValue()) {
+            //if (left.get(indx).intValue() != right.get(indx).intValue()) {
+            if (left.get(indx).compareTo(right.get(indx)) != 0) {
                rslt = left.get(indx) > right.get(indx) ? 1 : -1;
                break;
             }
