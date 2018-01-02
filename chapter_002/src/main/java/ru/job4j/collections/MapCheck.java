@@ -6,12 +6,12 @@ import java.util.*;
 /**
  * Первоый тестовый класс для проверки настроек.
  * @author   A_Vasiliev
- * @since    22.12.2017
+ * @since    02.01.2018
  * @version  1.0.0
  */
 
 
-// для простоты будем счетать что колл-во денег и номер счета - int. Понятно что может быть не так
+// для простоты будем счетать что номер счета - int. Понятно что может быть не так. Понятно что можем переделать.
 class Account {
    double value;
    int requisites;
@@ -82,11 +82,12 @@ public class MapCheck { //implements Comparator <String> {
       for (int indx = 0; indx < accounts.size(); indx++) {
          if (accounts.get(indx).getRequisites() == rqsites) {
             accounts.remove(indx);
+            break;                         // выходим из цикла после нахождения и удаления.
          }
       }
    }
 
-   // Изменим сумму на счету у пользователя.
+   // Перечисляем кому-то дополнительную сумму. Если -addValue, то вычитаем.
    public boolean changeBalance(BankUser user, int rqsites, double addValue) {
       List<Account> accounts = allBankUsers.get(user);
       boolean rslt = false;
