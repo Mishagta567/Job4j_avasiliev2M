@@ -130,6 +130,37 @@ public class MapCheck { //implements Comparator <String> {
       return result;
    }
 
+   // тесты пока делал так, т.к. так проще наблюдать. Надеюсь тесты не обязательно писать к этим методам?
+   public static void main(String[] arg) {
+      MapCheck tm = new MapCheck();
+
+      List<Account> ivanAccounts = new ArrayList<Account>();
+      ivanAccounts.add(new Account(100, 1));
+      ivanAccounts.add(new Account(200, 2));
+      BankUser ivan = new BankUser("Ivan", "123");
+      tm.allBankUsers.put(ivan, ivanAccounts);
+
+      List<Account> jhonAccounts = new ArrayList<Account>();
+      jhonAccounts.add(new Account(500, 3));
+      jhonAccounts.add(new Account(600, 4));
+      BankUser jhon = new BankUser("Jhon", "567");
+      tm.allBankUsers.put(jhon, jhonAccounts);
+
+      // получить множество записей
+      //Set<Map.Entry<BankUser, List<Account>>> set = tm.allBankUsers.entrySet();
+
+      System.out.println(tm.printAll(tm.allBankUsers.get(ivan)));
+
+      // Добавим 222 руб и посмотрим на результат
+      tm.changeBalance(ivan, 2, 222);
+      System.out.println(tm.printAll(tm.allBankUsers.get(ivan)));
+      System.out.println(tm.printAll(tm.allBankUsers.get(jhon)));
+
+      tm.transferMoney(ivan, 2, jhon, 3, 533.50);
+      System.out.println("После трансфера");
+      System.out.println(tm.printAll(tm.allBankUsers.get(ivan)));
+      System.out.println(tm.printAll(tm.allBankUsers.get(jhon)));
+   }
 }
 
 
@@ -175,7 +206,31 @@ class MapCheckWrong {
    return rslt;
    }
 
+   /**
+   public static void main(String[] args) {
+      MapCheckWrong mc = new MapCheckWrong();
 
+      BankUserWrong ivan = new BankUserWrong("Ivan", "123");
+      Account accOne = new Account(100, 1);
+      Account accTwo = new Account(50, 2);
+      ivan.AddAccount("123", accOne);
+      ivan.AddAccount("123", accTwo);
+      mc.addUser(ivan);
+
+      BankUserWrong jhon = new BankUserWrong("Jhon", "345");
+      Account accOn = new Account(1000, 3);
+      Account accTw = new Account(500, 4);
+      jhon.AddAccount("123", accOn);
+      jhon.AddAccount("123", accTw);
+      mc.addUser(jhon);
+
+      BankUserWrong ivan2 = new BankUserWrong("Ivan", "123");
+
+      int ind = mc.allAccounts.indexOf(ivan2);
+
+      System.out.println(ind);
+      System.out.println(mc.allAccounts.get(0).printAllAccounts());
+   }// */
 }
 
 
