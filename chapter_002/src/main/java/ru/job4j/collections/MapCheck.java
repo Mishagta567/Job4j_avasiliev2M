@@ -50,7 +50,7 @@ class BankUser {
    }
 }
 
-public class MapCheck { //implements Comparator <String> {
+public class MapCheck  { //implements Comparator <String> {
    public Map<BankUser, List<Account>> allBankUsers = new HashMap<BankUser, List<Account>>();
 
    // Перевод денег от одного, другому или себе
