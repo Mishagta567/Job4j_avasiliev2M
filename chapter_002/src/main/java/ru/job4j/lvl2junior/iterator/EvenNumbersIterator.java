@@ -4,13 +4,13 @@ package ru.job4j.lvl2junior.iterator;
 import java.util.Iterator;
 
 /**
- * Движение итератора только по четным индексам. Ну типа возвращает через ячейку.
+ * Движение итератора только по четным индексам.  Ну типа возвращает через ячейку.
  * @author   A_Vasiliev
  * @since    04.01.2018
  * @version  1.0.0
  */
 
-public class EvenNumbersIterator implements Iterator{
+public class EvenNumbersIterator implements Iterator {
     int[] evenNumbers;
     int indx = 1;
 

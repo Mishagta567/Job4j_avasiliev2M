@@ -10,7 +10,7 @@ import java.util.Iterator;
  * @version  1.0.0
  */
 
-public class MatrixIterator implements Iterator{
+public class MatrixIterator implements Iterator {
     int[][] matrixArry;
     int indOne = 0;
     int indTwo = 0;
@@ -29,13 +29,22 @@ public class MatrixIterator implements Iterator{
     public Object next() {
         int rslt =  this.matrixArry[indOne][indTwo];
         indTwo++;
-        if (indTwo >= this.matrixArry[0].length ) {
+        if (indTwo >= this.matrixArry[0].length) {
             indTwo = 0;
             indOne++;
         }
         return rslt;
     }
 
+    /** Простая проверка, вывод на панель:
+    public static void main(String[] arg) {
+        MatrixIterator mi = new MatrixIterator(new int[][]{{1, 2, 3}, {4, 5, 6}});
+        int ind = 0;
+        while (mi.hasNext() && ind < 10) {
+            System.out.println(mi.next());
+            ind++;
+        }
+    } */
 
 }
 

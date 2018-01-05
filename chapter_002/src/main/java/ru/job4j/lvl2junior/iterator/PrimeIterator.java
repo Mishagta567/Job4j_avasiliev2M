@@ -4,7 +4,7 @@ package ru.job4j.lvl2junior.iterator;
 import java.util.Iterator;
 
 /**
- * Движение итератора только по четным элементам массива
+ * Движение итератора только по простым элементам массива
  * @author   A_Vasiliev
  * @since    04.01.2018
  * @version  1.0.0

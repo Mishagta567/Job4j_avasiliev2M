@@ -4,13 +4,13 @@ package ru.job4j.lvl2junior.iterator;
 import java.util.Iterator;
 
 /**
- * Движение итератора только по четным элементам массива
+ * Движение итератора только по четным элементам массива (минуя нечетные элементы)
  * @author   A_Vasiliev
  * @since    04.01.2018
  * @version  1.0.0
  */
 
-public class EvenNumbers implements Iterator{
+public class EvenNumbers implements Iterator {
     private int[] evenNumbers;
     private int indx = 0;
 

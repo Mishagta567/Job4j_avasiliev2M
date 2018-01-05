@@ -11,12 +11,12 @@ public class EvenNumbersTest {
    private Iterator<Integer> it;
 
    @Before
-   public void setUp(){
+   public void setUp() {
       it = new EvenNumbers(new int[]{11, 12, 14, 15, 16, 17, 19, 21});
    }
 
    @Test //(expected = NoSuchElementException.class)
-   public void shouldReturnEvenNumbersSequentially () {
+   public void shouldReturnEvenNumbersSequentially() {
       assertThat(it.hasNext(), is(true));
       assertThat(it.next(), is(12));
       assertThat(it.hasNext(), is(true));
@@ -28,7 +28,7 @@ public class EvenNumbersTest {
    }
 
    @Test
-   public void sequentialHasNextInvocationDoesntAffectRetrievalOrder () {
+   public void sequentialHasNextInvocationDoesntAffectRetrievalOrder() {
       assertThat(it.hasNext(), is(true));
       assertThat(it.hasNext(), is(true));
       assertThat(it.next(), is(12));
@@ -37,7 +37,7 @@ public class EvenNumbersTest {
    }
 
    @Test
-   public void  shouldReturnFalseIfNoAnyEvenNumbers(){
+   public void  shouldReturnFalseIfNoAnyEvenNumbers() {
       it = new EvenNumbers(new int[]{1});
       assertThat(it.hasNext(), is(false));
    }

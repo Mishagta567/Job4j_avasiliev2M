@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 /**
- * Движение итератора только по четным элементам массива
+ * Конвертирование итератора итераторов.
  * @author   A_Vasiliev
  * @since    04.01.2018
  * @version  1.0.0
