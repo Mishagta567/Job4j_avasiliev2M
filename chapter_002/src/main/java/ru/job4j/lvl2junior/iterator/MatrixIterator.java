@@ -21,30 +21,31 @@ public class MatrixIterator implements Iterator {
 
     @Override
     public boolean hasNext() {
-        return (indOne < this.matrixArry.length && indTwo < this.matrixArry[0].length);
+        return (indOne < this.matrixArry.length && indTwo < this.matrixArry[indOne].length);
     }
 
 
     @Override
     public Object next() {
-        int rslt =  this.matrixArry[indOne][indTwo];
+        int rslt;
+        rslt = this.matrixArry[indOne][indTwo];
         indTwo++;
-        if (indTwo >= this.matrixArry[0].length) {
+        if (indTwo >= this.matrixArry[indOne].length) {
             indTwo = 0;
             indOne++;
         }
         return rslt;
     }
 
-    /** Простая проверка, вывод на панель:
+    /** / Простая проверка, вывод на панель:
     public static void main(String[] arg) {
-        MatrixIterator mi = new MatrixIterator(new int[][]{{1, 2, 3}, {4, 5, 6}});
+        MatrixIterator mi = new MatrixIterator(new int[][]{{1, 2}, {4, 5, 6, 7}, {8, 9, 10, 11}});
         int ind = 0;
         while (mi.hasNext() && ind < 10) {
             System.out.println(mi.next());
             ind++;
         }
-    } */
+    } // */
 
 }
 
