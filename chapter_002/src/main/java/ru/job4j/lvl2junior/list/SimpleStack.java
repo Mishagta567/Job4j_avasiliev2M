@@ -1,10 +1,6 @@
 package ru.job4j.lvl2junior.list;
 
 
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 /**
  * Ппоследний вошел, первый вышел.
  * @author   A_Vasiliev
@@ -13,13 +9,21 @@ import java.util.NoSuchElementException;
  */
 
 public class SimpleStack<T> {
-    DynamicLinkedList<T> ss = new DynamicLinkedList<T>();
+    DynamicLinkedList<T> stack = new DynamicLinkedList<T>();
 
     public void add(T value) {
-        ss.add(value);
+        stack.add(value);
     }
 
+    public T get(int position) {
+        return (T) stack.get(stack.getBackwardRealIndex(position));
+    }
 
-
+    public T poll() {
+        Object result = new Object();
+        result = stack.get(stack.getBackwardRealIndex(1));
+        stack.delete(stack.getBackwardRealIndex(1));
+        return (T) result;
+    }
 
 }
