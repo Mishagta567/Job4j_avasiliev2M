@@ -37,6 +37,10 @@ public class DynamicList<T> implements Iterable<T> {
         }
     }
 
+    public int getIndex() {
+        return this.index;
+    }
+
     public void delete(int position) {
         if (position <= this.index && position >= 0) {
             for (int loopIndex = position; loopIndex < this.index; loopIndex++) {
