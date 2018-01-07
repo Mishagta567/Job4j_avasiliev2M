@@ -9,7 +9,7 @@ package ru.job4j.lvl2junior.generic;
  * @version  1.0.0
  */
 
-public class SimpleArray<T>  {
+public class SimpleArray<T> {
     private Object[] objects;
     private int index = 0;
 
