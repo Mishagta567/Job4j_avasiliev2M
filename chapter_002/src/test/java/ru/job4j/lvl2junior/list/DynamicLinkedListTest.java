@@ -32,7 +32,7 @@ public class DynamicLinkedListTest {
       DynamicLinkedList<String> dll = new DynamicLinkedList<String>();
       dll.add("A1");
       dll.add("B2");
-      dll.update("D2", 2);
+      dll.update("D2", dll.getForwardRealIndex(2));
       assertThat(dll.get(dll.getForwardRealIndex(2)), is("D2"));
    }
 

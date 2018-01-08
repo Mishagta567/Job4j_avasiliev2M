@@ -121,20 +121,11 @@ public class DynamicLinkedList<T> implements Iterable<T> {
        }
    }
 
-   public void update(T value, int imaginaryPosition) {
-       if (imaginaryPosition <= this.realCurrentSize) {
+   public void update(T value, int realIndex) {
+       if (realIndex >= 0) {
            // пользуемся методом next до получения ячейки с этим номером по счету
-           int stepsCount = 0;
-           ArrayIterator it = new ArrayIterator();
-           while (it.hasNext()) {
-               stepsCount++;
-               it.next();
-               if (stepsCount == imaginaryPosition) {
-                   this.objects[it.getCurrCellIndexValue()][0] = value;  /** imaginaryPosition - конечно же пока НЕ ПРАВИЛЬНО */
-                   this.modCount++;
-                   break;
-               }
-           }
+           this.objects[realIndex][0] = value;  /** imaginaryPosition - конечно же пока НЕ ПРАВИЛЬНО */
+           this.modCount++;
        }
    }
 
