@@ -27,6 +27,10 @@ public class DynamicLinkedList<T> implements Iterable<T> {
         return itrEndSellIndx;
     }
 
+    public int getRealCurrentSize() {
+        return realCurrentSize;
+    }
+
     public DynamicLinkedList() {
        this.objects = new Object[2][4];      // лучше конечно делать 100, но для тестов сделаем пока так
    }
@@ -217,6 +221,26 @@ public class DynamicLinkedList<T> implements Iterable<T> {
        }
        objects = tempObject;
    }
+
+    public void setNextValueForNodeTestOnly(int realIndex, int value) {
+        this.objects[realIndex][3] = value;
+    }
+
+    public boolean nodeForward() {        // проверяем на цикличность. С таким же успехом можно сделать проверку на обратную цикличность.
+        int stepsCount = 0;
+        int nextCell = (int) this.objects[this.itrStartCellInd][3];
+        boolean result = false;
+
+        while (nextCell != -1) {
+            stepsCount++;
+            nextCell = (int) this.objects[nextCell][3];
+            if (stepsCount > this.realCurrentSize) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
 
    @Override
    public Iterator<T> iterator() {

@@ -75,4 +75,17 @@ public class DynamicLinkedListTest {
       assertThat(result, is("B2E5"));
    }
 
+   @Test
+   public void nodeTest() throws Exception {
+      DynamicLinkedList<String> nd = new DynamicLinkedList<String>();
+      nd.add("A1");  //  1   X1
+      nd.add("B2");  //  2
+      nd.add("C3");  //  3   X2
+      nd.add("D4");  //  3   X2
+      assertThat(nd.nodeForward(), is(false));
+
+      nd.setNextValueForNodeTestOnly(3, 0);
+      assertThat(nd.nodeForward(), is(true));
+   }
+
 }
