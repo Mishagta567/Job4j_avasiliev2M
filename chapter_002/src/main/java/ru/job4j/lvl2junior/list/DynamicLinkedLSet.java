@@ -6,7 +6,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Простой массив (или должна была быть коллекция?)
+ * Set не массивах. Не принимает дубликаты. Почти все из DynamicLinkedList.
+ * НЕ УДАЛОСЬ реализовать прохождение итератора в обратную сторону.
+ *
  * @author   A_Vasiliev
  * @since    05.01.2018
  * @version  1.0.0

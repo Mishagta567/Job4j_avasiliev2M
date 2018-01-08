@@ -42,19 +42,4 @@ public class SimpleSet<T> {
       simpleSet.delete(position);
    }
 
-   public static void main(String[] arg) {
-      SimpleSet<String> ss = new SimpleSet<String>();
-      ss.add("A1");
-      ss.add("A1");
-      ss.add("B2");
-      ss.add("C3");
-      ss.delete(0);
-      ss.delete(0);
-
-      System.out.println(ss.get(0));
-      System.out.println(ss.get(1));
-      System.out.println(ss.get(2));
-
-   }
-
 }

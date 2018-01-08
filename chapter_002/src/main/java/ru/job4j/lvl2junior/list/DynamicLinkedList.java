@@ -4,7 +4,7 @@ package ru.job4j.lvl2junior.list;
 import java.util.*;
 
 /**
- * Простой массив (или должна была быть коллекция?)
+ * Динамический массив (+ итератор, который ходит в обе стороны)
  * @author   A_Vasiliev
  * @since    05.01.2018
  * @version  1.0.0
@@ -247,7 +247,7 @@ public class DynamicLinkedList<T> implements Iterable<T> {
        return new ArrayIterator();
    }
 
-   class ArrayIterator implements Iterator<T> {
+   public class ArrayIterator implements Iterator<T> {
        Object result = new Object();
        int current = 0;  // the current element we are looking at
        int currentBack = DynamicLinkedList.this.realCurrentSize;

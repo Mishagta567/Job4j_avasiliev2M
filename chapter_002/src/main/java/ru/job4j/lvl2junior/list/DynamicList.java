@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Простой массив (или должна была быть коллекция?)
+ * Простой массив
  * @author   A_Vasiliev
  * @since    05.01.2018
  * @version  1.0.0
@@ -41,18 +41,18 @@ public class DynamicList<T> implements Iterable<T> {
         return this.index;
     }
 
-    public void delete(int position) {
-        if (position <= this.index && position >= 0) {
-            for (int loopIndex = position; loopIndex < this.index; loopIndex++) {
-                this.objects[loopIndex++] = this.objects[loopIndex];  // перемещаем всю цепочку справа на лево до ячейки удаления
+    public void delete(int realIndex) {
+        if (realIndex <= this.index && realIndex >= 0) {
+            for (int loopIndex = realIndex; loopIndex < this.index; loopIndex++) {
+                this.objects[loopIndex] = this.objects[loopIndex + 1];  // перемещаем всю цепочку справа на лево до ячейки удаления
             }
             objects[this.index--] = null; // как бы удаляем последний объект и уменьшаем index на 1
             this.modCount++;
         }
     }
 
-    public T get(int position) {
-        return (T) this.objects[position];
+    public T get(int realIndex) {
+        return (T) this.objects[realIndex];
     }
 
     private void sizeIncrease() {
@@ -63,7 +63,7 @@ public class DynamicList<T> implements Iterable<T> {
         objects = tempObject;
     }
 
-    public static void main(String[] arg) {
+    /** public static void main(String[] arg) {
         DynamicList<String> sa = new DynamicList<String>();
         System.out.println("index: " + sa.index + ", length: " + sa.objects.length);
         sa.add("1-1");
@@ -73,10 +73,9 @@ public class DynamicList<T> implements Iterable<T> {
         sa.add("5-5");
         System.out.println(sa.get(0));
         System.out.println(sa.get(4));
-
         //ArrayIterator it = new ArrayIterator();
 
-    }
+    } */
 
     @Override
     public Iterator<T> iterator() {
