@@ -28,13 +28,13 @@ class UserOverrideHC {
 public class MapOverrideHC {
 
 	public static void main(String[] args) {
-		UserOverrideHC ivan = new UserOverrideHC("Ivan", 1, new GregorianCalendar(2000, 1, 21));
-		UserOverrideHC alex = new UserOverrideHC("Ivan", 1, new GregorianCalendar(2000, 1, 21));
+		UserOverrideEqls ivan = new UserOverrideEqls("Ivan", 1, new GregorianCalendar(2000, 1, 21));
+		UserOverrideEqls alex = new UserOverrideEqls("Ivan", 1, new GregorianCalendar(2000, 1, 21));
 
 		System.out.printf("%s %s %s-%s-%s%s", ivan.name, ivan.children, ivan.birthday.get(Calendar.YEAR),
 				ivan.birthday.get(Calendar.MONTH), ivan.birthday.get(Calendar.DAY_OF_MONTH), System.lineSeparator());
 
-		Map<UserOverrideHC, Object> map = new HashMap<>();
+		Map<UserOverrideEqls, Object> map = new HashMap<>();
 		map.put(ivan, ivan);
 		map.put(alex, alex);
 
