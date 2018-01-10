@@ -88,7 +88,7 @@ public class MenuTracker {
       public void execute(Input input, Tracker tracker) {
          String name = input.ask("Enter the task name: ");
          String desc = input.ask("Enter the description: ");
-         tracker.add(new Task(name, desc));
+         tracker.insert(new Task(name, desc));
       }
       @Override
       public String info() {

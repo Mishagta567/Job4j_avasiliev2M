@@ -61,7 +61,7 @@ public class DynamicListTest {
       Iterator<String> it = dl.iterator();
       while (it.hasNext()) {
          allData = allData + it.next();
-         // dl.add("E4");     // генерирует ConcurrentModificationException
+         // dl.insert("E4");     // генерирует ConcurrentModificationException
       }
       assertThat(allData, is("A1B2C3"));
    }

@@ -43,11 +43,11 @@ public class UserStore<T> {
       UserStore<User> userSt = new UserStore<User>(10);
 
       userSt.add(ivan);
-      //userSt.add(admin);       // Не могу выполнить, что и требовалось.
+      //userSt.insert(admin);       // Не могу выполнить, что и требовалось.
 
       SimpleArray<User> userSt2 = new SimpleArray<User>(10);
       userSt2.add(ivan);
-      //userSt2.add(admin);      // Не могу выполнить, что и требовалось.
+      //userSt2.insert(admin);      // Не могу выполнить, что и требовалось.
       System.out.print("Yo");
    }
 
