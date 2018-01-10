@@ -2,7 +2,7 @@ package ru.job4j.lvl2junior.map;
 
 
 /**
- * Простой массив
+ * Массив HashMap
  * @author   A_Vasiliev
  * @since    05.01.2018
  * @version  1.0.0

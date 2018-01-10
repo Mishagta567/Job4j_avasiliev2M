@@ -24,8 +24,8 @@ public class RoleStore<Role> extends AbstractStore {
       roleSt.add(admin);
 
       SimpleArray<Role> roleSt2 = new SimpleArray<Role>(10);
-      //roleSt2.insert(ivan);       // Не могу выполнить, что и требовалось.
-      //roleSt2.insert(admin);      // Не могу выполнить, что НЕ правильно.
+      //roleSt2.add(ivan);       // Не могу выполнить, что и требовалось.
+      //roleSt2.add(admin);      // Не могу выполнить, что НЕ правильно.
 
       //AbstractStore<Role> roleSt3 = new AbstractStore<Role>(10);      // тоже нельзя выполнять.
 

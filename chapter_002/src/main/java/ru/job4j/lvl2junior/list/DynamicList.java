@@ -66,11 +66,11 @@ public class DynamicList<T> implements Iterable<T> {
     /** public static void main(String[] arg) {
         DynamicList<String> sa = new DynamicList<String>();
         System.out.println("index: " + sa.index + ", length: " + sa.objects.length);
-        sa.insert("1-1");
-        sa.insert("2-2");
-        sa.insert("3-3");
-        sa.insert("4-4");
-        sa.insert("5-5");
+        sa.add("1-1");
+        sa.add("2-2");
+        sa.add("3-3");
+        sa.add("4-4");
+        sa.add("5-5");
         System.out.println(sa.get(0));
         System.out.println(sa.get(4));
         //ArrayIterator it = new ArrayIterator();

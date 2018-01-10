@@ -99,7 +99,7 @@ public class StartUI {
          System.out.println("--- Task with getId= " + item.getId() + " NOT FOUND. --");
       }
 
-      //this.tracker.insert(Item0);
+      //this.tracker.add(Item0);
 
    }
 
@@ -145,7 +145,7 @@ public class StartUI {
 
    private void showMenu() {
       System.out.println("Menu:");
-      System.out.println("1 - insert task.");
+      System.out.println("1 - add task.");
       System.out.println("2 - show all tasks.");
       System.out.println("3 - change tasks.");
       System.out.println("4 - delete0 tasks.");

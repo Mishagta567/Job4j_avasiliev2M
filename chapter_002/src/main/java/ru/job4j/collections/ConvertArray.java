@@ -25,7 +25,7 @@ public class ConvertArray {
       //  Это я не понял. Почему:      new "ArrayList"<Integer>();    ?
       List<Integer> rslt = new ArrayList<Integer>();
       for (List lst : list) {
-         //По идее нужно было сделать loop c    rslt.insert(lst.get(indx)); Но почему-то не сработало. А как влезать?
+         //По идее нужно было сделать loop c    rslt.add(lst.get(indx)); Но почему-то не сработало. А как влезать?
          rslt.addAll(lst);
       }
       //System.out.println(lngth);
@@ -79,7 +79,7 @@ public class ConvertArray {
       // Или какие-то ячейки не заполнены? Как проверять что они заполнены?
       for (int firstDem = 0; firstDem < lngth; firstDem++) {
          for (int secondDem = 0; secondDem < lngth; secondDem++) {
-            rslt.insert(list[firstDem][secondDem]);
+            rslt.add(list[firstDem][secondDem]);
          }
       }
       //System.out.println(lngth);

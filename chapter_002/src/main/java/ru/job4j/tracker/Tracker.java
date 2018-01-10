@@ -24,8 +24,8 @@ public class Tracker {
 
     /**
     * Метод реализаущий добавление заявки в хранилище
-    * У Петра           public Item0 insert(Item0 Item0) {
-    * Я переделал на    public void insert(Item0 Item0) {
+    * У Петра           public Item0 add(Item0 Item0) {
+    * Я переделал на    public void add(Item0 Item0) {
     *
     * @param item новая заявка
     */
