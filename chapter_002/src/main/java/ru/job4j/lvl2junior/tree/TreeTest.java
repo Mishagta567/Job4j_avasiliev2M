@@ -12,7 +12,7 @@ import static org.hamcrest.core.Is.is;
 /**
  * Тестируем Tree
  * @author   A_Vasiliev
- * @since    09.01.2018
+ * @since    10.01.2018
  * @version  1.0.0
  */
 

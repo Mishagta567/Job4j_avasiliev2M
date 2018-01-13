@@ -22,7 +22,7 @@ public class DynamicArrayHashMap<T, K> {
 		return value.hashCode() % tableSize;
 	}
 
-	public boolean insert(T value, K key) {
+	public boolean insert(T value, int key) {
 		if (fillCellCount * 4 >= objects.length * 3) {  // т.е. если мы заполнили 3/4 массива
 			sizeIncrease();
 		}
@@ -67,10 +67,10 @@ public class DynamicArrayHashMap<T, K> {
 		return result;
 	}
 
-	public boolean delete(K key) {
+	public boolean delete(int key) {
 		boolean result = false;
 		int expectIndex = (int) key % tableSize;
-		if (objects[expectIndex][1] != null && objects[expectIndex][1] == key) {   // хеш-коды совпадают
+		if (objects[expectIndex][1] != null && (int) objects[expectIndex][1] == key) {   // хеш-коды совпадают
 			objects[expectIndex][1] = null;
 			objects[expectIndex][0] = null;
 			result = true;
@@ -78,7 +78,7 @@ public class DynamicArrayHashMap<T, K> {
 		return result;
 	}
 
-	public T get(K key) {
+	public T get(int key) {
 		T result;
 		result = (T) this.objects[(int) key % tableSize][0].toString();
 		return result;
