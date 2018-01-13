@@ -4,6 +4,8 @@ package ru.job4j.lvl2junior.tree;
 import java.util.*;
 
 /**
+ * Создать элементарную структуру дерева [#1711]
+ *
  * @author  A_Vasiliev
  * @version 10.01.2018
  * @since 0.1
