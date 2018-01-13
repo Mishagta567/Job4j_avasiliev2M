@@ -5,6 +5,7 @@ import java.util.*;
 
 /**
  * Создать элементарную структуру дерева [#1711]
+ * 2. Добавить метод boolean isBinary() [#1712]
  *
  * @author  A_Vasiliev
  * @version 10.01.2018
@@ -35,7 +36,7 @@ public class TreeNode<E> implements SimpleTree {
 			if (parent.compareTo(childValue) < 0) {
 				for (Node<E> lvs : parentChilds) {
 					// нам нужно найти дочернее значение меньше
-					if (lvs.compareTo(childValue) < 0) {
+					if (lvs.compareTo(parent.getValue()) > 0) {
 						//
 						tempNode = lvs;
 						break;
@@ -44,7 +45,7 @@ public class TreeNode<E> implements SimpleTree {
 			} else if (parent.compareTo(childValue) == 0) {
 				for (Node<E> lvs : parentChilds) {
 					// нам нужно найти дочернее раврное
-					if (lvs.compareTo(childValue) == 0) {
+					if (lvs.compareTo(parent.getValue()) == 0) {
 						//
 						tempNode = lvs;
 						break;
@@ -53,7 +54,7 @@ public class TreeNode<E> implements SimpleTree {
 			} else if (parent.compareTo(childValue) > 0) {
 				for (Node<E> lvs : parentChilds) {
 					// нам нужно найти дочернее раврное
-					if (lvs.compareTo(childValue) > 0) {
+					if (lvs.compareTo(parent.getValue()) < 0) {
 						//
 						tempNode = lvs;
 						break;
@@ -64,9 +65,30 @@ public class TreeNode<E> implements SimpleTree {
 		return tempNode;
 	}
 
+	public int checkLeaves() {
+		Optional<Node<E>> rsl = Optional.empty();
+		Queue<Node<E>> data = new LinkedList<>();
+		int result = 0;
+		int leavesAmmount;
+		data.offer(this.root);
+		while (!data.isEmpty()) {
+			Node<E> el = data.poll();
+			leavesAmmount = el.leaves().size();
+
+			if (leavesAmmount > result) {
+				result = leavesAmmount;
+			}
+			for (Node<E> child : el.leaves()) {
+				data.offer(child);
+			}
+		}
+		return result;
+	}
+
 	@Override
 	public boolean add(Comparable parent, Comparable child) {
 		boolean result = false;
+		String testStr = null;
 		Node<E> parentNode = (Node<E>) parent;
 		Node<E> childNode = (Node<E>) child;
 		boolean foundOne = false;
@@ -79,6 +101,7 @@ public class TreeNode<E> implements SimpleTree {
 				parentNode = getChild(parentNode, childNode.getValue());
 			}
 			parentNode.add(childNode);
+			testStr = "К " + parentNode.getValue() + " лепим " + childNode.getValue();
 			result = true;
 		}
 		return result;
@@ -123,8 +146,11 @@ public class TreeNode<E> implements SimpleTree {
 
 	public static void main(String[] args) {
 		TreeNode<Integer> treeN = new TreeNode<Integer>(100);
-		Boolean rslt = ((treeN.findBy(new Node(150)).equals(Optional.empty())));
-		System.out.println(rslt);
+		//System.out.println(treeN.checkLeaves());
+		treeN.add(treeN.getRoot(), new Node<Integer>(200));
+		//System.out.println(treeN.checkLeaves());
+		treeN.add(treeN.getRoot(), new Node<Integer>(150));
+		System.out.println(treeN.checkLeaves());
 	}
 
 /**
