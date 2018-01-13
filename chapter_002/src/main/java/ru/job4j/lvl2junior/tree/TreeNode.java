@@ -11,7 +11,7 @@ import java.util.*;
  * @version 10.01.2018
  * @since 0.1
  */
-public class TreeNode<E> implements SimpleTree {
+public class TreeNode<E extends Comparable<E>> implements SimpleTree<E> {
 	private Node<E> root;
 	private E searchValue = null;
 	private Node<E> searchNode = null;
@@ -85,8 +85,9 @@ public class TreeNode<E> implements SimpleTree {
 		return result;
 	}
 
-	@Override
-	public boolean add(Comparable parent, Comparable child) {
+
+	//@Override
+	public boolean add(Node<E> parent, Node<E> child) {
 		boolean result = false;
 		String testStr = null;
 		Node<E> parentNode = (Node<E>) parent;
@@ -106,22 +107,6 @@ public class TreeNode<E> implements SimpleTree {
 		}
 		return result;
 	}
-
-	@Override
-	public Optional<Node<E>> findBy(Comparable findNode) {
-		Optional<Node<E>> result = Optional.empty();
-		Node<E> parentNode = (Node<E>) this.root;
-		Node<E> nodeChilde = (Node<E>) findNode;
-		boolean foundOne = false;
-		if (getChild(parentNode, nodeChilde.getValue()) != null) {
-			while (getChild(parentNode, nodeChilde.getValue()) != null) {
-				parentNode = getChild(parentNode, nodeChilde.getValue());
-			}
-			result = Optional.ofNullable(parentNode);
-		}
-		return result;
-	}
-
 
 	@Override
 	public Iterator iterator() {
@@ -153,7 +138,12 @@ public class TreeNode<E> implements SimpleTree {
 		System.out.println(treeN.checkLeaves());
 	}
 
-/**
+	@Override
+	public boolean add(E parent, E child) {
+		return false;
+	}
+
+	//**
 	@Override
 	public Optional<Node<E>> findBy(E value) {
 		Optional<Node<E>> rsl = Optional.empty();
@@ -170,6 +160,6 @@ public class TreeNode<E> implements SimpleTree {
 			}
 		}
 		return rsl;
-	} */
+	} //*/
 
 }

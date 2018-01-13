@@ -22,14 +22,15 @@ public class TreeNodeTest {
 		assertThat((treeN.getChild(treeN.getRoot(), 300) == null), is(false));
 	}
 
+
 	@Test
 	public void findBy() throws Exception {
 		TreeNode<Integer> treeN = new TreeNode<Integer>(100);
-		boolean rslt = treeN.findBy(new Node(250)).equals(Optional.empty());
+		boolean rslt = treeN.findBy(250).equals(Optional.empty());
 		assertThat(rslt, is(true));
 		treeN.add(treeN.getRoot(), new Node<Integer>(200));
-		rslt = treeN.findBy(new Node(250)).equals(Optional.empty());
-		assertThat(rslt, is(false));
+		rslt = treeN.findBy(250).equals(Optional.empty());
+		assertThat(rslt, is(true));
 	}
 
 	@Test
