@@ -1,17 +1,21 @@
 package ru.job4j.lvl2junior.list;
 
 
+import net.jcip.annotations.ThreadSafe;
+
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Простой массив
+ * ThreadSafe динамический список  [#1105]
+ *
  * @author   A_Vasiliev
  * @since    05.01.2018
  * @version  1.0.0
  */
 
+@ThreadSafe
 public class DynamicList<T> implements Iterable<T> {
     private Object[] objects;
     private int index = 0;
@@ -21,7 +25,7 @@ public class DynamicList<T> implements Iterable<T> {
         this.objects = new Object[2];      // лучше конечно делать 100, но для тестов сделаем пока так
     }
 
-    public void add(T value) {              // по аналогии можно создать уменьшение размера "листа".
+    public synchronized void add(T value) {              // по аналогии можно создать уменьшение размера "листа".
         if (this.index >= objects.length - 1) {
             this.sizeIncrease();
             //System.out.println("Size increase work");
@@ -30,7 +34,7 @@ public class DynamicList<T> implements Iterable<T> {
         this.modCount++;
     }
 
-    public void update(T value, int position) {
+    public synchronized void update(T value, int position) {
         if (position <= this.index) {
             this.objects[position] = value;
             this.modCount++;
@@ -39,9 +43,9 @@ public class DynamicList<T> implements Iterable<T> {
 
     public int getIndex() {
         return this.index;
-    }
+    }		// здесь синхронизация вроде ни к чему
 
-    public void delete(int realIndex) {
+    public synchronized void delete(int realIndex) {
         if (realIndex <= this.index && realIndex >= 0) {
             for (int loopIndex = realIndex; loopIndex < this.index; loopIndex++) {
                 this.objects[loopIndex] = this.objects[loopIndex + 1];  // перемещаем всю цепочку справа на лево до ячейки удаления
@@ -55,7 +59,7 @@ public class DynamicList<T> implements Iterable<T> {
         return (T) this.objects[realIndex];
     }
 
-    private void sizeIncrease() {
+    private synchronized void sizeIncrease() {
         Object[] tempObject = new Object[objects.length * 2];
         for (int indx = 0; indx <= this.index; indx++) {
             tempObject[indx] = objects[indx];
@@ -110,6 +114,5 @@ public class DynamicList<T> implements Iterable<T> {
             return (T) DynamicList.this.objects[this.current++];
         }
     }
-
 
 }

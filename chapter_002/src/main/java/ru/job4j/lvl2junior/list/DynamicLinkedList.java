@@ -1,6 +1,8 @@
 package ru.job4j.lvl2junior.list;
 
 
+import net.jcip.annotations.ThreadSafe;
+
 import java.util.*;
 
 /**
@@ -10,6 +12,7 @@ import java.util.*;
  * @version  1.0.0
  */
 
+@ThreadSafe
 public class DynamicLinkedList<T> implements Iterable<T> {
    private DynamicList<Integer> emptyCells = new DynamicList<Integer>();
    private Object[][] objects;     // Object[][0] - T реальные данные, Object[][1] - предыдущий, Object[][2] - текущий индекс, Object[][3] - следующий
@@ -35,7 +38,7 @@ public class DynamicLinkedList<T> implements Iterable<T> {
        this.objects = new Object[2][4];      // лучше конечно делать 100, но для тестов сделаем пока так
    }
 
-   public void add(T value) {              // по аналогии можно создать уменьшение размера "листа".
+   public synchronized void add(T value) {              // по аналогии можно создать уменьшение размера "листа".
        if (this.index >= objects.length - 1) {
            this.sizeIncrease();
            //System.out.println("Size increase work");
@@ -71,7 +74,7 @@ public class DynamicLinkedList<T> implements Iterable<T> {
        this.realCurrentSize++;
    }
 
-   public void add(T value, int imaginaryPosition) {  // теперь новую ячейку вставляем Якобы "между"
+   public synchronized void add(T value, int imaginaryPosition) {  // теперь новую ячейку вставляем Якобы "между"
        if (objects.length - 1 <= this.index) {
            this.sizeIncrease();
        }
@@ -125,7 +128,7 @@ public class DynamicLinkedList<T> implements Iterable<T> {
        }
    }
 
-   public void update(T value, int realIndex) {
+   public synchronized void update(T value, int realIndex) {
        if (realIndex >= 0) {
            // пользуемся методом next до получения ячейки с этим номером по счету
            this.objects[realIndex][0] = value;  /** imaginaryPosition - конечно же пока НЕ ПРАВИЛЬНО */
@@ -171,7 +174,7 @@ public class DynamicLinkedList<T> implements Iterable<T> {
        return realIndx;
    }
 
-   public void delete(int realIndex) {
+   public synchronized void delete(int realIndex) {
        if (realIndex != -1) {
            this.objects[realIndex][0] = null;  /** Интересно - можно ли так писать? */
            int curCellPrevValue = (int) this.objects[realIndex][1];
