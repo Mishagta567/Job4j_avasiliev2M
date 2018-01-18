@@ -23,7 +23,7 @@ public class ProducerCustomer {
 	public void add() throws InterruptedException {
 		synchronized (this.jobList) {
 			// добавляем строки счетчик от 1 до 20 пока размер листа меньше 5 (для теста)
-			for (int indAdd = 0; indAdd <= 20; indAdd++) {
+			for (int indAdd = 0; indAdd <= 50; indAdd++) {
 				while (jobList.size() >= 5) {
 					System.out.println("Add заснул");
 					this.jobList.wait();
@@ -31,11 +31,11 @@ public class ProducerCustomer {
 				System.out.printf("Add добавил %s%n", count);
 				this.jobList.add(this.count++);
 				this.jobList.notify();
-				if (count < 10) {
-					Thread.sleep(250);
-				} else {
-					Thread.sleep(1000);
-				}
+				// if (count < 10) {
+				// 	Thread.sleep(500);
+				// } else {
+				// 	Thread.sleep(2000);
+				// }
 
 			}
 		}
@@ -44,7 +44,7 @@ public class ProducerCustomer {
 	public void remove() throws InterruptedException {
 		synchronized (this.jobList) {
 			// добавляем строки счетчик от 1 до 20 пока размер листа меньше 5 (для теста)
-			for (int ind = 0; ind <= 20; ind++) {
+			for (int ind = 0; ind <= 50; ind++) {
 				while (jobList.size() == 0) {
 					System.out.println("Remove заснул");
 					this.jobList.wait();
@@ -52,7 +52,7 @@ public class ProducerCustomer {
 				System.out.printf("Remove удалил %s%n", this.jobList.peek());
 				this.jobList.remove();
 				this.jobList.notify();
-				Thread.sleep(500);
+				//Thread.sleep(1000);
 			}
 		}
 	}
