@@ -23,7 +23,7 @@ public class ProducerCustomer {
 	public void add() throws InterruptedException {
 		synchronized (this.jobList) {
 			// добавляем строки счетчик от 1 до 20 пока размер листа меньше 5 (для теста)
-			for (int indAdd = 0; indAdd <= 50; indAdd++) {
+			for (int indAdd = 0; indAdd <= 20; indAdd++) {
 				while (jobList.size() >= 5) {
 					System.out.println("Add заснул");
 					this.jobList.wait();
@@ -44,7 +44,7 @@ public class ProducerCustomer {
 	public void remove() throws InterruptedException {
 		synchronized (this.jobList) {
 			// добавляем строки счетчик от 1 до 20 пока размер листа меньше 5 (для теста)
-			for (int ind = 0; ind <= 50; ind++) {
+			for (int ind = 0; ind <= 20; ind++) {
 				while (jobList.size() == 0) {
 					System.out.println("Remove заснул");
 					this.jobList.wait();
