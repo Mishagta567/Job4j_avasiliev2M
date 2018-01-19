@@ -2,6 +2,9 @@ package ru.job4j.lvl2junior.tree;
 
 
 import org.junit.Test;
+import ru.job4j.junior001.tree.Node;
+import ru.job4j.junior001.tree.TreeNode;
+
 import java.util.Iterator;
 import java.util.Optional;
 import static org.hamcrest.Matchers.is;

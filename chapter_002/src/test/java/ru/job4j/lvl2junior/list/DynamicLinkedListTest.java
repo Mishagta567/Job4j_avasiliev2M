@@ -1,12 +1,12 @@
 package ru.job4j.lvl2junior.list;
 
 import org.junit.Test;
+import ru.job4j.junior001.list.DynamicLinkedList;
 
 import java.util.Iterator;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
 
 public class DynamicLinkedListTest {
    @Test

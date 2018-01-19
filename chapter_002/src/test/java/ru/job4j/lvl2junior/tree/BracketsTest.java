@@ -1,6 +1,8 @@
 package ru.job4j.lvl2junior.tree;
 
 import org.junit.Test;
+import ru.job4j.junior001.tree.Brackets;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 

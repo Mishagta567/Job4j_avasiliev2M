@@ -1,7 +1,7 @@
 package ru.job4j.lvl2junior.iterator;
 
 import org.junit.Test;
-import ru.job4j.lvl2junior.generic.SimpleArray;
+import ru.job4j.junior001.generic.SimpleArray;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;

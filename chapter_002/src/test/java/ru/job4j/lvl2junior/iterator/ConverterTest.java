@@ -2,9 +2,11 @@ package ru.job4j.lvl2junior.iterator;
 
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
+
 import org.junit.Before;
 import org.junit.Test;
+import ru.job4j.junior001.iterator.Converter;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
