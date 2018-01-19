@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * собственную версию bounded blocking queue. Блокирующая очередь,
+ * ThreadPool [#1099]
  *
  * @author   A_Vasiliev
  * @since    16.01.2018
@@ -28,7 +28,10 @@ public class ThreadPool<W extends Runnable> {
 	}
 
 	public void add(W work) {
-		currentJobList.add(work);
+		synchronized (this.currentJobList) {
+			this.currentJobList.add(work);
+			this.currentJobList.notify();
+		}
 	}
 
 
@@ -37,35 +40,41 @@ public class ThreadPool<W extends Runnable> {
 		//tp.add(W tp.workOne());
 		//tp.add(tp.workOne());
 
+		// А кто нам мешает сделать loop и запустить столько нитей, сколько у нас maxTreadCount ?
 
-		// Наш Thread будет запускать требуемое число процессов
-		new Thread() {
-			@Override
-			public void run() {
-				W newWork = null;
-				// внешний цикл - запускаем work до тех пор пока они есть в листе работ
-				while (tp.currentJobList.size() > 0) synchronized (tp.currentJobList) {
-					//
-					// а как нам вычислять (Threadcounts) сколько из азпущенных работ у нас работает?
-					//
-					//while (Threadcounts >= tp.maxTreadCount) {
-					while (tp.maxTreadCount > tp.maxTreadCount) {
-						try {
-							tp.currentJobList.wait();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
+		for (int threadIndx = 1; threadIndx <= maxTreadCount; threadIndx++) {
+
+			// Каждый Thread будет либо спать, либо выполнять какую-то работу.
+			new Thread() {
+				@Override
+				public void run() {
+					W newWork = null;
+
+					// Хочется запустить вечный цикл в котором нити будут ждать появления новых задач
+					// Понятно что в идеале лучше сделать какой-то параметр, после обнавления которого нити закрываются,
+					// но сейчас это не принципиально.
+					while (2 > 1) {
+
+						// этот цикл - запускаем work до тех пор пока они есть в листе работ, или ложиться спать
+						while (tp.currentJobList.size() == 0) synchronized (tp.currentJobList) {
+							try {
+								tp.currentJobList.wait();
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+
+						while (tp.currentJobList.size() > 0) synchronized (tp.currentJobList) {
+							//
+							newWork = (W) tp.currentJobList.remove();
+							tp.currentJobList.notify();
+							// Я исхожу из того что цикл НЕ будет повторяться пока не будет выполнен полностью код в данной работе
+							newWork.run();
 						}
 					}
-					// Запустим столько процессов, сколько можем: в идеале: for (int indx = 1; tp.maxTreadCount - Threadcounts; indx++)
-					//for (int indx = 1; tp.maxTreadCount; indx++) {
-					for (int indx = 1; indx < tp.maxTreadCount; indx++) {
-						newWork = (W) tp.currentJobList.remove();
-						tp.currentJobList.notify();
-						newWork.run();
-					}
 				}
-			}
-		}.start();
+			}.start();
+		}
 	}
 
 
