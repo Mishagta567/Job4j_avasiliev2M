@@ -9,17 +9,17 @@ package ru.job4j.junior001.list;
  */
 
 public class DynamicArrayHashSet {
-    private Object[][] objects;	// Object[][0] - object, Object[][1] - HashCode
+    private Object[] objects;	// Object[] - object
     private int tableSize = 4;	// конечно можно делать больше, но для теста этого вполне достаточно
     private int modCount = 0;
     private int fillCellCount = 0;
 
 	public DynamicArrayHashSet() {
-		this.objects = new Object[tableSize][2];      // Для тестов изначально делаем небольшую таблицу
+		this.objects = new Object[tableSize];      // Для тестов изначально делаем небольшую таблицу
 	}
 
-	public int getIndexFromHCode(String str) {
-		return str.hashCode() % tableSize;
+	public int getIndexFromHCode(Object value) {
+		return value.hashCode() % tableSize;
 	}
 
 	public boolean add(String value) {
@@ -29,9 +29,8 @@ public class DynamicArrayHashSet {
 
 		boolean result = false;
 		int expextIndex = this.getIndexFromHCode(value);
-		if (objects[expextIndex][1] == null) {
-			objects[expextIndex][0] = value;
-			objects[expextIndex][1] = value.hashCode();
+		if (objects[expextIndex] == null) {
+			objects[expextIndex] = value;
 			result = true;
 			modCount++;
 			fillCellCount++;
@@ -42,34 +41,32 @@ public class DynamicArrayHashSet {
 	private void sizeIncrease() {
 		this.tableSize = this.tableSize * 2;
 		// создаем временнй массив
-		Object[][] tempObject = new Object[this.tableSize + 1][2];
+		Object[] tempObject = new Object[this.tableSize + 1];
 		for (int indx = 0; indx < objects.length; indx++) {
-			if (objects[indx][1] != null) {
+			if (objects[indx] != null) {
 				// перезаписываем во временный массив строки из существующего
-				int expextIndex = this.getIndexFromHCode((String) objects[indx][0]);
-				if (tempObject[expextIndex][1] == null) {
-					tempObject[expextIndex][0] = objects[indx][0];
-					tempObject[expextIndex][1] = objects[indx][1];
+				int expextIndex = this.getIndexFromHCode(objects[indx]);
+				if (tempObject[expextIndex] == null) {
+					tempObject[expextIndex] = objects[indx];
 				}
 			}
 		}
 		objects = tempObject;
 	}
 
-	public boolean remove(String value) {
+	public boolean remove(Object value) {
 		boolean result = false;
 		int expectIndex = this.getIndexFromHCode(value);
-		if (objects[expectIndex][1] != null && objects[expectIndex][0].equals(value)) {   // хеккод может быть НЕ уникальным  :-(
-				objects[expectIndex][1] = null;
-				objects[expectIndex][0] = null;
+		if (objects[expectIndex] != null) { //&& objects[expectIndex].equals(value)) {   // хеккод может быть НЕ уникальным  :-(
+				objects[expectIndex] = null;
 				result = true;
 		}
 		return result;
 	}
 
-	public String get(int realIndex) {
-		String result;
-		result = (String) this.objects[realIndex][0].toString();
+	public Object get(int realIndex) {
+		Object result;
+		result =  this.objects[realIndex];
 		return result;
 	}
 
