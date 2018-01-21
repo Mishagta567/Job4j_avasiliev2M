@@ -117,7 +117,7 @@ public class MapCheck implements Comparator<BankUser> {
    }
 
    // getUserAccount
-	public List<Account> getUserAccounts (String passport) {
+	public List<Account> getUserAccounts(String passport) {
 		return allBankUsers.get(new BankUser("AnyName", passport));
 	}
 
