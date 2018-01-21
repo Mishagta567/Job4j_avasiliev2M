@@ -4,10 +4,11 @@ package ru.job4j.collections;
 import java.util.*;
 
 /**
- * Первоый тестовый класс для проверки настроек.
+ * 1-003-5-3 Тестововое задание. Реализовать коллекцию Map для банка
+ *
  * @author   A_Vasiliev
- * @since    02.01.2018
- * @version  1.0.0
+ * @since    20.01.2018
+ * @version  1.0.2
  */
 
 
@@ -68,12 +69,7 @@ public class MapCheck implements Comparator<BankUser> {
 
 
 
-   // Перевод денег от одного, другому или себе
-   public boolean moneyTransfer(int ammount, String passpFrom, int requisitesFrom, String passporTo, int requisitesTo) {
-      boolean rslt = false;
-
-      return rslt;
-   }
+   // Перевод денег от одного, другому или себе сделан ниже.
 
    // Добавить пользователя:
    public void addUser(BankUser user) {
@@ -120,6 +116,11 @@ public class MapCheck implements Comparator<BankUser> {
       return rslt;
    }
 
+   // getUserAccount
+	public List<Account> getUserAccounts (String passport) {
+		return allBankUsers.get(new BankUser("AnyName", passport));
+	}
+
    // Теперь сделаем метод для перевода:
    // Конечно нужно переделать метод что бы работал не по BankUser а по паспорту.
    public boolean transferMoney(BankUser srcPassport, int srcRequisite,
@@ -145,35 +146,4 @@ public class MapCheck implements Comparator<BankUser> {
       return result;
    }
 
-   // тесты пока делал так, т.к. так проще наблюдать. Надеюсь тесты не обязательно писать к этим методам?
-   public static void main(String[] arg) {
-      MapCheck tm = new MapCheck();
-
-      //List<Account> ivanAccounts = new ArrayList<Account>();
-      //ivanAccounts.add(new Account(100, 1));
-      //ivanAccounts.add(new Account(200, 2));
-      //BankUser ivan = new BankUser("Ivan", "123");
-      //tm.allBankUsers.put(ivan, ivanAccounts);
-		//
-      //List<Account> jhonAccounts = new ArrayList<Account>();
-      //jhonAccounts.add(new Account(500, 3));
-      //jhonAccounts.add(new Account(600, 4));
-      //BankUser jhon = new BankUser("Jhon", "567");
-      //tm.allBankUsers.put(jhon, jhonAccounts);
-
-      // получить множество записей
-      //Set<Map.Entry<BankUser, List<Account>>> set = tm.allBankUsers.entrySet();
-
-      //System.out.println(tm.printAll(tm.allBankUsers.get(ivan)));
-
-      // Добавим 222 руб и посмотрим на результат
-      //tm.changeBalance(ivan, 2, 222);
-      //System.out.println(tm.printAll(tm.allBankUsers.get(ivan)));
-      //System.out.println(tm.printAll(tm.allBankUsers.get(jhon)));
-		//
-      //tm.transferMoney(ivan, 2, jhon, 3, 533.50);
-      //System.out.println("После трансфера");
-      //System.out.println(tm.printAll(tm.allBankUsers.get(ivan)));
-      //System.out.println(tm.printAll(tm.allBankUsers.get(jhon)));
-   }
 }
