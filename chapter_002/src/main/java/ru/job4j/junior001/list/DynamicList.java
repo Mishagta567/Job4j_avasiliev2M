@@ -25,7 +25,11 @@ public class DynamicList<T> implements Iterable<T> {
         this.objects = new Object[2];      // лучше конечно делать 100, но для тестов сделаем пока так
     }
 
-    public synchronized void add(T value) {              // по аналогии можно создать уменьшение размера "листа".
+	public Object[] getObjects() {
+		return objects;
+	}
+
+	public synchronized void add(T value) {              // по аналогии можно создать уменьшение размера "листа".
         if (this.index >= objects.length - 1) {
             this.sizeIncrease();
             //System.out.println("Size increase work");
@@ -66,20 +70,6 @@ public class DynamicList<T> implements Iterable<T> {
         }
         objects = tempObject;
     }
-
-    /** public static void main(String[] arg) {
-        DynamicList<String> sa = new DynamicList<String>();
-        System.out.println("index: " + sa.index + ", length: " + sa.objects.length);
-        sa.add("1-1");
-        sa.add("2-2");
-        sa.add("3-3");
-        sa.add("4-4");
-        sa.add("5-5");
-        System.out.println(sa.get(0));
-        System.out.println(sa.get(4));
-        //ArrayIterator it = new ArrayIterator();
-
-    } */
 
     @Override
     public Iterator<T> iterator() {

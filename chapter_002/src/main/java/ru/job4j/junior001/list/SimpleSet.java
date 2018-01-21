@@ -1,6 +1,8 @@
 package ru.job4j.junior001.list;
 
 
+import java.util.Iterator;
+
 /**
  * Ппоследний вошел, первый вышел.
  * @author   A_Vasiliev
@@ -8,9 +10,12 @@ package ru.job4j.junior001.list;
  * @version  1.0.0
  */
 
-public class SimpleSet<T> {
+public class SimpleSet<T> implements Iterable<T> {
 
    DynamicList<T> simpleSet = new DynamicList<T>();
+
+
+	private int index = 0;
 
    public boolean alreadyExist(T value) {
       boolean result = false;
@@ -42,4 +47,9 @@ public class SimpleSet<T> {
       simpleSet.delete(position);
    }
 
+   @Override
+   public Iterator<T> iterator() {
+      Iterator<T> it = simpleSet.iterator();
+      return it;
+   } // */
 }
