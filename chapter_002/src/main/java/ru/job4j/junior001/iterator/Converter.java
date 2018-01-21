@@ -2,6 +2,7 @@ package ru.job4j.junior001.iterator;
 
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -20,43 +21,29 @@ class IteratorOfIterators {
 }
 
 public class Converter { //implements Iterator{
-    private Iterator<Integer> mainIterator;
-    private Integer innerIterator;
-    private int mainIteratorIndex = -1;
-    private int innerIteratorIndex = -1;
+	private Integer innerIterator;
 
-    public Iterator<Integer> convert(Iterator<Iterator<Integer>> primeIt)  {
-        Iterator<Integer> rsltIterator;
-        if (mainIteratorIndex == -1 && innerIteratorIndex == -1) {
-            mainIterator = primeIt.next();
-            //innerIterator = mainIterator.next();
-            mainIteratorIndex++;
-            //innerIteratorIndex++;
-        }
+	public Iterator<Integer> convert(Iterator<Iterator<Integer>> primeIt)  {
+
 
         Iterator<Integer> resultIt = new Iterator<Integer>() {
             //this.innerIterator
+				Iterator<Integer> current = Collections.emptyIterator();
 
             @Override
             public boolean hasNext() {
-                return (mainIterator.hasNext() || primeIt.hasNext());
+            	if (primeIt.hasNext() && !current.hasNext()) {
+						current = primeIt.next();
+					}
+					return current.hasNext();
             }
 
             @Override
             public Integer next() {
-                if (mainIterator.hasNext()) {
-                    innerIterator = mainIterator.next();
-                    mainIteratorIndex++;
-                } else if (primeIt.hasNext()) {
-                    mainIterator = primeIt.next();
-                    innerIterator = mainIterator.next();
-                    mainIteratorIndex++;
-                    innerIteratorIndex++;
-                } else {  // здесь нужно как-то выбрасывать ошибку что больше ячеек нет
-                    mainIterator = primeIt.next(); // строчка должна сгенерировать ошибку
-                    innerIterator = 888;
-                }
-                return innerIterator;
+                while (!current.hasNext() && primeIt.hasNext()) {
+						 current = primeIt.next();
+					 }
+                return current.next();
             }
         };
         return resultIt;
