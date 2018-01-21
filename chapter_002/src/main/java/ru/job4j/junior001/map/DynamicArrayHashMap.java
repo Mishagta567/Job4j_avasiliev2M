@@ -1,6 +1,8 @@
 package ru.job4j.junior001.map;
 
 
+import java.util.Iterator;
+
 /**
  * Массив HashMap
  * @author   A_Vasiliev
@@ -8,30 +10,54 @@ package ru.job4j.junior001.map;
  * @version  1.0.0
  */
 
-public class DynamicArrayHashMap<T, K> {
-    private Object[][] objects;	// Object[][0] - object, Object[][1] - HashCode
+class Node<K, V> {
+	K key;
+	V value;
+	public Node(K key, V value) {
+		this.key = key;
+		this.value = value;
+	}
+
+	public K getKey() {
+		return key;
+	}
+
+	public V getValue() {
+		return value;
+	}
+
+	@Override
+	public int hashCode() {
+		return key.hashCode();
+	}
+
+}
+
+
+public class DynamicArrayHashMap<K, V> implements Iterator<V> {
+    private Node[] objects;	// Object[] - object
     private int tableSize = 4;	// конечно можно делать больше, но для теста этого вполне достаточно
     private int modCount = 0;
     private int fillCellCount = 0;
 
+
 	public DynamicArrayHashMap() {
-		this.objects = new Object[tableSize][2];      // Для тестов изначально делаем небольшую таблицу
+		this.objects = new Node[tableSize];      // Для тестов изначально делаем небольшую таблицу
 	}
 
-	public int getIndexFromHCode(T value) {
-		return value.hashCode() % tableSize;
+	public int getIndexFromHCode(K key) {
+		return key.hashCode() % tableSize;
 	}
 
-	public boolean insert(T value, int key) {
+	public boolean insert(K key, V value) {
 		if (fillCellCount * 4 >= objects.length * 3) {  // т.е. если мы заполнили 3/4 массива
 			sizeIncrease();
 		}
 		//
 		boolean result = false;
-		int expextIndex = (int) key % tableSize;
-		if (objects[expextIndex][1] == null) {
-			objects[expextIndex][1] = value.hashCode();
-			objects[expextIndex][0] = value;
+		int expextIndex = getIndexFromHCode(key);
+		if (objects[expextIndex] == null) {
+			 objects[expextIndex] = new Node(key, value);
 			result = true;
 			modCount++;
 			fillCellCount++;
@@ -42,47 +68,63 @@ public class DynamicArrayHashMap<T, K> {
 	private void sizeIncrease() {
 		this.tableSize = this.tableSize * 2;
 		// создаем временнй массив
-		Object[][] tempObject = new Object[this.tableSize + 1][2];
+		Node[] tempObject = new Node[this.tableSize + 1];
 		for (int indx = 0; indx < objects.length; indx++) {
-			if (objects[indx][1] != null) {
+			if (objects[indx] != null) {
 				// перезаписываем во временный массив строки из существующего
-				int expextedIndex = this.getIndexFromHCode((T) objects[indx][0]);
-				if (tempObject[expextedIndex][1] == null) {
-					tempObject[expextedIndex][1] = objects[indx][1];
-					tempObject[expextedIndex][0] = objects[indx][0];
+				int expextedIndex = this.getIndexFromHCode((K) objects[indx].getKey());
+				if (tempObject[expextedIndex] == null) {
+					 tempObject[expextedIndex] = objects[indx];
 				}
 			}
 		}
 		objects = tempObject;
 	}
 
-	public boolean remove(T value) {
+	public boolean delete(K key) {
 		boolean result = false;
-		int expectIndex = this.getIndexFromHCode(value);
-		if (objects[expectIndex][1] != null && objects[expectIndex][0].equals(value)) {   // хеккод может быть НЕ уникальным  :-(
-				objects[expectIndex][1] = null;
-				objects[expectIndex][0] = null;
-				result = true;
-		}
-		return result;
-	}
-
-	public boolean delete(int key) {
-		boolean result = false;
-		int expectIndex = (int) key % tableSize;
-		if (objects[expectIndex][1] != null && (int) objects[expectIndex][1] == key) {   // хеш-коды совпадают
-			objects[expectIndex][1] = null;
-			objects[expectIndex][0] = null;
+		int expectIndex = getIndexFromHCode(key);
+		if (objects[expectIndex] != null) {   // хеш-коды совпадают
+			objects[expectIndex] = null;
 			result = true;
+			fillCellCount--;
+			modCount++;
 		}
 		return result;
 	}
 
-	public T get(int key) {
-		T result;
-		result = (T) this.objects[(int) key % tableSize][0].toString();
+	public V get(K key) {
+		V result = null;
+		if (this.objects[getIndexFromHCode(key)] != null) {
+			result = (V) this.objects[getIndexFromHCode(key)];
+		}
 		return result;
 	}
 
+	int itrIndex = 0;
+	int itrCount = 0;
+	@Override
+	public boolean hasNext() {
+		return (itrCount <= this.fillCellCount);
+	}
+
+	@Override
+	public V next() {
+		V result = null;
+
+		while (this.objects[itrIndex] == null && itrCount <= this.fillCellCount && itrIndex < this.tableSize) {
+			itrIndex++;
+		}
+		if (this.objects[itrIndex] != null) {
+			result = (V) this.objects[itrIndex].getValue();
+			itrCount++;
+			itrIndex++;
+		}
+		return result;
+	}
+
+	public static void main(String[] args) {
+		System.out.println("YO");
+	}
 
 }
