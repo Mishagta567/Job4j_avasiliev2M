@@ -1,9 +1,8 @@
 package ru.job4j.junior001.list;
 
 
-import net.jcip.annotations.ThreadSafe;
-
-import java.util.*;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 /**
  * Динамический массив (+ итератор, который ходит в обе стороны)
@@ -12,305 +11,236 @@ import java.util.*;
  * @version  1.0.0
  */
 
-@ThreadSafe
+
 public class DynamicLinkedList<T> implements Iterable<T> {
-   private DynamicList<Integer> emptyCells = new DynamicList<Integer>();
-   private Object[][] objects;     // Object[][0] - T реальные данные, Object[][1] - предыдущий, Object[][2] - текущий индекс, Object[][3] - следующий
-   private int index = 0;
-   private int realCurrentSize = 0;
-   private int modCount = 0;
-   private int itrStartCellInd = -1;
-   private int itrEndSellIndx = -1;  // может быть совсем НЕ последняя ячейка массива. Пока делаем ошибку
 
-    public int getItrStartCellInd() {
-        return itrStartCellInd;
-    }
+	/** Yачальный Node.
+	 */
+	private Node<T> head;
 
-    public int getItrEndSellIndx() {
-        return itrEndSellIndx;
-    }
+	/** Последний Node.
+	 */
+	private Node<T> tail;
 
-    public int getRealCurrentSize() {
-        return realCurrentSize;
-    }
+	/**
+	 * Счетчик элементов
+	 */
+	private int size = 0;
 
-    public DynamicLinkedList() {
-       this.objects = new Object[2][4];      // лучше конечно делать 100, но для тестов сделаем пока так
-   }
+	/**
+	 * Добавление Item в хвост списка.
+	 *
+	 * @param item -- item to add
+	 */
+	public void add(T item) {
+		Node<T> node = new Node<>(item);
+		if (this.head == null) {
+			this.head = node;
+		} else {
+			this.connect(this.tail, node);
+		}
+		this.tail = node;
+		this.size++;
+	}
 
-   public synchronized void add(T value) {              // по аналогии можно создать уменьшение размера "листа".
-       if (this.index >= objects.length - 1) {
-           this.sizeIncrease();
-           //System.out.println("Size increase work");
-       }
-       int lastEmtyCell = emptyCells.getIndex();
-       if (lastEmtyCell == 0) {     // добавляем сверху, только если у нас нет пустых ячеек.
-           this.objects[this.index][0] = value;
-           this.objects[this.index][1] = itrEndSellIndx;
-           this.objects[this.index][2] = this.index;
-           this.objects[this.index][3] = -1;
-           // нужно обратиться к предыдущей строке и записать туда индекс этой ячейки
-           if (this.itrEndSellIndx != -1) {
-               this.objects[this.itrEndSellIndx][3] = this.index;
-           }
-           if (itrStartCellInd == -1) {
-               itrStartCellInd = this.index;
-           }
-           this.itrEndSellIndx = this.index;
-           this.index++;
-       } else {                                // в этом случае заполням удаленные
-           this.objects[lastEmtyCell][0] = value;
-           this.objects[lastEmtyCell][1] = itrEndSellIndx;
-           if (this.itrEndSellIndx != -1) {
-               this.objects[this.itrEndSellIndx][3] = lastEmtyCell;
-           }
-           this.itrEndSellIndx = lastEmtyCell;
-           // и удаляем этот индекс из списка пустых ячеек:
-           emptyCells.delete(emptyCells.getIndex());
-           //this.index++;  Индекс в данном случае НЕ увеличиваем !!!
-       }
+	/**
+	 * Найти item по данному индексу
+	 *
+	 * @param index -- index of the item
+	 * @return an item at the given index
+	 */
+	public T get(int index) {
+		Node<T> node = this.getNode(index);
+		if (node == null) {
+			throw new IndexOutOfBoundsException(Integer.toString(index));
+		}
+		return node.item;
+	}
 
-       this.modCount++;
-       this.realCurrentSize++;
-   }
+	/**
+	 * Удалить Node по данному index.
+	 *
+	 * @param index -- where to remove element
+	 */
+	public void remove(int index) {
+		Node<T> node = this.getNode(index);
+		if (node == null) {
+			throw new IndexOutOfBoundsException(Integer.toString(index));
+		}
+		Node<T> previous = node.getPrevious();
+		Node<T> next = node.getNext();
+		if (node == this.head) {
+			this.connect(null, next);
+			this.head = next;
+		}
+		if (node == this.tail) {
+			this.connect(previous, null);
+			this.tail = previous;
+		}
+		this.connect(previous, next);
+		this.size--;
+	}
 
-   public synchronized void add(T value, int imaginaryPosition) {  // теперь новую ячейку вставляем Якобы "между"
-       if (objects.length - 1 <= this.index) {
-           this.sizeIncrease();
-       }
-       int lastEmtyCell = emptyCells.getIndex();
+	/**
+	 * Соеденить два nodes между собой. Null-safe.
+	 *
+	 * @param first  -- previous node of the second
+	 * @param second -- next node of the first
+	 */
+	private void connect(Node<T> first, Node<T> second) {
+		if (first != null) {
+			first.setNext(second);
+		}
+		if (second != null) {
+			second.setPrevious(first);
+		}
+	}
 
-       int stepsCount = 0;
-       ArrayIterator it = new ArrayIterator();
-       while (it.hasNext()) {
-           stepsCount++;
-           it.next();
-           if (stepsCount == imaginaryPosition) {
+	/**
+	 * Найти Node c данным index.
+	 *
+	 * @param index -- node's index
+	 * @return node at the given index
+	 */
+	private Node<T> getNode(int index) {
+		if (index < 0) {
+			return null;
+		}
+		Node<T> result;
+		if (index < this.size / 2) {
+			result = this.moveForward(this.head, index);
+		} else {
+			result = this.moveBackward(this.tail, this.size - index - 1);
+		}
+		return result;
+	}
 
+	/**
+	 * Найти Node по счету nodesCount с первого Node
+	 *
+	 * @param start      -- where to start
+	 * @param nodesCount -- nodes count to move
+	 * @return reached node
+	 */
+	private Node<T> moveForward(Node<T> start, int nodesCount) {
+		Node<T> current = start;
+		for (int i = 0; i < nodesCount; i++) {
+			if (current == null) {
+				break;
+			}
+			current = current.getNext();
+		}
+		return current;
+	}
 
-               if (lastEmtyCell == 0) {     // добавляем сверху, только если у нас нет пустых ячеек.
-                   this.objects[this.index][0] = value;
-                   this.objects[this.index][1] = it.currCellPrevValue;
-                   this.objects[this.index][2] = this.index;
-                   this.objects[this.index][3] = it.currCellNextValue;
-                   // нужно обратиться к предыдущей строке и записать туда индекс этой ячейки
-                   if (it.currCellPrevValue != -1) {
-                       this.objects[it.currCellPrevValue][3] = this.index;
-                   }
-                   if (it.currCellNextValue != -1) {
-                       this.objects[it.currCellNextValue][1] = this.index;
-                   }
-                   this.itrEndSellIndx = this.index;
-                   this.index++;
-               } else {                                // в этом случае заполням удаленные
-                   this.objects[lastEmtyCell][0] = value;
-                   this.objects[lastEmtyCell][1] = it.currCellPrevValue;
-                   //this.objects[this.index][2] = this.index;  эта строчка приведет к ошибке
-                   this.objects[this.index][3] = it.currCellNextValue;
+	/**
+	 * Найти Node, по счету nodesCount, считая "назад", начиная с данного node (start - Node)
+	 * Moves backward by given nodes count starting from start node.
+	 *
+	 * @param start      -- where to start
+	 * @param nodesCount -- nodes count to move
+	 * @return reached node
+	 */
+	private Node<T> moveBackward(Node<T> start, int nodesCount) {
+		Node<T> current = start;
+		for (int i = 0; i < nodesCount; i++) {
+			if (current == null) {
+				break;
+			}
+			current = current.getPrevious();
+		}
+		return current;
+	}
 
-                   if (it.currCellPrevValue != -1) {
-                       this.objects[it.currCellPrevValue][3] = lastEmtyCell;
-                   }
-                   if (it.currCellNextValue != -1) {
-                       this.objects[it.currCellNextValue][1] = lastEmtyCell;
-                   }
+	/**
+	 * текущий размер "листа" = count	 *
+	 * @return current elements count
+	 */
+	public int size() {
+		return this.size;
+	}
 
-                   //this.itrEndSellIndx = lastEmtyCell;  Приведь к ошибке
-                   // и удаляем этот индекс из списка пустых ячеек:
-                   emptyCells.delete(emptyCells.getIndex());
-                   //this.index++;  Индекс в данном случае НЕ увеличиваем !!!
-               }
+	@Override
+	public Iterator<T> iterator() {
+		return new Iterator<T>() {
+			/**
+			 * Points to the current node of the list.
+			 */
+			private Node<T> current = DynamicLinkedList.this.head;
 
-               this.modCount++;
-               this.realCurrentSize++;
-               break;
-           }
-       }
-   }
+			@Override
+			public boolean hasNext() {
+				return !(this.current == null);
+			}
 
-   public synchronized void update(T value, int realIndex) {
-       if (realIndex >= 0) {
-           // пользуемся методом next до получения ячейки с этим номером по счету
-           this.objects[realIndex][0] = value;  /** imaginaryPosition - конечно же пока НЕ ПРАВИЛЬНО */
-           this.modCount++;
-       }
-   }
+			@Override
+			public T next() {
+				T result = this.current.item;
+				this.current = this.current.getNext();
+				return result;
+			}
+		};
+	}
 
-   public int getForwardRealIndex(int position) { // Backward: считаем с хвоста, 0: реальный index, forward: считаем с головы
-        int realIndx = -1;
-        if (position <= this.realCurrentSize && position >= 0) {
-            // здесь нужно пользоваться методом next до получения ячейки с этим номером по счету
-            int stepsCount = 0;
-            ArrayIterator it = new ArrayIterator();
-            while (it.hasNext()) {
-                stepsCount++;
-                it.next();
-                if (stepsCount == position) {      // Ждем пока imaginaryPosition совпадет с кол-вом циклов
-                    // Нашли нужную ячейку. Теперь нужно получить ее index.
-                    realIndx = it.getCurrCellIndexValue();
-                    break;
-                }
-            }
-        }
-        return realIndx;
-    }
+	/**
+	 * Checks whether this list contains given item.
+	 *
+	 * @param item -- item to search
+	 * @return true if item was found, false otherwise
+	 */
+	public boolean contains(T item) {
+		boolean result = false;
+		for (T current : this) {
+			if (current.equals(item)) {
+				result = true;
+				break;
+			}
+		}
+		return result;
+	}
 
-   public int getBackwardRealIndex(int indexOrPosition) { // Backward: считаем с хвоста, 0: реальный index, forward: считаем с головы
-       int realIndx = -1;
-       if (indexOrPosition <= this.realCurrentSize && indexOrPosition >= 0) {
-           // Ищем с хвоста
-           int stepsCount = 0;
-           ArrayIterator it = new ArrayIterator();
-           while (it.hasNextBack()) {
-               stepsCount++;
-               it.nextBack();
-               if (stepsCount == indexOrPosition) {      // Ждем пока imaginaryPosition совпадет с кол-вом циклов
-                   // Нашли нужную ячейку. Теперь нужно получить ее index.
-                   realIndx = it.getCurrCellIndexValue();
-                   break;
-               }
-           }
-       }
-       return realIndx;
-   }
+	/**
+	 * Represents list's node.
+	 *
+	 * @param <T> -- type of item
+	 */
+	private static class Node<T> {
+		/**
+		 * Stored item.
+		 */
+		public final T item;
+		/**
+		 * Previous node.
+		 */
+		private Node<T> previous;
+		/**
+		 * Next node.
+		 */
+		private Node<T> next;
 
-   public synchronized void delete(int realIndex) {
-       if (realIndex != -1) {
-           this.objects[realIndex][0] = null;  /** Интересно - можно ли так писать? */
-           int curCellPrevValue = (int) this.objects[realIndex][1];
-           int curCellNextValue = (int) this.objects[realIndex][3];
-           // добавим удаленную ячейку в список_свободных_ячеек:
-           emptyCells.add(realIndex);
+		/**
+		 * Constructs a node holding given item.
+		 *
+		 * @param item -- item to hold
+		 */
+		Node(T item) {
+			this.item = item;
+		}
 
-           // изменим значения в яейках ДО
-           if (curCellPrevValue != -1) {
-               this.objects[curCellPrevValue][3] = curCellNextValue;
-           } else {
-               if (curCellNextValue != -1) {
-                   this.objects[curCellNextValue][1] = -1;
-                   this.itrStartCellInd = curCellNextValue;
-               } else {
-                   this.itrStartCellInd = -1;
-               }
-           }
-           // изменим значения в яейках ПОСЛЕ
-           if (curCellNextValue != -1) {
-               this.objects[curCellNextValue][1] = curCellPrevValue;
-           } else {
-               if (curCellPrevValue != -1) {
-                   this.objects[curCellPrevValue][3] = -1;
-                   this.itrEndSellIndx = curCellPrevValue;
-               } else {
-                   this.itrEndSellIndx = -1;
-               }
-           }
-           this.modCount++;
-           this.realCurrentSize--;
-       }
-   }
+		public Node<T> getPrevious() {
+			return this.previous;
+		}
 
-   public T get(int realIndex) {
-       // здесь нужно пользоваться методом next до получения ячейки с этим номером по счету
-       return (T) this.objects[realIndex][0];
-   }
+		public void setPrevious(Node<T> node) {
+			this.previous = node;
+		}
 
-   private void sizeIncrease() {
-       Object[][] tempObject = new Object[objects.length * 2][4];
-       for (int indx = 0; indx <= this.index; indx++) {
-           tempObject[indx][0] = objects[indx][0];
-           tempObject[indx][1] = objects[indx][1];
-           tempObject[indx][2] = objects[indx][2];
-           tempObject[indx][3] = objects[indx][3];
-       }
-       objects = tempObject;
-   }
+		public Node<T> getNext() {
+			return this.next;
+		}
 
-    public void setNextValueForNodeTestOnly(int realIndex, int value) {
-        this.objects[realIndex][3] = value;
-    }
-
-    public boolean nodeForward() {        // проверяем на цикличность. С таким же успехом можно сделать проверку на обратную цикличность.
-        int stepsCount = 0;
-        int nextCell = (int) this.objects[this.itrStartCellInd][3];
-        boolean result = false;
-
-        while (nextCell != -1) {
-            stepsCount++;
-            nextCell = (int) this.objects[nextCell][3];
-            if (stepsCount > this.realCurrentSize) {
-                result = true;
-                break;
-            }
-        }
-        return result;
-    }
-
-   @Override
-   public Iterator<T> iterator() {
-       return new ArrayIterator();
-   }
-
-   public class ArrayIterator implements Iterator<T> {
-       Object result = new Object();
-       int current = 0;  // the current element we are looking at
-       int currentBack = DynamicLinkedList.this.realCurrentSize;
-       int expectedModCount = DynamicLinkedList.this.modCount;
-       int currCellPrevValue = DynamicLinkedList.this.itrEndSellIndx;
-       int currCellIndexValue = -1;
-       int currCellNextValue = DynamicLinkedList.this.itrStartCellInd;
-
-       public int getCurrCellIndexValue() {
-           return currCellIndexValue;
-       }
-
-       // return whether or not there are more elements in the array that
-       // have not been iterated over.
-       @Override
-       public boolean hasNext() {
-           boolean result = false;
-           if (this.current < DynamicLinkedList.this.realCurrentSize) {
-               result = true;
-           }
-           return result;
-       }
-       public boolean hasNextBack() {
-           boolean result = false;
-           if (this.currentBack >= 0) {
-              result = true;
-           }
-           return result;
-       }
-
-       // return the next element of the iteration and move the current
-       // index to the element after that.
-       @Override
-       public T next() {
-           if (!hasNext()) {
-               throw new NoSuchElementException();
-           }
-           if (this.expectedModCount != DynamicLinkedList.this.modCount) {
-               throw new ConcurrentModificationException();
-           }
-           result = (T) DynamicLinkedList.this.objects[this.currCellNextValue][0];
-           currCellPrevValue = (int) DynamicLinkedList.this.objects[this.currCellNextValue][1];
-           currCellIndexValue = (int) DynamicLinkedList.this.objects[this.currCellNextValue][2];
-           currCellNextValue = (int) DynamicLinkedList.this.objects[this.currCellNextValue][3];
-           this.current++;
-           return (T) result;
-       }
-       public T nextBack() {
-           if (!hasNextBack()) {
-               throw new NoSuchElementException();
-           }
-           if (this.expectedModCount != DynamicLinkedList.this.modCount) {
-               throw new ConcurrentModificationException();
-           }
-           result = (T) DynamicLinkedList.this.objects[this.currCellPrevValue][0];
-           currCellIndexValue = (int) DynamicLinkedList.this.objects[this.currCellPrevValue][2];
-           currCellNextValue = (int) DynamicLinkedList.this.objects[this.currCellPrevValue][3];
-           currCellPrevValue = (int) DynamicLinkedList.this.objects[this.currCellPrevValue][1];
-           this.currentBack--;
-           return (T) result;
-       }
-   }
+		public void setNext(Node<T> node) {
+			this.next = node;
+		}
+	}
 }
