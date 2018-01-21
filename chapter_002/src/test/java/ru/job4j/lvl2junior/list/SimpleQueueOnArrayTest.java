@@ -1,15 +1,15 @@
 package ru.job4j.lvl2junior.list;
 
 import org.junit.Test;
-import ru.job4j.junior001.list.SimpleQueue;
+import ru.job4j.junior001.list.SimpleQueueOnArray;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-public class SimpleQueueTest {
+public class SimpleQueueOnArrayTest {
    @Test
    public void add() throws Exception {
-      SimpleQueue<String> sq = new SimpleQueue<String>();
+      SimpleQueueOnArray<String> sq = new SimpleQueueOnArray<String>();
       sq.add("A1");
       sq.add("B2");
       sq.add("C3");
@@ -20,7 +20,7 @@ public class SimpleQueueTest {
 
    @Test
    public void poll() throws Exception {
-      SimpleQueue<String> sq = new SimpleQueue<String>();
+      SimpleQueueOnArray<String> sq = new SimpleQueueOnArray<String>();
       sq.add("A1");
       sq.add("B2");
       sq.add("C3");

@@ -9,7 +9,7 @@ package ru.job4j.junior001.list;
  */
 
 public class SimpleStack<T> {
-    DynamicLinkedList<T> stack = new DynamicLinkedList<T>();
+    DynamicLinkedListOnArray<T> stack = new DynamicLinkedListOnArray<T>();
 
     public void add(T value) {
         stack.add(value);

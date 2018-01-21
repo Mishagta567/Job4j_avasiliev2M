@@ -14,7 +14,7 @@ import java.util.Iterator;
 
 public class DynamicLinkedLSet<T> implements Iterable<T> {
 
-    DynamicLinkedList<T> lnkSet = new DynamicLinkedList<>();
+    DynamicLinkedListOnArray<T> lnkSet = new DynamicLinkedListOnArray<>();
 
     public boolean alreadyExist(T value) {
         boolean result = false;

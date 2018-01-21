@@ -8,8 +8,8 @@ package ru.job4j.junior001.list;
  * @version  1.0.0
  */
 
-public class SimpleQueue<T> {
-    DynamicLinkedList<T> queue = new DynamicLinkedList<T>();
+public class SimpleQueueOnArray<T> {
+    DynamicLinkedListOnArray<T> queue = new DynamicLinkedListOnArray<T>();
 
     public void add(T value) {
         queue.add(value);

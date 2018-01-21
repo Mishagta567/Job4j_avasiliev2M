@@ -1,7 +1,7 @@
 package ru.job4j.lvl2junior.list;
 
 import org.junit.Test;
-import ru.job4j.junior001.list.DynamicLinkedList;
+import ru.job4j.junior001.list.DynamicLinkedListOnArray;
 
 import java.util.Iterator;
 
@@ -11,14 +11,14 @@ import static org.hamcrest.Matchers.is;
 public class DynamicLinkedListTest {
    @Test
    public void add() throws Exception {
-      DynamicLinkedList<String> dll = new DynamicLinkedList<String>();
+      DynamicLinkedListOnArray<String> dll = new DynamicLinkedListOnArray<String>();
       dll.add("A1");
       assertThat(dll.get(dll.getForwardRealIndex(1)), is("A1"));
    }
 
    @Test
    public void addValueInTheMidleOfChain() throws Exception {
-      DynamicLinkedList<String> dll = new DynamicLinkedList<String>();
+      DynamicLinkedListOnArray<String> dll = new DynamicLinkedListOnArray<String>();
       dll.add("A1");
       dll.add("B2");
       dll.add("C3");
@@ -29,7 +29,7 @@ public class DynamicLinkedListTest {
 
    @Test
    public void update() throws Exception {
-      DynamicLinkedList<String> dll = new DynamicLinkedList<String>();
+      DynamicLinkedListOnArray<String> dll = new DynamicLinkedListOnArray<String>();
       dll.add("A1");
       dll.add("B2");
       dll.update("D2", dll.getForwardRealIndex(2));
@@ -38,7 +38,7 @@ public class DynamicLinkedListTest {
 
    @Test
    public void delete() throws Exception {
-      DynamicLinkedList<String> dll = new DynamicLinkedList<String>();
+      DynamicLinkedListOnArray<String> dll = new DynamicLinkedListOnArray<String>();
       dll.add("A1");
       dll.add("B2");
       dll.add("C3");
@@ -48,14 +48,14 @@ public class DynamicLinkedListTest {
 
    @Test
    public void get() throws Exception {
-      DynamicLinkedList<String> dll = new DynamicLinkedList<String>();
+      DynamicLinkedListOnArray<String> dll = new DynamicLinkedListOnArray<String>();
       dll.add("A1");
       assertThat(dll.get(dll.getForwardRealIndex(1)), is("A1"));
    }
 
    @Test
    public void iterator() throws Exception {
-      DynamicLinkedList<String> dll = new DynamicLinkedList<String>();
+      DynamicLinkedListOnArray<String> dll = new DynamicLinkedListOnArray<String>();
       dll.add("A1");  //  1   X1
       dll.add("B2");  //  2
       dll.add("C3");  //  3   X2
@@ -77,7 +77,7 @@ public class DynamicLinkedListTest {
 
    @Test
    public void nodeTest() throws Exception {
-      DynamicLinkedList<String> nd = new DynamicLinkedList<String>();
+      DynamicLinkedListOnArray<String> nd = new DynamicLinkedListOnArray<String>();
       nd.add("A1");  //  1   X1
       nd.add("B2");  //  2
       nd.add("C3");  //  3   X2
