@@ -85,6 +85,10 @@ public class TreeNode<E extends Comparable<E>> implements SimpleTree<E> {
 		return result;
 	}
 
+		public boolean isBinary() {
+			return (this.checkLeaves() <= 2);
+		}
+
 
 	//@Override
 	public boolean add(Node<E> parent, Node<E> child) {
