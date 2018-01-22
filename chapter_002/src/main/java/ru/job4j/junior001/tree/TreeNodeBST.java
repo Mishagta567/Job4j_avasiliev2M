@@ -10,61 +10,70 @@ import java.util.*;
  * @version 10.01.2018
  * @since 0.1
  *
- *
- * С этой задачей вроде все понятно. Сделал эти два требуемых метода и все.
- *   с целью экономии времени тесты, get п все остальное не делаю.
- *   
  */
-public class TreeNodeBST<E extends Comparable<E>> {
-	TreeNode<E> treeNodeBST;
+public class TreeNodeBST<T extends Comparable<T>> implements Iterable<T> {
+	private final NodeBST root = new NodeBST(null);
 
-	public TreeNodeBST(E value) {
-		this.treeNodeBST = new TreeNode((E) value);
+	private final Comparator<T> nullSafeComparator = Comparator.nullsFirst(Comparator.naturalOrder());
+
+	public void add(T value) {
+		this.root.addChild(value);
 	}
 
-	public Node<E> getChild(Node<E> parent, E childValue) {
-		List<Node<E>> parentChilds = parent.leaves();
-		Node<E> tempNode = null;
-		if (parentChilds.size() > 0) {	// с parentChilds == null заведомо ничего возвращать
-			if (parent.compareTo(childValue) <= 0) {
-				for (Node<E> lvs : parentChilds) {
-					// нам нужно найти дочернее значение меньше
-					if (lvs.compareTo(parent.getValue()) >= 0) {
-						//
-						tempNode = lvs;
-						break;
-					}
+	private class NodeBST {
+		private final T value;
+		private NodeBST left;
+		private NodeBST right;
+
+		private NodeBST(T value) {
+			this.value = value;
+		}
+
+		private void addChild(T value) {
+			if (TreeNodeBST.this.nullSafeComparator.compare(value, this.value) <= 0) {
+				if (this.left == null) {
+					this.left = new NodeBST(value);
+				} else {
+					this.left.addChild(value);
 				}
-			} else if (parent.compareTo(childValue) > 0) {
-				for (Node<E> lvs : parentChilds) {
-					// нам нужно найти дочернее раврное
-					if (lvs.compareTo(parent.getValue()) < 0) {
-						//
-						tempNode = lvs;
-						break;
-					}
+			} else {
+				if (this.right == null) {
+					this.right = new NodeBST(value);
+				} else {
+					this.right.addChild(value);
 				}
 			}
 		}
-		return tempNode;
 	}
 
-	public boolean add(E newValue) {
-		boolean result = false;
-		Node<E> parentNode = (Node<E>) treeNodeBST.getRoot();
-		Node<E> childNode = new Node(newValue);
-		boolean foundOne = false;
-		if (getChild(parentNode, newValue) == null) {
-			parentNode.add(childNode);
-			result = true;
-		} else {
-			while (getChild(parentNode, newValue) != null) {
-				parentNode = getChild(parentNode, newValue);
+	@Override
+	public Iterator<T> iterator() {
+		return new Iterator<T>() {
+
+			private final Queue<NodeBST> nodeList;
+
+			{
+				this.nodeList = new LinkedList<>(Collections.singletonList(TreeNodeBST.this.root));
+				this.next();
 			}
-			parentNode.add(childNode);
-			result = true;
-		}
-		return result;
-	}
 
+			@Override
+			public boolean hasNext() {
+				return !this.nodeList.isEmpty();
+			}
+
+			@Override
+			public T next() {
+				NodeBST current = this.nodeList.poll();
+				T result = current.value;
+				if (current.left != null) {
+					this.nodeList.add(current.left);
+				}
+				if (current.right != null) {
+					this.nodeList.add(current.right);
+				}
+				return result;
+			}
+		};
+	}
 }
