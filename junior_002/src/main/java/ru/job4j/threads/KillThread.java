@@ -9,16 +9,16 @@ package ru.job4j.threads;
 
 
 public class KillThread {
-	private static String textString = "Cколько слов в данном предложении? Не успеешь сосчитать.";
-	private static long startTime;
-	private static long patience = 1000 * 5;
+	private String textString = "Cколько слов в данном предложении? Не успеешь сосчитать.";
+	private long startTime;
+	private long patience = 1000 * 5;
 
-	public static long getStartTime() {
-		return KillThread.startTime;
+	public long getStartTime() {
+		return this.startTime;
 	}
 
 	public long getPatience() {
-		return KillThread.patience;
+		return this.patience;
 	}
 
 	public String getTextString() {
@@ -29,16 +29,16 @@ public class KillThread {
 		startTime = System.currentTimeMillis();
 	}
 
-	static void threadMessage(String message) {
+	void threadMessage(String message) {
 		String threadName = Thread.currentThread().getName();
 		System.out.format("%s: %s%n",	threadName,	message);
 	}
 
-	static class timerThread implements Runnable {
+	class TimerThread implements Runnable {
 		private Thread threadToKill;
 		private long startTimeCopy;
 
-		public timerThread(Thread thrd) {
+		public TimerThread(Thread thrd) {
 			this.threadToKill = thrd;
 		}
 
@@ -47,7 +47,7 @@ public class KillThread {
 			System.out.println("Стартовал Thread таймер");
 			try {
 				for (int ind = 0; ind < 10; ind++) {
-					if (KillThread.startTime + KillThread.patience < System.currentTimeMillis()) {
+					if (startTime + patience < System.currentTimeMillis()) {
 						System.out.println("Основная нить должны скоро остановиться");
 						threadToKill.interrupt();
 						break;
@@ -62,19 +62,16 @@ public class KillThread {
 		}
 	}
 
-	static class LettersCount implements Runnable {
+	class LettersCount implements Runnable {
 
 		private int count = 1;
-
-
-
 		@Override
 		public void run() {
 			try {
-				for (int indx = 0; indx < KillThread.textString.length(); indx++) {
+				for (int indx = 0; indx < textString.length(); indx++) {
 					if (!Thread.interrupted()) {//isInterrupted проверять в любых ключевых точках,
 						// где можно обработать прерывание потока
-						if (KillThread.textString.charAt(indx) != ' ') {
+						if (textString.charAt(indx) != ' ') {
 							Thread.sleep(1000);
 							// Print a message
 							System.out.printf("Букв: %s%n", count++);
@@ -94,11 +91,13 @@ public class KillThread {
 	public static void main(String args[]) {
 		KillThread ct = new KillThread();
 
-		Thread tLetters = new Thread(new KillThread.LettersCount());
-		tLetters.start();
+		// убрал везде преобразователь static. Запустить Thread для теста теперь не получается.
 
-		Thread tSpace = new Thread(new timerThread(tLetters));
-		tSpace.start();
+		//Thread tLetters = new Thread(new KillThread.LettersCount());
+		//tLetters.start();
+		//
+		//Thread tSpace = new Thread(new timerThread(tLetters));
+		//tSpace.start();
 	}
 
 }
