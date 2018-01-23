@@ -36,17 +36,17 @@ class Node<K, V> {
 
 public class DynamicArrayHashMap<K, V> implements Iterator<V> {
     private Node[] objects;	// Object[] - object
-    private int tableSize = 4;	// конечно можно делать больше, но для теста этого вполне достаточно
+    //private int tableSize = 4;	// конечно можно делать больше, но для теста этого вполне достаточно
     private int modCount = 0;
     private int fillCellCount = 0;
 
 
 	public DynamicArrayHashMap() {
-		this.objects = new Node[tableSize];      // Для тестов изначально делаем небольшую таблицу
+		this.objects = new Node[4];      // Для тестов изначально делаем небольшую таблицу
 	}
 
 	public int getIndexFromHCode(K key) {
-		return key.hashCode() % tableSize;
+		return Math.abs(key.hashCode()) % this.objects.length;
 	}
 
 	public boolean insert(K key, V value) {
@@ -66,9 +66,8 @@ public class DynamicArrayHashMap<K, V> implements Iterator<V> {
 	}
 
 	private void sizeIncrease() {
-		this.tableSize = this.tableSize * 2;
 		// создаем временнй массив
-		Node[] tempObject = new Node[this.tableSize + 1];
+		Node[] tempObject = new Node[this.objects.length];
 		for (int indx = 0; indx < objects.length; indx++) {
 			if (objects[indx] != null) {
 				// перезаписываем во временный массив строки из существующего
@@ -112,7 +111,7 @@ public class DynamicArrayHashMap<K, V> implements Iterator<V> {
 	public V next() {
 		V result = null;
 
-		while (this.objects[itrIndex] == null && itrCount <= this.fillCellCount && itrIndex < this.tableSize) {
+		while (this.objects[itrIndex] == null && itrCount <= this.fillCellCount && itrIndex < this.objects.length) {
 			itrIndex++;
 		}
 		if (this.objects[itrIndex] != null) {
