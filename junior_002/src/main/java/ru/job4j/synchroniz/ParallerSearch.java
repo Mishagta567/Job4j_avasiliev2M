@@ -27,6 +27,7 @@ public class ParallerSearch {
 	private Queue<String> allFileNames = new LinkedList<String>();
 	private Queue<String> resultFileNames = new LinkedList<String>();
 
+
 	public String getFileName() {
 		String result = null;
 		if (!this.allFileNames.isEmpty()) {
@@ -35,9 +36,9 @@ public class ParallerSearch {
 		return result;
 	}
 
-	public ParallerSearch(String root, String text, List<String> exts) {
+
+	public ParallerSearch(String root, List<String> exts) {
 		this.list = new File(root).list();
-		this.searchWord = text;
 		int temp;	// для простоты дебага и проверок.
 
 		for (int indx = 0; indx < this.list.length; indx++) {
@@ -132,9 +133,13 @@ public class ParallerSearch {
 		List<String> ext = new ArrayList<String>();
 		ext.add("txx");
 		ext.add("bat");
-		final ParallerSearch ps = new ParallerSearch("C:\\projects\\tempFiles", "qwerty", ext);
+		final ParallerSearch ps = new ParallerSearch("C:\\projects\\tempFiles", ext);
 
-		// я бы запускал несколько одинаковых потоков. Пусть проверяют тест.
+		while (!ps.allFileNames.isEmpty()) {
+			System.out.println(ps.allFileNames.poll());
+		}
+
+		/** / я бы запускал несколько одинаковых потоков. Пусть проверяют тест.
 		new Thread() {
 			@Override
 			public void run() {
@@ -147,7 +152,7 @@ public class ParallerSearch {
 				}
 				System.out.println("ThreadOne: " + ps.resultFileNames.size());
 			}
-		}.start(); //  */
+		}.start(); //
 
 
 		// Второй:
@@ -166,8 +171,6 @@ public class ParallerSearch {
 		}.start(); //  */
 
 		//ps.searchThrOne();
-		System.out.println("Main: " + ps.resultFileNames.size());
-
 	}
 
 }
