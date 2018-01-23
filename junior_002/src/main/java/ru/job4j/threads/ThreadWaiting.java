@@ -8,9 +8,11 @@ package ru.job4j.threads;
  */
 
 
-public class ThreadWaiting implements  Runnable{
+public class ThreadWaiting { //} implements  Runnable{
 	private String textString = "Cко ль ко про бе лов ? ";
 
+	/**
+	// этот метод уже не используется.
 	public String getTextString() {
 		return this.textString;
 	}
@@ -25,25 +27,27 @@ public class ThreadWaiting implements  Runnable{
 		// Ждем пока mainThread закончит свою работу. Потом выводим очередное сообщение
 		while (mainThread.isAlive()) {
 			try {
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
+				// можно так:
+				mainThread.join();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 		System.out.println("Пока");
 
-	}
+	} // */
 
-	static class MainThread implements Runnable {
-		private String text;
-		private int count = 1;
+	private static class MainThread implements Runnable {
+		//private String text;
+		//private int count = 1;
 
 		@Override
 		public void run() {
 			try {
 				for (int ind = 0; ind < 5; ind++) {
-					System.out.println("Выполняется MainThread");
-					Thread.sleep(1000);
+					System.out.printf("Выполняется MainThread- %s %n", ind);
+					Thread.sleep(500);
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -51,11 +55,21 @@ public class ThreadWaiting implements  Runnable{
 		}
 	}
 
-	public static void main(String args[]) {
-		ThreadWaiting ct = new ThreadWaiting();
+	public static void main(String args[]) throws InterruptedException {
+		//ThreadWaiting ct = new ThreadWaiting();
 
-		Thread tStart = new Thread(ct);
-		tStart.start();
+		//Thread tStart = new Thread(ct);
+		//tStart.start();
+
+		Thread main = new Thread(new MainThread());
+		main.start();
+		int count = 1;
+
+		while (main.isAlive()) {
+			System.out.printf("Жду пока main закончит %s раз %n", count++);
+			main.join(1200);
+		}
+		System.out.printf("Ну наконец-то то дождался. Выход.");
 
 	}
 
