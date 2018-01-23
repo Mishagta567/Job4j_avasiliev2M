@@ -54,7 +54,7 @@ public class NonBlockingCash {
 			//// В процессе тестов я вычислил что метод откуда-то берет СТАРОЕ значение модели.   Вопрос: ОТКУДА?
 			public Model apply(Integer id, Model oldModel) {
 				// Мы достаем из карты старое значение Model и убеждаемся что version совпадает с текующей. Могли обновить
-				if (map.containsKey(mapKey)) {
+				//if (map.containsKey(mapKey)) {
 					//oldModel = map.get(mapKey);
 					if (oldModel.getVersion() != newModel.getVersion()) {
 						throw new OplimisticException(String.format("Весрии в карте и новые - отличны: %s и %s.", oldModel, newModel));
@@ -64,14 +64,14 @@ public class NonBlockingCash {
 						newModel.updateVersion();
 						//map.remove(mapKey);
 						//map.put(mapKey, newModel);
-						map.replace(mapKey, oldModel, newModel);
+						//map.replace(mapKey, oldModel, newModel);
 						////   ПО НЕПОНЯТНОЙ ПРИЧИНЕ вместо newModel пишется старая model. Не пойму почему.
 
 					}
-				} else {
-					// если у нас нет объекта с этим key - выкидываем ошибку.
-					throw new OplimisticException(String.format("Нет у нас модели с ключем %s.", mapKey));
-				}  //  */
+				//} else {
+				//	// если у нас нет объекта с этим key - выкидываем ошибку.
+				//	throw new OplimisticException(String.format("Нет у нас модели с ключем %s.", mapKey));
+				//}  //  */
 				return newModel;
 			}
 		});
