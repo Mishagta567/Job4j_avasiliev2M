@@ -10,16 +10,16 @@ package ru.job4j.junior001.list;
 
 public class DynamicArrayHashSet {
     private Object[] objects;	// Object[] - object
-    private int tableSize = 4;	// конечно можно делать больше, но для теста этого вполне достаточно
+    //private int tableSize = 4;	// конечно можно делать больше, но для теста этого вполне достаточно
     private int modCount = 0;
     private int fillCellCount = 0;
 
 	public DynamicArrayHashSet() {
-		this.objects = new Object[tableSize];      // Для тестов изначально делаем небольшую таблицу
+		this.objects = new Object[4];      // Для тестов изначально делаем небольшую таблицу
 	}
 
 	public int getIndexFromHCode(Object value) {
-		return value.hashCode() % tableSize;
+		return Math.abs(value.hashCode()) % objects.length;
 	}
 
 	public boolean add(String value) {
@@ -39,9 +39,8 @@ public class DynamicArrayHashSet {
 	}
 
 	private void sizeIncrease() {
-		this.tableSize = this.tableSize * 2;
 		// создаем временнй массив
-		Object[] tempObject = new Object[this.tableSize + 1];
+		Object[] tempObject = new Object[this.objects.length];
 		for (int indx = 0; indx < objects.length; indx++) {
 			if (objects[indx] != null) {
 				// перезаписываем во временный массив строки из существующего
@@ -68,14 +67,6 @@ public class DynamicArrayHashSet {
 		Object result;
 		result =  this.objects[realIndex];
 		return result;
-	}
-
-	public static void main() {
-		DynamicArrayHashSet da = new DynamicArrayHashSet();
-		da.add("A");
-		da.add("B");
-		da.add("C");
-		da.add("D");
 	}
 
 }
