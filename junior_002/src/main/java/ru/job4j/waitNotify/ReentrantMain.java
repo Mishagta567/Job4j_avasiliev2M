@@ -215,20 +215,20 @@ public final class ReentrantMain {
 			}
 		}.start();  // */
 
-		int finalInd;
+
 		// Запускаем монстров а колличестве monstersCount
-		for (int ind = 1; ind <= ReentrantMain.monstersCount; ind++) {
-			finalInd = ind;
+		//for (int ind = 1; ind <= ReentrantMain.monstersCount; ind++) {
+		//	int finalInd1 = ind;
 			new Thread() {
 				@Override
 				public void run() {
 					try {
-						rnt.MonsterMove(finalInd);
+						rnt.MonsterMove(1);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
 			}.start();  // */
-		}
+		//}
 	}
 }
