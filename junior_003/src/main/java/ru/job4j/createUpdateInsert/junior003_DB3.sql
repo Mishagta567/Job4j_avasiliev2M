@@ -22,6 +22,13 @@ INSERT INTO state(name, descr) VALUES ('Выполнена', 'Кто-то там
 
 INSERT INTO item (users_id, category_id,  name, descr, inserted_date)  VALUES ((SELECT id FROM users WHERE login = 'alex'),
                     1, 'Посчитать овец', 'Пересчетать всех овец в стаде', CURRENT_TIMESTAMP(0));
+INSERT INTO item (users_id, category_id,  name, descr, inserted_date)  VALUES ((SELECT id FROM users WHERE login = 'alex'),
+                    2, 'Постричь овец', 'Пострич всех овец в стаде', CURRENT_TIMESTAMP(0));
+INSERT INTO item (users_id, category_id,  name, descr, inserted_date)  VALUES ((SELECT id FROM users WHERE login = 'alex'),
+                    3, 'Мыть овец', 'Помыть всех овец в стаде', CURRENT_TIMESTAMP(0));
+INSERT INTO item (users_id, category_id,  name, descr, inserted_date)  VALUES ((SELECT id FROM users WHERE login = 'alex'),
+                    3, 'Мыть овец ТЩАТЕЛЬНО', 'Помыть всех овец в стаде ОЧЕНЬ ТЩАТЕЛЬНО', CURRENT_TIMESTAMP(0));
+
 
 
 INSERT INTO comments (item_id, comments, inserted_date) VALUES ((SELECT MIN(id) FROM item), 'считал Вася', CURRENT_TIMESTAMP(0));
