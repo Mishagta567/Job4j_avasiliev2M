@@ -2,6 +2,7 @@ package ru.job4j.junior001.map;
 
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Массив HashMap
@@ -110,7 +111,7 @@ public class DynamicArrayHashMap<K, V> implements Iterator<V> {
 	}
 
 	@Override
-	public V next() {
+	public V next() throws NoSuchElementException {
 		V result = null;
 
 		while (this.objects[itrIndex] == null && itrCount <= this.fillCellCount && itrIndex < this.objects.length) {
@@ -122,10 +123,6 @@ public class DynamicArrayHashMap<K, V> implements Iterator<V> {
 			itrIndex++;
 		}
 		return result;
-	}
-
-	public static void main(String[] args) {
-		System.out.println("YO");
 	}
 
 }
