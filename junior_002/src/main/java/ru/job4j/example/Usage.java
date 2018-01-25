@@ -70,6 +70,7 @@ public class Usage {
 		threadA.join();
 		threadB.join();
 		System.out.println(counter.count);
+		System.out.println(Math.abs(Integer.MIN_VALUE));
 
 	}
 

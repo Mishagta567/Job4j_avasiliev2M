@@ -19,7 +19,7 @@ public class DynamicArrayHashSet {
 	}
 
 	public int getIndexFromHCode(Object value) {
-		return Math.abs(value.hashCode()) % objects.length;
+		return Math.abs((value.hashCode()) % objects.length);
 	}
 
 	public boolean add(String value) {
@@ -40,10 +40,11 @@ public class DynamicArrayHashSet {
 
 	private void sizeIncrease() {
 		// создаем временнй массив
-		Object[] tempObject = new Object[this.objects.length];
+		Object[] tempObject = new Object[this.objects.length * 2];
 		for (int indx = 0; indx < objects.length; indx++) {
 			if (objects[indx] != null) {
 				// перезаписываем во временный массив строки из существующего
+				// тут могут быть сложности c индексами....
 				int expextIndex = this.getIndexFromHCode(objects[indx]);
 				if (tempObject[expextIndex] == null) {
 					tempObject[expextIndex] = objects[indx];

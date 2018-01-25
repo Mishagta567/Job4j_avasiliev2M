@@ -46,7 +46,7 @@ public class DynamicArrayHashMap<K, V> implements Iterator<V> {
 	}
 
 	public int getIndexFromHCode(K key) {
-		return Math.abs(key.hashCode()) % this.objects.length;
+		return Math.abs((key.hashCode()) % this.objects.length);
 	}
 
 	public boolean insert(K key, V value) {
@@ -67,10 +67,12 @@ public class DynamicArrayHashMap<K, V> implements Iterator<V> {
 
 	private void sizeIncrease() {
 		// создаем временнй массив
-		Node[] tempObject = new Node[this.objects.length];
+		Node[] tempObject = new Node[this.objects.length * 2];
 		for (int indx = 0; indx < objects.length; indx++) {
 			if (objects[indx] != null) {
 				// перезаписываем во временный массив строки из существующего
+				// тут могут быть сложности c индексами....
+				//
 				int expextedIndex = this.getIndexFromHCode((K) objects[indx].getKey());
 				if (tempObject[expextedIndex] == null) {
 					 tempObject[expextedIndex] = objects[indx];
