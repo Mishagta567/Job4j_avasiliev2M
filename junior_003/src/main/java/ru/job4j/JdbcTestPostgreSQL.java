@@ -41,6 +41,7 @@ public class JdbcTestPostgreSQL {
 				// display table name
 				System.out.println ("PostgreSQL Query result: " + rs.getString ("datname"));
 			connection.close ();
+			rs.close();
 		}
 		catch (java.sql.SQLException e) {
 			System.err.println (e);
