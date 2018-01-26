@@ -1,4 +1,4 @@
-package ru.job4j.waitNotify;
+package ru.job4j.wait;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -13,17 +13,17 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public final class ReentrantMain {
-	static final private int boardSize = 10;
+	static final private int BORDSSIZE = 10;
 	static private long startTime = System.currentTimeMillis();
 	static private boolean stopPlay = false;			// По идее изменив на true - выходим из вечного игры.
 	static boolean playerStillAlive = true;  // В каком случае проигрывает не определено. Значит не реализовал. Значит пока бегают бесконечно
 	static int monstersCount = 4;  // кол-во монстров.
-	ReentrantCell[][] board = new ReentrantCell[boardSize][boardSize];
+	ReentrantCell[][] board = new ReentrantCell[BORDSSIZE][BORDSSIZE];
 
 	// Направление движения игрока - для того что бы в будущем пользователь мог управлять.
 	private int playerDirection = 0;  // 0-3: 0-север=вверх, 1-восток=вправо, 2-юг=вниз, 3-запад=влево
 
-	public void setPlayerDirection (int playerDirection) {
+	public void setPlayerDirection(int playerDirection) {
 		this.playerDirection = playerDirection;
 	}
 
@@ -31,8 +31,8 @@ public final class ReentrantMain {
 		this.startTime = System.currentTimeMillis();
 		this.stopPlay = false;
 		// проинициалзируем наш двухмерный массив
-		for (int indxHorizon = 0; indxHorizon < boardSize; indxHorizon++) {
-			for (int indxVertical = 0; indxVertical < boardSize; indxVertical++) {
+		for (int indxHorizon = 0; indxHorizon < BORDSSIZE; indxHorizon++) {
+			for (int indxVertical = 0; indxVertical < BORDSSIZE; indxVertical++) {
 				board[indxHorizon][indxVertical] = new ReentrantCell();
 			}
 		}
@@ -44,7 +44,7 @@ public final class ReentrantMain {
 
 	}
 
-	public void PlayerMove() throws InterruptedException {
+	public void playerMove() throws InterruptedException {
 		synchronized (this.board) {
 			int horizontPos = 3;  // На данном этапе можно начинать из центра
 			int verticalPos = 3;
@@ -75,8 +75,8 @@ public final class ReentrantMain {
 						horizontNextPos = horizontPos + 1;
 						verticalNextPos = verticalPos + 1;
 					}
-					if (verticalNextPos >= 0 && verticalNextPos < ReentrantMain.boardSize
-							&& horizontNextPos >= 0 && horizontNextPos < ReentrantMain.boardSize) {
+					if (verticalNextPos >= 0 && verticalNextPos < ReentrantMain.BORDSSIZE
+							&& horizontNextPos >= 0 && horizontNextPos < ReentrantMain.BORDSSIZE) {
 						// только внутр данного if можно проверять матрицу на занятость, иначе можем получить ошибочное обращение
 						if (board[horizontNextPos][verticalNextPos].getEnterable() && !board[horizontNextPos][verticalNextPos].getNowBusy()) {
 							// займем позицию
@@ -122,7 +122,7 @@ public final class ReentrantMain {
 		}
 	}
 
-	public void MonsterMove(int monsterNum) throws InterruptedException {
+	public void monsterMove(int monsterNum) throws InterruptedException {
 		synchronized (this.board) {
 			int horizontPos = 5;  // На данном этапе можно начинать из центра
 			int verticalPos = 5;
@@ -155,8 +155,8 @@ public final class ReentrantMain {
 						horizontNextPos = horizontPos + 1;
 						verticalNextPos = verticalPos + 1;
 					}
-					if (verticalNextPos >= 0 && verticalNextPos < ReentrantMain.boardSize
-							&& horizontNextPos >= 0 && horizontNextPos < ReentrantMain.boardSize) {
+					if (verticalNextPos >= 0 && verticalNextPos < ReentrantMain.BORDSSIZE
+							&& horizontNextPos >= 0 && horizontNextPos < ReentrantMain.BORDSSIZE) {
 						// только внутр данного if можно проверять матрицу на занятость, иначе можем получить ошибочное обращение
 						if (board[horizontNextPos][verticalNextPos].getEnterable() && !board[horizontNextPos][verticalNextPos].getNowBusy()) {
 							// займем позицию
@@ -208,7 +208,7 @@ public final class ReentrantMain {
 			@Override
 			public void run() {
 				try {
-					rnt.PlayerMove();
+					rnt.playerMove();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -223,7 +223,7 @@ public final class ReentrantMain {
 				@Override
 				public void run() {
 					try {
-						rnt.MonsterMove(1);
+						rnt.monsterMove(1);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}

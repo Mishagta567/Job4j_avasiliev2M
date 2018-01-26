@@ -69,7 +69,7 @@ public class KillThread {
 		public void run() {
 			try {
 				for (int indx = 0; indx < textString.length(); indx++) {
-					if (!Thread.interrupted()) {//isInterrupted проверять в любых ключевых точках,
+					if (!Thread.interrupted()) { //isInterrupted проверять в любых ключевых точках,
 						// где можно обработать прерывание потока
 						if (textString.charAt(indx) != ' ') {
 							Thread.sleep(1000);
@@ -88,7 +88,7 @@ public class KillThread {
 		}
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		KillThread ct = new KillThread();
 
 		// убрал везде преобразователь static. Запустить Thread для теста теперь не получается.

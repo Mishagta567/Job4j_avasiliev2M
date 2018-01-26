@@ -25,7 +25,7 @@ public class WaitNotify {
 	}
 
 	public void changeBlock(boolean enable) {
-		synchronized(this.lock) {
+		synchronized (this.lock) {
 			System.out.println(String.format("%s enable", Thread.currentThread().getId()));
 			this.blockCustomer = enable;
 			this.lock.notify();

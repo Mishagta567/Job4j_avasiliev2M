@@ -51,9 +51,8 @@ public class CheckFile {
 		} catch (IOException e) {
 			System.out.printf("Can't read line from frile %s", fileName);
 			e.printStackTrace();
-		} finally {
-			// finish reading file;
-		}
+		} //finally {
+			// finish reading file;		}
 		return result;
 	}
 

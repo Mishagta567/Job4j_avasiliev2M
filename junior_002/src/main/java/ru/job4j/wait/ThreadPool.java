@@ -1,9 +1,9 @@
-package ru.job4j.waitNotify;
+package ru.job4j.wait;
 
-import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
 
 import java.util.LinkedList;
 import java.util.Queue;
+
 
 /**
  * ThreadPool [#1099]
@@ -36,7 +36,7 @@ public class ThreadPool<W extends Runnable> {
 	}
 
 	public void stop() {
-		synchronized (this.currentJobList) {
+		synchronized (this.stopWork) {
 			stopWork = true;
 			stopWork.notify();
 		}
@@ -54,34 +54,33 @@ public class ThreadPool<W extends Runnable> {
 					// Хочется запустить вечный цикл в котором нити будут ждать появления новых задач
 					// Понятно что в идеале лучше сделать какой-то параметр, после обнавления которого нити закрываются,
 					// но сейчас это не принципиально.
-					while (stopWork) synchronized (stopWork){
-
-						// этот цикл - запускаем work до тех пор пока они есть в листе работ, или ложиться спать
-						while (currentJobList.size() == 0) synchronized (currentJobList) {
-							try {
-								currentJobList.wait();
-							} catch (InterruptedException e) {
-								e.printStackTrace();
+					while (stopWork) {
+						synchronized (stopWork) {
+							// этот цикл - запускаем work до тех пор пока они есть в листе работ, или ложиться спать
+							while (currentJobList.size() == 0) {
+								synchronized (currentJobList) {
+									try {
+										currentJobList.wait();
+									} catch (InterruptedException e) {
+										e.printStackTrace();
+									}
+								}
 							}
-						}
 
-						while (currentJobList.size() > 0 && !stopWork) synchronized (currentJobList) {
-							//
-							newWork = (W) currentJobList.remove();
-							currentJobList.notify();
-							// Я исхожу из того что цикл НЕ будет повторяться пока не будет выполнен полностью код в данной работе
-							newWork.run();
+							while (currentJobList.size() > 0 && !stopWork) {
+								synchronized (currentJobList) {
+									//
+									newWork = (W) currentJobList.remove();
+									currentJobList.notify();
+									// Я исхожу из того что цикл НЕ будет повторяться пока не будет выполнен полностью код в данной работе
+									newWork.run();
+								}
+							}
 						}
 					}
 				}
 			}.start();
 		}
-	}
-
-	public static void main(String[] args) {
-		ThreadPool pool = new ThreadPool();
-		//pool.add(new Work());
-		pool.stop();
 	}
 
 }

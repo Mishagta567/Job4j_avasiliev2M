@@ -1,4 +1,4 @@
-package ru.job4j.waitNotify;
+package ru.job4j.wait;
 
 /**
  * Тестовое задание. [#1108]

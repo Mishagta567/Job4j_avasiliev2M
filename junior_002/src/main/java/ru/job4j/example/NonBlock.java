@@ -19,7 +19,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class NonBlock {
 	private volatile boolean blockCustomer = true; // volatile - истинно / честно доступна ВСЕМ Thread-ам. Пишется в оперативку.
 
-	public void DoSomething() {
+	public void doSomething() {
 		while (this.blockCustomer) {
 			System.out.println(String.format("%s enable", Thread.currentThread().getId()));
 		}

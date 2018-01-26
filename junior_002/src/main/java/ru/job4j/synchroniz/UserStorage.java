@@ -17,7 +17,7 @@ import net.jcip.annotations.ThreadSafe;
 public class UserStorage {
 	List<User> users = new ArrayList<User>();
 
-	public synchronized boolean add (User user) {
+	public synchronized boolean add(User user) {
 		boolean result = false;
 		if (!this.users.contains(user)) {
 			users.add(user);
@@ -53,7 +53,7 @@ public class UserStorage {
 			User userFrom = users.get(users.indexOf(new User(fromID, 0)));
 			User userTwo = users.get(users.indexOf(new User(toId, 0)));
 			// проверяем: можем ли мы сделать данный перевод (т.е. достаточно ли денег на счетах)
-			if (userFrom.checkNewAmount(- amount) && userTwo.checkNewAmount(amount)) {
+			if (userFrom.checkNewAmount(-amount) && userTwo.checkNewAmount(amount)) {
 				//теперь собственно делаем обнавления "сумм на счетах":
 				users.get(users.indexOf(new User(fromID, 0))).setAmount(userFrom.getAmount() - amount);
 				users.get(users.indexOf(new User(toId, 0))).setAmount(userTwo.getAmount() + amount);

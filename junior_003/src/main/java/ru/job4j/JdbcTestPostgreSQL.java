@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.SQLException;
+//import java.sql.SQLException;
 
 /**
  * Пример из видео Петра А.
@@ -15,13 +15,12 @@ import java.sql.SQLException;
 
 public class JdbcTestPostgreSQL {
 
-	public static void main (String args[]) {
+	public static void main(String[] args) {
 		try {
 			Class.forName("org.postgresql.Driver");
-		}
-		catch (ClassNotFoundException e) {
-			System.err.println (e);
-			System.exit (-1);
+		} catch (ClassNotFoundException e) {
+			System.err.println(e);
+			System.exit(-1);
 		}
 		try {
 			// open connection to database
@@ -33,19 +32,19 @@ public class JdbcTestPostgreSQL {
 			String query = "SELECT datname FROM pg_database WHERE datistemplate = false";
 
 			// execute query
-			Statement statement = connection.createStatement ();
-			ResultSet rs = statement.executeQuery (query);
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(query);
 
 			// return query result
-			while ( rs.next () )
+			while (rs.next()) {
 				// display table name
-				System.out.println ("PostgreSQL Query result: " + rs.getString ("datname"));
-			connection.close ();
+				System.out.println("PostgreSQL Query result: " + rs.getString("datname"));
+			}
+			connection.close();
 			rs.close();
-		}
-		catch (java.sql.SQLException e) {
-			System.err.println (e);
-			System.exit (-1);
+		} catch (java.sql.SQLException e) {
+			System.err.println(e);
+			System.exit(-1);
 		}
 	}
 

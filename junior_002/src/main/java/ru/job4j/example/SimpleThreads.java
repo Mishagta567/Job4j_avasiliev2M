@@ -22,7 +22,7 @@ public class SimpleThreads {
 
 		@Override
 		public void run() {
-			String importantInfo[] = {	"Mares eat oats",	"Does eat oats",
+			String[] importantInfo = {"Mares eat oats",	"Does eat oats",
 					"Little lambs eat ivy",	"A kid will eat ivy too"};
 			try {
 				for (int i = 0;
@@ -39,8 +39,7 @@ public class SimpleThreads {
 		}
 	}
 
-	public static void main(String args[])
-			throws InterruptedException {
+	public static void main(String[] args)	throws InterruptedException {
 
 		// Delay, in milliseconds before
 		// we interrupt MessageLoop

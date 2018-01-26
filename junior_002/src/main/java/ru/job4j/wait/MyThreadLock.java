@@ -1,4 +1,4 @@
-package ru.job4j.waitNotify;
+package ru.job4j.wait;
 
 /**
  * Реализовать собственный механизм блокировок Lock. [#1100]
@@ -14,12 +14,12 @@ public class MyThreadLock {
 	private Boolean objectLocked;
 	private long lockedThread;
 
-	public void MyLock(String value) {
+	public void myLock(String value) {
 		this.lockString = value;
 		this.objectLocked = false;
 	}
 
-	public void DoSomthing(String value) {
+	public void doSomthing(String value) {
 		synchronized (objectLocked) {
 			System.out.println("DoSomthing");
 			this.lockString = value;

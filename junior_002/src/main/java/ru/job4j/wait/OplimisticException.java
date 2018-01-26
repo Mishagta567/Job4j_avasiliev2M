@@ -1,4 +1,4 @@
-package ru.job4j.waitNotify;
+package ru.job4j.wait;
 
 import java.util.concurrent.ConcurrentHashMap;
 

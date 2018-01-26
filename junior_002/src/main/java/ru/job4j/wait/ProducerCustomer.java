@@ -1,8 +1,6 @@
-package ru.job4j.waitNotify;
+package ru.job4j.wait;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 /**
@@ -58,7 +56,7 @@ public class ProducerCustomer {
 	}
 
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		ProducerCustomer pc = new ProducerCustomer();
 
 		// Сначала запустим add

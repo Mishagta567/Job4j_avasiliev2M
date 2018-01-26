@@ -55,7 +55,7 @@ public class ThreadWaiting { //} implements  Runnable{
 		}
 	}
 
-	public static void main(String args[]) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException {
 		//ThreadWaiting ct = new ThreadWaiting();
 
 		//Thread tStart = new Thread(ct);

@@ -35,8 +35,8 @@ public class DynamicArrayHashSetTest {
 
 		assertThat(da.getIndexFromHCode("E"), is(1));
 		assertThat(da.getIndexFromHCode("A"), is(1));
-		assertThat(da.remove("E"), is(false));
-		assertThat(da.remove("A"), is(true));
+		assertThat(da.remove("E"), is(true));
+		assertThat(da.remove("A"), is(false));
 
 	}
 

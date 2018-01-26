@@ -14,13 +14,12 @@ import java.sql.*;
 
 public class SQLStorageTwo {
 
-	public static void main (String args[]) {
+	public static void main(String[] args) {
 		try {
 			Class.forName("org.postgresql.Driver");
-		}
-		catch (ClassNotFoundException e) {
-			System.err.println (e);
-			System.exit (-1);
+		} catch (ClassNotFoundException e) {
+			System.err.println(e);
+			System.exit(-1);
 		}
 		try {
 			// open connection to database
@@ -34,7 +33,7 @@ public class SQLStorageTwo {
 			ResultSet rs = st.executeQuery();
 			// return query result
 			boolean result = false;
-			while (rs.next ()) {
+			while (rs.next()) {
 				// display table name
 				System.out.println("PostgreSQL Query result: " + rs.getString("datname"));
 				if (rs.getString("datname").equals("junior003")) {
@@ -44,14 +43,12 @@ public class SQLStorageTwo {
 			if (result) {
 				System.out.println("Есть БД junior003");
 			}
-
-			conn.close ();
+			conn.close();
 			rs.close();
-		}
-		catch (SQLException e) {
-			System.err.println (e);
+		} catch (SQLException e) {
+			System.err.println(e);
 			//Log.error(e.getMessage(), e);		// не хочет работать.
-			System.exit (-1);
+			System.exit(-1);
 		}
 	}
 

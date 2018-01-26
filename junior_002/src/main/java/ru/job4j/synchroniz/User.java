@@ -40,4 +40,9 @@ public class User {
 		return this.id == user.id;
 	}
 
+	@Override
+	public int hashCode() {
+		return this.id;
+	}
+
 }

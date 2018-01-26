@@ -65,7 +65,7 @@ public class MultithreadsErrors {
 
 
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		MultithreadsErrors ct = new MultithreadsErrors();
 
 		Thread trdOne = new Thread(new MultithreadsErrors.ThreadOne());

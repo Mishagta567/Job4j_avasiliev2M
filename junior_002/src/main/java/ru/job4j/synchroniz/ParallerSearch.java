@@ -1,13 +1,10 @@
 package ru.job4j.synchroniz;
 
 
-import com.sun.jmx.remote.internal.ArrayQueue;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 
 import static javafx.scene.input.KeyCode.Q;
@@ -23,7 +20,7 @@ import static javafx.scene.input.KeyCode.Q;
 public class ParallerSearch {
 	private static String pathName = "C:\\projects\\tempFiles";
 	static String searchWord;
-	private String list[];
+	private String[] list;
 	private Queue<String> allFileNames = new LinkedList<String>();
 	private Queue<String> resultFileNames = new LinkedList<String>();
 

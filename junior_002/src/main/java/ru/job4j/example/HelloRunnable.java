@@ -17,8 +17,8 @@ public class HelloRunnable  implements Runnable {
 		System.out.println("Hello from a thread!");
 	}
 
-	public static void main(String args[]) {
-		(new Thread(new HelloRunnable())).start();
+	public static void main(String[] args) {
+		new Thread(new HelloRunnable()).start();
 	}
 
 }
