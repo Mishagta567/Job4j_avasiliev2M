@@ -1,6 +1,9 @@
 package ru.job4j.wait;
 
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Тестовое задание. [#1108]
@@ -12,13 +15,14 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 
 
-public final class ReentrantMain {
-	static final private int BORDSSIZE = 10;
-	static private long startTime = System.currentTimeMillis();
-	static private boolean stopPlay = false;			// По идее изменив на true - выходим из вечного игры.
+public final class ReentrantMain { // implements Lock, Serializable{
+	private static final int BORDSSIZE = 10;
+	private static long startTime = System.currentTimeMillis();
+	private static boolean stopPlay = false;			// По идее изменив на true - выходим из вечного игры.
 	static boolean playerStillAlive = true;  // В каком случае проигрывает не определено. Значит не реализовал. Значит пока бегают бесконечно
 	static int monstersCount = 4;  // кол-во монстров.
-	ReentrantCell[][] board = new ReentrantCell[BORDSSIZE][BORDSSIZE];
+	//1 ReentrantCell[][] board = new ReentrantCell[BORDSSIZE][BORDSSIZE];
+   private final ReentrantLock[][] board; // = new ReentrantLock[BORDSSIZE][BORDSSIZE]; //  ReentrantCell[BORDSSIZE][BORDSSIZE];
 
 	// Направление движения игрока - для того что бы в будущем пользователь мог управлять.
 	private int playerDirection = 0;  // 0-3: 0-север=вверх, 1-восток=вправо, 2-юг=вниз, 3-запад=влево
@@ -30,18 +34,23 @@ public final class ReentrantMain {
 	public ReentrantMain() {
 		this.startTime = System.currentTimeMillis();
 		this.stopPlay = false;
+		board = new ReentrantLock[BORDSSIZE][BORDSSIZE];
 		// проинициалзируем наш двухмерный массив
-		for (int indxHorizon = 0; indxHorizon < BORDSSIZE; indxHorizon++) {
-			for (int indxVertical = 0; indxVertical < BORDSSIZE; indxVertical++) {
-				board[indxHorizon][indxVertical] = new ReentrantCell();
-			}
-		}
+		 for (int indxHorizon = 0; indxHorizon < BORDSSIZE; indxHorizon++) {
+		 	for (int indxVertical = 0; indxVertical < BORDSSIZE; indxVertical++) {
+		 		//board[indxHorizon][indxVertical] = new ReentrantCell();
+		 		board[indxHorizon][indxVertical] = new ReentrantLock();
+		 	}
+		 }
 		// ради прикола несколько ячеек можно сделать недоступные для входа
-		board[2][4].setEnterable(false);
-		board[8][7].setEnterable(false);
-		board[7][3].setEnterable(false);
-		board[3][8].setEnterable(false);
-
+		//board[2][4].setEnterable(false);
+		//board[8][7].setEnterable(false);
+		//board[7][3].setEnterable(false);
+		//board[3][8].setEnterable(false);
+	    board[2][4].lock();
+	    board[8][7].lock();
+	    board[7][3].lock();
+	    board[3][8].lock();
 	}
 
 	public void playerMove() throws InterruptedException {
@@ -78,16 +87,19 @@ public final class ReentrantMain {
 					if (verticalNextPos >= 0 && verticalNextPos < ReentrantMain.BORDSSIZE
 							&& horizontNextPos >= 0 && horizontNextPos < ReentrantMain.BORDSSIZE) {
 						// только внутр данного if можно проверять матрицу на занятость, иначе можем получить ошибочное обращение
-						if (board[horizontNextPos][verticalNextPos].getEnterable() && !board[horizontNextPos][verticalNextPos].getNowBusy()) {
-							// займем позицию
-							board[horizontNextPos][verticalNextPos].setNowBusy(true);
-							board[horizontNextPos][verticalNextPos].setCurrentOwner("Player");
+						//1 if (board[horizontNextPos][verticalNextPos].getEnterable() && !board[horizontNextPos][verticalNextPos].getNowBusy()) {
+                  if (board[horizontNextPos][verticalNextPos].tryLock(500, TimeUnit.MILLISECONDS)) {
+
+						   // займем позицию: 
+							board[horizontNextPos][verticalNextPos].lock();
+							//board[horizontNextPos][verticalNextPos].setCurrentOwner("Player");
 							this.board.notify();
 							nextCellEnterable = true;
 						} else {
 							// Если прошло меньше 500 млс - повторяем попытки
 							if (System.currentTimeMillis() - lastMoveTime < 500) {
 								Thread.sleep(100);
+								//System.out.println("Плаер спил");
 								continue;
 							}
 
@@ -108,12 +120,16 @@ public final class ReentrantMain {
 				// По идее здесь мы можем оказаться только если все нашли место куда двигаться на следующий ход
 				// Не даем плееру скакать чаще чем раз в секунду
 				if (System.currentTimeMillis() - lastMoveTime < 1000) {
+				   //System.out.println("Плаер спит - 2");
 					Thread.sleep(1000 - (System.currentTimeMillis() - lastMoveTime));
 				}
 
-				board[horizontPos][verticalPos].setNowBusy(false);
-				board[horizontPos][verticalPos].setCurrentOwner(null);
-				this.board.notify();
+				// board[horizontPos][verticalPos].setNowBusy(false);
+				// board[horizontPos][verticalPos].setCurrentOwner(null);
+				if (board[horizontPos][verticalPos].isLocked()) {
+				   board[horizontPos][verticalPos].unlock();
+            }
+            this.board.notify();
 				horizontPos = horizontNextPos;
 				verticalPos = verticalNextPos;
 				System.out.printf("%nPlayer: %s-%s. %n", horizontPos, verticalPos);
@@ -158,10 +174,11 @@ public final class ReentrantMain {
 					if (verticalNextPos >= 0 && verticalNextPos < ReentrantMain.BORDSSIZE
 							&& horizontNextPos >= 0 && horizontNextPos < ReentrantMain.BORDSSIZE) {
 						// только внутр данного if можно проверять матрицу на занятость, иначе можем получить ошибочное обращение
-						if (board[horizontNextPos][verticalNextPos].getEnterable() && !board[horizontNextPos][verticalNextPos].getNowBusy()) {
+						//if (board[horizontNextPos][verticalNextPos].getEnterable() && !board[horizontNextPos][verticalNextPos].getNowBusy()) {
 							// займем позицию
-							board[horizontNextPos][verticalNextPos].setNowBusy(true);
-							board[horizontNextPos][verticalNextPos].setCurrentOwner("Monster");
+                  if (board[horizontNextPos][verticalNextPos].tryLock(5000, TimeUnit.MILLISECONDS)) {
+							board[horizontNextPos][verticalNextPos].lock();
+							//board[horizontNextPos][verticalNextPos].setCurrentOwner("Monster");
 							this.board.notify();
 							nextCellEnterable = true;
 						} else {
@@ -184,8 +201,11 @@ public final class ReentrantMain {
 					Thread.sleep(1000 - (System.currentTimeMillis() - lastMoveTime));
 				}
 
-				board[horizontPos][verticalPos].setNowBusy(false);
-				board[horizontPos][verticalPos].setCurrentOwner(null);
+				//board[horizontPos][verticalPos].setNowBusy(false);
+            if (board[horizontPos][verticalPos].isLocked()) {
+               board[horizontPos][verticalPos].unlock();
+            }
+				//board[horizontPos][verticalPos].setCurrentOwner(null);
 				this.board.notify();
 				horizontPos = horizontNextPos;
 				verticalPos = verticalNextPos;
@@ -219,16 +239,20 @@ public final class ReentrantMain {
 		// Запускаем монстров а колличестве monstersCount
 		//for (int ind = 1; ind <= ReentrantMain.monstersCount; ind++) {
 		//	int finalInd1 = ind;
-			new Thread() {
-				@Override
-				public void run() {
-					try {
-						rnt.monsterMove(1);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+
+
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					rnt.monsterMove(1);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
-			}.start();  // */
+			}
+		}.start();  // */
+      
+
 		//}
 	}
 }
