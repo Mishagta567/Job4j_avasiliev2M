@@ -28,9 +28,9 @@ public class NonBlockingCash {
 		if (!this.map.containsKey(key)) {
 			map.put(key, model);
 			result = true;
-		} else {
-			throw new OplimisticException(String.format("Уже есть Модель с ID %s.", key));
-		}
+		}// else {
+		//	 throw new OplimisticException(String.format("Уже есть Модель с ID %s.", key));
+		 //}
 		return result;
 	}
 
@@ -40,9 +40,9 @@ public class NonBlockingCash {
 		if (this.map.containsKey(key)) {
 			map.remove(key);
 			result = true;
-		} else {
-			throw new OplimisticException(String.format("Нет у нас модели с ключем %s.", key));
-		}
+		} //else {
+		//	throw new OplimisticException(String.format("Нет у нас модели с ключем %s.", key));
+		//}
 		return result;
 	}
 
