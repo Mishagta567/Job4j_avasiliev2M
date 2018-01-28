@@ -11,18 +11,7 @@ public class SimpleStackTest {
    public void add() throws Exception {
       SimpleStack<String> stack = new SimpleStack<String>();
       stack.add("A1");
-      assertThat(stack.get(1), is("A1"));
-   }
-
-   @Test
-   public void get() throws Exception {
-      SimpleStack<String> stack = new SimpleStack<String>();
-      stack.add("A1");
-      stack.add("B2");
-      stack.add("C3");
-      assertThat(stack.get(1), is("C3"));
-      assertThat(stack.get(2), is("B2"));
-      assertThat(stack.get(3), is("A1"));
+      assertThat(stack.poll(), is("A1"));
    }
 
    @Test

@@ -9,20 +9,21 @@ package ru.job4j.junior001.list;
  */
 
 public class SimpleStack<T> {
-    DynamicLinkedListOnArray<T> stack = new DynamicLinkedListOnArray<T>();
+    //DynamicLinkedListOnArray<T>  = new DynamicLinkedListOnArray<T>();
+    private final DynamicLinkedList<T> stack = new DynamicLinkedList<T>();
 
     public void add(T value) {
         stack.add(value);
     }
 
     public T get(int position) {
-        return (T) stack.get(stack.getBackwardRealIndex(position));
+        return (T) stack.getNode(position);
     }
 
     public T poll() {
         Object result = new Object();
-        result = stack.get(stack.getBackwardRealIndex(1));
-        stack.delete(stack.getBackwardRealIndex(1));
+        result = stack.get(stack.size());
+        stack.remove(stack.size());
         return (T) result;
     }
 

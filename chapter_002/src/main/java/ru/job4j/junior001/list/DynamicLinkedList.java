@@ -102,7 +102,7 @@ public class DynamicLinkedList<T> implements Iterable<T> {
 	 * @param index -- node's index
 	 * @return node at the given index
 	 */
-	private Node<T> getNode(int index) {
+	public Node<T> getNode(int index) {
 		if (index < 0) {
 			return null;
 		}

@@ -12,7 +12,7 @@ public class SimpleQueue<T> {
     /**
      * Создадим лист на базе динамического.
      */
-    private final DynamicLinkedList<T> list = new DynamicLinkedList<>();
+    private final DynamicLinkedList<T> list = new DynamicLinkedList<T>();
 
     /**
      * Простая очередь: первый вошел, первый вышел.
