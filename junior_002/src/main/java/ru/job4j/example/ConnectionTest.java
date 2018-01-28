@@ -8,7 +8,7 @@ package ru.job4j.example;
  * @version  1.0.0
  */
 
-public class Usage {
+public class ConnectionTest {
 
 	public static final class Counter {
 		long count = 0;
