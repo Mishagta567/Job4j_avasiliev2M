@@ -31,6 +31,11 @@ class Account {
 		this.value = vl;
 	}
 
+   @Override
+   public int hashCode() {
+      return requisites;
+   }
+
 	@Override
    public boolean equals(Object obj) {
 	   boolean result = false;
