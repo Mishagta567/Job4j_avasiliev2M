@@ -102,7 +102,7 @@ public class MapCheck implements Comparator<BankUser> {
    // удалим экаунт у пользователя.
    public void deleteAccount(BankUser user, int rqsites) {
       List<Account> accounts = allBankUsers.get(user);
-      //accounts.remove(accounts.indexOf(rqsites));
+      //accounts.remove(accounts.indexOf(new Account(0, rqsites)));
       accounts.remove(new Account(0, rqsites));
 
       //for (int indx = 0; indx < accounts.size(); indx++) {
