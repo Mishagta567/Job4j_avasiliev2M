@@ -1,5 +1,6 @@
 package ru.job4j.collections;
 
+import org.hamcrest.core.Is;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -23,7 +24,31 @@ public class MapCheckTest {
 		BankUser jhon = new BankUser("Jhon", "123");
 		tm.allBankUsers.put(jhon, jhonAccounts);
 
-		System.out.println(tm.allBankUsers.get(ivan).equals(tm.allBankUsers.get(jhon)));
+		// тк. паспорта одиннаковые, mapCheck говорит что это один и тот же клиент:
+		//System.out.println();
+
+      assertThat(tm.allBankUsers.get(ivan).equals(tm.allBankUsers.get(jhon)), Is.is(true));
+
+
+      List<Account> jhonAccounts2 = tm.getUserAccounts("123");
+      //System.out.println(jhonAccounts2.size());
+      // У Jhon-а 2 счета
+      assertThat(jhonAccounts2.size(), Is.is(2));
+
+      //System.out.println(jhonAccounts2.indexOf(new Account(0, 4)));
+
+      tm.deleteAccount(jhon, 3);
+      jhonAccounts2 = tm.getUserAccounts("123");
+      //System.out.println(jhonAccounts2.size());
+      // Теперь у Jhon-а 1 счет
+      assertThat(jhonAccounts2.size(), Is.is(1));
+      //
+      tm.deleteAccount(jhon, 4);
+      jhonAccounts2 = tm.getUserAccounts("123");
+      //System.out.println(jhonAccounts2.size());
+      // У Jhon-а не осталось счетов
+      assertThat(jhonAccounts2.size(), Is.is(0));
+
 
 	}
 

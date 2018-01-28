@@ -30,6 +30,18 @@ class Account {
 	public void setValue(double vl) {
 		this.value = vl;
 	}
+
+	@Override
+   public boolean equals(Object obj) {
+	   boolean result = false;
+	   Account second = (Account) obj;
+	   if (this.requisites == second.getRequisites()) {
+	      result = true;
+      }
+
+	   return result;
+   }
+
 }
 
 class BankUser {
@@ -90,12 +102,15 @@ public class MapCheck implements Comparator<BankUser> {
    // удалим экаунт у пользователя.
    public void deleteAccount(BankUser user, int rqsites) {
       List<Account> accounts = allBankUsers.get(user);
-      for (int indx = 0; indx < accounts.size(); indx++) {
-         if (accounts.get(indx).getRequisites() == rqsites) {
-            accounts.remove(indx);
-            break;                         // выходим из цикла после нахождения и удаления.
-         }
-      }
+      //accounts.remove(accounts.indexOf(rqsites));
+      accounts.remove(new Account(0, rqsites));
+
+      //for (int indx = 0; indx < accounts.size(); indx++) {
+      //   if (accounts.get(indx).getRequisites() == rqsites) {
+      //      accounts.remove(indx);
+      //      break;                         // выходим из цикла после нахождения и удаления.
+      //   }
+      //}
    }
 
    // Перечисляем кому-то дополнительную сумму. Если -addValue, то вычитаем.
