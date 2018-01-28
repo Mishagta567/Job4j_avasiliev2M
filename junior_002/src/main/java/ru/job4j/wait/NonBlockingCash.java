@@ -28,7 +28,7 @@ public class NonBlockingCash {
 		if (!this.map.containsKey(key)) {
 			map.put(key, model);
 			result = true;
-		}// else {
+		} // else {
 		//	 throw new OplimisticException(String.format("Уже есть Модель с ID %s.", key));
 		 //}
 		return result;
