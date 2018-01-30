@@ -14,6 +14,7 @@ public class MyThreadLock {
 	private Boolean objectLocked;
 	private long lockedThread;
 
+
 	public void myLock(String value) {
 		this.lockString = value;
 		this.objectLocked = false;
