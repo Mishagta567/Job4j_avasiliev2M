@@ -1,7 +1,7 @@
 <web-app>
     <servlet>
         <servlet-name>EchoServlet</servlet-name>
-        <servlet-class>ru.job4j.EchoServlet</servlet-class>
+        <servlet-class>parsentev.servlets.EchoServlet</servlet-class>
     </servlet>
 
     <servlet-maping>
