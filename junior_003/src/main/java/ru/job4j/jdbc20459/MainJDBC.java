@@ -37,7 +37,6 @@ public class MainJDBC {
 	protected int start() throws SQLException, FileNotFoundException {
 
 		CheckTestTable checjTestTable = new CheckTestTable(this.amount);
-
 		try {
 			checjTestTable.createTable();
 		} catch (SQLException e) {
@@ -46,7 +45,6 @@ public class MainJDBC {
 
 		CreateXML createXML = new CreateXML();
 		createXML.writeFile();
-
 		ConvertingXML convert = new ConvertingXML();
 		convert.converting("./1.xml");
 		convert.readFile();

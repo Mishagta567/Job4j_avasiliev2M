@@ -32,7 +32,6 @@ public class ConvertingXML {
 		return sum;
 	}
 
-
 	public void converting(String file) {
 		try {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -91,6 +90,7 @@ public class ConvertingXML {
 	 * reading an XML file using DOMBuilder, StAX parser and SAXParser.
 	 * @return the sum or elements from file "./2.xml"
 	 */
+
 	protected int parseTwo() {
 		int sum = 0;
 		SAXBuilder saxBuilder = new SAXBuilder();

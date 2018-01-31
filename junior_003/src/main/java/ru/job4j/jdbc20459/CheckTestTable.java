@@ -1,9 +1,10 @@
 package ru.job4j.jdbc20459;
 
 
-// import org.postgresql.util.PSQLState;
-// import org.slf4j.Logger;
-// import org.slf4j.LoggerFactory;
+import org.postgresql.util.PSQLState;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.*;
 
 /**
@@ -16,7 +17,7 @@ import java.sql.*;
 
 public class CheckTestTable {
 
-	//private static final Logger LOG = LoggerFactory.getLogger(PSQLState.class);
+	private static final Logger LOG = LoggerFactory.getLogger(PSQLState.class);
 	/**
 	 * Database URL.
 	 */
@@ -37,25 +38,20 @@ public class CheckTestTable {
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.pass);
 		ResultSet rs = null;
 		try {
-			//PreparedStatement ps = null;
 			rs = conn.getMetaData().getTables(
 					null, null, "test", null);
 			if (rs.next()) {
-
-				// Это удалить.
-				//ps = conn.prepareStatement("TRUNCATE TABLE test");
-
 				PreparedStatement st  = conn.prepareStatement("TRUNCATE TABLE test");
 				st.executeUpdate();
 			} else {
 				PreparedStatement st  = conn.prepareStatement("CREATE TABLE test (field INTEGER )");
-				//ps = conn.prepareStatement("CREATE TABLE test (field INTEGER )");
 				st.execute();
 			}
 
 			this.fillingTable(conn);
 
 		} catch (SQLException e) {
+		   // Полезности, которые у меня пока почему-то генерируют ошибку.
 			//LOG.error(e.getMessage(), e);
 			System.err.println(e);
 		} finally {

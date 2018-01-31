@@ -15,7 +15,7 @@ import java.util.List;
 public class EntryXML {
 
 	private int id;
-	/**		just constructor.
+	/**		просто конструторк.
 	 */
 	public EntryXML(int id) {
 		this.id = id;

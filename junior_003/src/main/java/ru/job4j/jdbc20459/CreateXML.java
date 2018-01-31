@@ -40,17 +40,8 @@ public class CreateXML {
 
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.pass);
 		conn.setAutoCommit(false);
-
 		Statement st = conn.createStatement();
-
-		// Странно, почему не работает так:
-		//PreparedStatement st  = conn.prepareStatement("SELECT field FROM ? ");
-		//st.setString(1, " field ");
-		//st.setString(1, " test ");
-
 		ResultSet rs = st.executeQuery("SELECT field FROM test");
-		//ResultSet rs = st.executeQuery();
-
 		StringBuilder xmlText = new StringBuilder();
 		xmlText.append("<entries>").append(System.getProperty("line.separator"));
 
@@ -100,19 +91,11 @@ public class CreateXML {
 		Connection conn = DriverManager.getConnection(this.url, this.username, this.pass);
 		conn.setAutoCommit(false);
 		Statement st = conn.createStatement();
-		//PreparedStatement st  = conn.prepareStatement("SELECT ? FROM ?");
-		//st.setString(1, "field");
-		//st.setString(2, "test");
-
-		//ResultSet rs = st.executeQuery(String.format("SELECT %s FROM %s", "field", "test"));
 		ResultSet rs = st.executeQuery("SELECT field FROM test");
-		//ResultSet rs = st.executeQuery();
-
-
+		//Не получилось выполнить: PreparedStatement st  = st.prepareStatement("SELECT ? FROM ?");		//st.setString(1, "field");		//st.setString(2, "test");		//ResultSet rs = st.executeQuery();
 
 		Entries temp = new Entries();
-
-		List<EntryXML> entries = new ArrayList<>();
+      List<EntryXML> entries = new ArrayList<>();
 		while (rs.next()) {
 			entries.add(new EntryXML(rs.getInt(1)));
 		}
@@ -123,7 +106,6 @@ public class CreateXML {
 			JAXBContext context = JAXBContext.newInstance(Entries.class);
 			Marshaller marshaller = context.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
 			marshaller.marshal(temp, new File("./3.xml"));
 		} catch (JAXBException e) {
 			e.printStackTrace();
@@ -132,6 +114,7 @@ public class CreateXML {
 				st.close();
 				rs.close();
 			} catch (SQLException e) {
+			   // Полезность, которая не работает у меня:
 				//LOG.error(e.getMessage(), e);
 				System.err.println(e);
 			}
