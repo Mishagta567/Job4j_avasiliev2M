@@ -20,8 +20,8 @@ public class ThreadPool<W extends Runnable> {
 	private Queue currentJobList = new LinkedList();
 	private int count = 0;
 	private final int maxTreadCount = Runtime.getRuntime().availableProcessors();
-	private Boolean stopWork = false;
-	private List<Thread> threads = new ArrayList<Thread>();
+	//private Boolean stopWork = false;
+	private volatile List<Thread> threads = new ArrayList<Thread>();
 
 
 	public void workOne() throws InterruptedException {
@@ -39,13 +39,10 @@ public class ThreadPool<W extends Runnable> {
 	}
 
 	public void stop() {
-		synchronized (this.stopWork) {
-			stopWork = true;
-			stopWork.notify();
-			for (Thread thr : threads) {
-			   thr.interrupt();
-         }
-		}
+		for (Thread thr : threads) {
+		   thr.interrupt();
+        }
+
 	}
 
 	public void work() {
@@ -56,7 +53,7 @@ public class ThreadPool<W extends Runnable> {
 				@Override
 				public void run() {
 					W newWork = null;
-               ThreadPool.this.threads.add(Thread.currentThread());
+               // ThreadPool.this.threads.add(Thread.currentThread());
 
 
 					// Хочется запустить вечный цикл в котором нити будут ждать появления новых задач
@@ -64,7 +61,7 @@ public class ThreadPool<W extends Runnable> {
 					// но сейчас это не принципиально.
 					//while (!stopWork) {
                while (!Thread.currentThread().isInterrupted()) {
-						synchronized (stopWork) {
+
 							// этот цикл - запускаем work до тех пор пока они есть в листе работ, или ложиться спать
 							while (currentJobList.size() == 0) {
 								synchronized (currentJobList) {
@@ -76,7 +73,7 @@ public class ThreadPool<W extends Runnable> {
 								}
 							}
 
-							while (currentJobList.size() > 0 && !stopWork) {
+							while (currentJobList.size() > 0) {
 								synchronized (currentJobList) {
 									//
 									newWork = (W) currentJobList.remove();
@@ -85,7 +82,7 @@ public class ThreadPool<W extends Runnable> {
 									newWork.run();
 								}
 							}
-						}
+
 					}
 				}
 			}.start();
