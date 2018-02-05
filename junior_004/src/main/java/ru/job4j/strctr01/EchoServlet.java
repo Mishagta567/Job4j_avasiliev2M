@@ -28,13 +28,14 @@ public class EchoServlet extends HttpServlet {
       PrintWriter writer = new PrintWriter(resp.getOutputStream());
 
       StringBuilder sb = new StringBuilder();
-      sb.append("<table>");
+      //sb.append("<table>");
 
       this.users.add(req.getParameter("login"));
       for (String lgn : users) {
-         sb.append("<tr><td>" + lgn + "</td></tr>");
+         //sb.append("<tr><td>" + lgn + "</td></tr>");
+         sb.append(lgn + "</br>");
       }
-      sb.append("</table>");
+      //sb.append("</table>");
 
       writer.append("<!DOCTYPE html>"
               + "<html lang=\"en\">"
@@ -44,11 +45,12 @@ public class EchoServlet extends HttpServlet {
               + "</head>"
               + "<body>"
               + "<form action='" + req.getContextPath() + "/echo' metod='post'>"
-              + "Name: <input type='text' name='login'/>"
-              + "<input type='submit'/>"
+              + "Name: <input type='text' name='login'>"
+              + "<input type='submit'>"
               + "</form>"
               + "</br>" + "</br>"
               + sb.toString()
+              + "</br>Yo: " + req.getParameter("login")
               + "</body>"
               + "</html>");  // */
 
@@ -58,7 +60,7 @@ public class EchoServlet extends HttpServlet {
    @Override
    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       resp.setContentType("text/html");
-      this.users.add(req.getParameter("login"));
+      this.users.add(req.getParameter("login") + "Post work");
       doGet(req, resp);
    }
 
