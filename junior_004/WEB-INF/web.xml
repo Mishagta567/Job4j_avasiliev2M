@@ -1,11 +1,11 @@
 <web-app>
     <servlet>
         <servlet-name>EchoServlet</servlet-name>
-        <servlet-class>ru.job4j.strctr01.EchoServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
+        <servlet-class>parsentev.servlets.EchoServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
+
+    <servlet-maping>
         <servlet-name>EchoServlet</servlet-name>
         <url-pattern>/echo</url-pattern>
-    </servlet-mapping>
+    </servlet-maping>
 </web-app>
