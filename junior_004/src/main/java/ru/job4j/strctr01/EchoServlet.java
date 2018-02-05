@@ -29,6 +29,8 @@ public class EchoServlet extends HttpServlet {
 
       StringBuilder sb = new StringBuilder();
       sb.append("<table>");
+
+      this.users.add(req.getParameter("login"));
       for (String lgn : users) {
          sb.append("<tr><td>" + lgn + "</td></tr>");
       }
