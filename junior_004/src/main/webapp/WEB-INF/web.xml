@@ -1,20 +1,53 @@
 <web-app>
     <servlet>
+        <servlet-name>EchoServlet</servlet-name>
+        <servlet-class>ru.job4j.strctr01.EchoServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UsersServlet</servlet-name>
         <servlet-class>ru.job4j.crud02.UsersServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>EchoServlet</servlet-name>
-        <servlet-class>ru.job4j.strctr01.EchoServlet</servlet-class>
+        <servlet-name>IndexServlet</servlet-name>
+        <servlet-class>ru.job4j.servlet03.IndexServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>ru.job4j.servlet03.DeleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditServlet</servlet-name>
+        <servlet-class>ru.job4j.servlet03.EditServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewuserServlet</servlet-name>
+        <servlet-class>ru.job4j.servlet03.NewuserServlet</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>EchoServlet</servlet-name>
+        <url-pattern>/echo</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UsersServlet</servlet-name>
         <url-pattern>/crud</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EchoServlet</servlet-name>
-        <url-pattern>/echo</url-pattern>
+        <servlet-name>IndexServlet</servlet-name>
+        <url-pattern>/servlet03</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/delete03</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditServlet</servlet-name>
+        <url-pattern>/edit03</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewuserServlet</servlet-name>
+        <url-pattern>/newuser03</url-pattern>
+    </servlet-mapping>
+
 </web-app>

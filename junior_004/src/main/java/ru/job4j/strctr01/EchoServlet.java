@@ -45,7 +45,7 @@ public class EchoServlet extends HttpServlet {
               + "</head>"
               + "<body>"
               + "<form action='" + req.getContextPath() + "/echo' method='post'>"
-              + "Name: <input type='text' name='login'>"
+                 + "Name: <input type='text' name='login'>"
               + "<input type='submit'>"
               + "</form>"
               + "</br>" + "</br>"

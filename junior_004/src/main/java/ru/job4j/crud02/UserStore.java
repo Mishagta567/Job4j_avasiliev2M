@@ -5,6 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Class, wich fo all job for UsersServlet
@@ -141,9 +144,11 @@ public class UserStore {
          this.rs = this.ps.executeQuery();
          while (rs.next()) {
             user = new UserCS(rs.getString("name"),
-                    this.rs.getString("login"),
-                    this.rs.getString("email"),
-                    this.rs.getTimestamp("inserted_date")
+                              //"damn_login",
+                              rs.getString("login"),
+                              //"dam_mail",
+                              rs.getString(3),
+                              rs.getTimestamp("inserted_date")
             );
          }
       } catch (SQLException e) {
@@ -191,6 +196,23 @@ public class UserStore {
          e.printStackTrace();
       }
       return result;
+   }
+
+   public Queue getAllUsers() throws SQLException {
+      Queue<String> allLogins = new LinkedList<String>();
+      String request = String.format("SELECT %s FROM users", "login");
+      this.ps = this.conn.prepareStatement(request);
+      try {
+         this.rs = this.ps.executeQuery();
+         while (rs.next()) {
+            allLogins.add(rs.getString("login")
+            );
+         }
+      } catch (SQLException e) {
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
+      }
+      return allLogins;
    }
 
 }

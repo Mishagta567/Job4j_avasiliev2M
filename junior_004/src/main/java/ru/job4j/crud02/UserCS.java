@@ -13,10 +13,10 @@ public class UserCS {
    private String email;
    private final Timestamp insertedDate;
 
-   public UserCS(String name, String login, String email, Timestamp insertedDate) {
+   public UserCS(String name, String logn, String eml, Timestamp insertedDate) {
       this.name = name;
-      this.login = login;
-      this.email = email;
+      this.login = logn;
+      this.email = eml;
       this.insertedDate = insertedDate;
    }
 
