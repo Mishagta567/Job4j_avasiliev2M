@@ -200,7 +200,7 @@ public class UserStore {
 
    public Queue getAllUsers() throws SQLException {
       Queue<String> allLogins = new LinkedList<String>();
-      String request = String.format("SELECT %s FROM users", "login");
+      String request = String.format("SELECT %s FROM users ORDER BY login", "login");
       this.ps = this.conn.prepareStatement(request);
       try {
          this.rs = this.ps.executeQuery();
