@@ -59,10 +59,10 @@ public class IndexServlet extends HttpServlet {
          for (String login : allLogins) {
             writer.append(String.format("<tr>"
                     + "        <td>%s</td>"
-                    + "        <td><form action='%s/edit03' method='get'?login=%s><button>Edit</button>"
+                    + "        <td><form action='%s/edit03'?login=%s method='get'><button>Edit</button>"
                     + "               <input type='hidden' name='login' value=%s>"
                     + "            </form></td>"
-                    + "        <td><form action='%s/delete03' method='post'?login=%s><button>Delete</button>"
+                    + "        <td><form action='%s/delete03'?login=%s method='post'><button>Delete</button>"
                     + "               <input type='hidden' name='login' value=%s>"
                     + "            </form></td>"
                     + "        <td> <a href='%s/newuser03'>Create new user</a> </td>"

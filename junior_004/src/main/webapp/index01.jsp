@@ -10,6 +10,8 @@
 </head>
 <body>
 
+Страница webapp/index.jsp<br/>
+
 <% final UserStore userStore = UserStore.SingletonEnum.INSTANCE.getInstance();
     String path = request.getContextPath();
     Queue<String> allLogins = userStore.getAllUsers(); %>

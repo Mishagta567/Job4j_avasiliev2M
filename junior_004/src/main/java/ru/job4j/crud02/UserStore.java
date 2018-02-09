@@ -3,6 +3,8 @@ package ru.job4j.crud02;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.awt.*;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -147,7 +149,7 @@ public class UserStore {
                               //"damn_login",
                               rs.getString("login"),
                               //"dam_mail",
-                              rs.getString(3),
+                              rs.getString("email"),
                               rs.getTimestamp("inserted_date")
             );
          }
@@ -213,6 +215,26 @@ public class UserStore {
          e.printStackTrace();
       }
       return allLogins;
+   }
+
+   public List getAllUsersCS() throws SQLException {
+      List allusersCS = new List();
+      String request = String.format("SELECT name, login, email, inserted_date FROM users");
+      this.ps = this.conn.prepareStatement(request);
+      try {
+         this.rs = this.ps.executeQuery();
+         while (rs.next()) {
+            allusersCS.add(String.valueOf(new UserCS(rs.getString("name"),
+                    rs.getString("login"),
+                    rs.getString("email"),
+                    rs.getTimestamp("inserted_date")
+            )));
+         }
+      } catch (SQLException e) {
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
+      }
+      return allusersCS;
    }
 
 }
