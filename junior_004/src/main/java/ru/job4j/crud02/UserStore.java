@@ -237,4 +237,39 @@ public class UserStore {
       return allusersCS;
    }
 
+   public boolean isCredentional(String login, String pass) throws SQLException {
+      int count = 0;
+      String request = String.format("SELECT count(*) FROM users WHERE login=? AND password=?");
+      this.ps = this.conn.prepareStatement(request);
+      try {
+         this.ps.setString(1, login);
+         this.ps.setString(2, pass);
+         this.rs = this.ps.executeQuery();
+         while (rs.next()) {
+            count = rs.getInt(1);
+         }
+      } catch (SQLException e) {
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
+      }
+      return (count > 0);
+   }
+
+   public String getRole(String login) throws SQLException {
+      String role = null;
+      String request = ("SELECT role FROM users us INNER JOIN role rl on us.role_id = rl.id WHERE us.login = ?");
+      this.ps = this.conn.prepareStatement(request);
+      try {
+         this.ps.setString(1, login);
+         this.rs = this.ps.executeQuery();
+         while (rs.next()) {
+            role = rs.getString(1);
+         }
+      } catch (SQLException e) {
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
+      }
+      return role;
+   }
+
 }

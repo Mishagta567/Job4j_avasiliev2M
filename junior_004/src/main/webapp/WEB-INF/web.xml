@@ -1,8 +1,13 @@
 <web-app>
-    <servlet>
-        <servlet-name>UsersControllerServlet</servlet-name>
-        <servlet-class>ru.job4j.mvc05.UsersController</servlet-class>
-    </servlet>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>ru.job4j.filter06.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>EchoServlet</servlet-name>
         <servlet-class>ru.job4j.strctr01.EchoServlet</servlet-class>
@@ -28,11 +33,15 @@
         <servlet-name>NewuserServlet</servlet-name>
         <servlet-class>ru.job4j.servlet03.NewuserServlet</servlet-class>
     </servlet>
-
-    <servlet-mapping>
+    <servlet>
         <servlet-name>UsersControllerServlet</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
+        <servlet-class>ru.job4j.mvc05.UsersController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Signin</servlet-name>
+        <servlet-class>ru.job4j.filter06.SigninController</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>EchoServlet</servlet-name>
         <url-pattern>/echo</url-pattern>
@@ -56,6 +65,14 @@
     <servlet-mapping>
         <servlet-name>NewuserServlet</servlet-name>
         <url-pattern>/newuser03</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsersControllerServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Signin</servlet-name>
+        <url-pattern>/signin</url-pattern>
     </servlet-mapping>
 
 </web-app>
