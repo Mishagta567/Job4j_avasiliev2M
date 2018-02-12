@@ -49,6 +49,19 @@ public class InputOutput {
    }
 
 
+   /**
+    * @param args - I don't use it yet
+    */
+   public static void main(final String[] args) {
+      InputOutput iot = new InputOutput();
+
+      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+      InputStreamReader in = new InputStreamReader(System.in);
+      int number = 0;
+
+      // ByteArrayInputStream(new byte[] {49, 50, 53, 54} - 1256
+      System.out.println(iot.checkNumberFromStream(new ByteArrayInputStream(new byte[] {49, 50, 53, 54})));
+   }
 
    //Scanner sc = new Scanner(System.in);
    //String str1;
