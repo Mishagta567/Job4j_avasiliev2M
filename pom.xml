@@ -19,6 +19,13 @@
         <module>junior_002</module>
         <module>junior_003</module>
         <module>junior_004</module>
+        <module>premiddle_003</module>
+        <module>premiddle_004</module>
+        <module>premiddle_006</module>
+        <module>premiddle_010</module>
+        <module>premiddle_011</module>
+        <module>premiddle_015</module>
+        <module>premiddle_100</module>
     </modules>
 	 
 	<dependencies>
