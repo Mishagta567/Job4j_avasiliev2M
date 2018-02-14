@@ -2,6 +2,8 @@ package ru.job4j.servlet03;
 
 import org.junit.Test;
 import ru.job4j.mvc05.UsersController;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialException;
@@ -23,7 +25,11 @@ public class EditServletTest {
       HttpServletRequest request = mock(HttpServletRequest.class);
       HttpServletResponse response = mock(HttpServletResponse.class);
 
-      //controller.doPost(request, response);
+      try {
+         controller.doGet(request, response);
+      } catch (ServletException e) {
+         e.printStackTrace();
+      }
 
    }
 

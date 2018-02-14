@@ -37,7 +37,7 @@ public class UsersController extends HttpServlet {
     * Returns user-info specified by login.
     */
    @Override
-   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+   public void doGet(HttpServletRequest req, HttpServletResponse resp)
            throws ServletException, IOException {
       PrintWriter writer = new PrintWriter(resp.getOutputStream());
       writer.append("Hello there. Page src/main/java/mvc05/UsersController.java");
