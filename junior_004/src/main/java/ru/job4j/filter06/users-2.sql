@@ -11,7 +11,7 @@ CREATE TABLE public.users
   name character varying(200),
   inserted_date TIMESTAMP,
   email character varying(200)
-)
+);
 
 INSERT INTO role(id, role) VALUES(1, 'admin');
 INSERT INTO role(id, role) VALUES(2, 'normal_user');

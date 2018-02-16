@@ -8,22 +8,9 @@
         <version>2.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>premiddle_000</artifactId>
+    <artifactId>junior_004b</artifactId>
     <packaging>war</packaging>
-
     <dependencies>
-        <!-- hibernate using jdbc -->
-        <dependency>
-            <groupId>postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.1-901-1.jdbc4</version>
-        </dependency>
-        <!-- hibernate -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.2.13.Final</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -31,11 +18,11 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
-        <!-- JSTL - расширение jsp для расшерния функционала и возможностей. https://mvnrepository.com/artifact/jstl/jstl -->
+
         <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.1-901-1.jdbc4</version>
         </dependency>
     </dependencies>
 </project>

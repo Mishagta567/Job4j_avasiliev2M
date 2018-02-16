@@ -9,6 +9,6 @@
 
         <!-- mapping files -->
         <mapping resource="ru/job4j/todo01/TodoItem.hbm.xml"/>
-        <mapping resource="ru/job4j/video00/UserCS.hbm.xml"/>
+        <mapping resource="ru/job4j/video00/User.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

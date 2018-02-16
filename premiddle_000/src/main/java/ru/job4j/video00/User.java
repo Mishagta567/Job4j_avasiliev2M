@@ -82,12 +82,12 @@ public class User {
       this.insertedDate = time;
    }
 
-   public void setRole(int role) {
-      this.role = role;
-   }
-
    public int getRole() {
       return role;
+   }
+
+   public void setRole(int role) {
+      this.role = role;
    }
 
    @Override

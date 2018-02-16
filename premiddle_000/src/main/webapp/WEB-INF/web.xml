@@ -1,5 +1,14 @@
 <web-app>
     <servlet>
+        <servlet-name>Signin</servlet-name>
+        <servlet-class>ru.job4j.todo01.SigninController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Signin</servlet-name>
+        <url-pattern>/signin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>JsonController</servlet-name>
         <servlet-class>ru.job4j.todo01.JsonController</servlet-class>
     </servlet>
@@ -15,5 +24,14 @@
     <servlet-mapping>
         <servlet-name>TodoItem</servlet-name>
         <url-pattern>/todo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TodoItemInsert</servlet-name>
+        <servlet-class>ru.job4j.todo01.TodoitemInsertServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TodoItemInsert</servlet-name>
+        <url-pattern>/todoinsert</url-pattern>
     </servlet-mapping>
 </web-app>

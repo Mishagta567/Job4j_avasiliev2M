@@ -7,7 +7,7 @@ import ru.job4j.video00.User;
 
 import java.sql.Timestamp;
 
-public class UserStorage {
+public class UserChange {
 
    public static void main(String[] args) {
       SessionFactory factory = new Configuration()
@@ -17,9 +17,9 @@ public class UserStorage {
       session.beginTransaction();
       User user = new User();
       user.setId(11);
-      user.setLogin("login-1234---");
-      user.setPassword("1234---");
-      user.setName("Name 1234---");
+      user.setLogin("login-88//88");
+      user.setPassword("88//88");
+      user.setName("Name 88//88");
       user.setEmail("-------=======@mail.ru");
       user.setRole(1);
       user.setInsertedDate(new Timestamp(System.currentTimeMillis()));
