@@ -7,6 +7,8 @@
         <property name="connection.password">raduga</property>
         <property name="dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>
 
-        <mapping resource="ru/job4j/video00/UserCS.hbm.xml" />
+        <!-- mapping files -->
+        <mapping resource="ru/job4j/todo01/TodoItem.hbm.xml"/>
+        <mapping resource="ru/job4j/video00/UserCS.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
