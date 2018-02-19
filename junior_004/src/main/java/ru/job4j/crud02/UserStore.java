@@ -4,7 +4,7 @@ package ru.job4j.crud02;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.*;
+import java.util.*;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -218,7 +218,7 @@ public class UserStore {
    }
 
    public List getAllUsersCS() throws SQLException {
-      List allusersCS = new List();
+      List allusersCS = new ArrayList();
       String request = String.format("SELECT name, login, email, inserted_date FROM users");
       this.ps = this.conn.prepareStatement(request);
       try {

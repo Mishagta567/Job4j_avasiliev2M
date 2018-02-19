@@ -1,12 +1,10 @@
 package ru.job4j.crud02;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import java.awt.*;
 import java.io.IOException;
 import java.sql.*;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
+
+
 
 /**
  * Class, wich fo all job for UsersServlet
@@ -17,7 +15,6 @@ import java.util.Queue;
  */
 
 public class UserStore {
-   private static final Logger LOG = LoggerFactory.getLogger(UserStore.class);
 
    private Connection conn;
    private String dbUrl;
@@ -35,13 +32,20 @@ public class UserStore {
       this.connectDb();
    }
 
+   public static void main(String[] args) throws SQLException {
+      UserStore userStore = UserStore.SingletonEnum.INSTANCE.getInstance();
+      User user = userStore.getUser("agent007");
+      System.out.println(user.getEmail());
+   }
+
    public enum SingletonEnum {
       INSTANCE;
       public UserStore getInstance() {
          try {
             instance = new UserStore();
          } catch (SQLException | IOException e) {
-            LOG.error(e.getMessage(), e);
+            //LOG.error(e.getMessage(), e);
+            e.printStackTrace();
          }
          return instance;
       }
@@ -55,13 +59,15 @@ public class UserStore {
          Class.forName("org.postgresql.Driver");
          this.conn = DriverManager.getConnection(this.dbUrl, this.user, this.password);
       } catch (ClassNotFoundException | SQLException e) {
-         LOG.error(e.getMessage(), e);
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
       }
       try {
          this.rst = this.conn.getMetaData().
                  getTables(null, null, "users", null);
       } catch (SQLException e) {
-         LOG.error(e.getMessage(), e);
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
       }
    }
 
@@ -81,7 +87,8 @@ public class UserStore {
       try {
          result = this.stm.execute(request);
       } catch (SQLException e) {
-         LOG.error(e.getMessage(), e);
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
       }
       return result;
    }
@@ -107,7 +114,8 @@ public class UserStore {
             );
          }
       } catch (SQLException e) {
-         LOG.error(e.getMessage(), e);
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
       }
       return user;
    }
@@ -129,7 +137,8 @@ public class UserStore {
          try {
             result = this.stm.executeUpdate(request) > 0;
          } catch (SQLException e) {
-            LOG.error(e.getMessage(), e);
+            //LOG.error(e.getMessage(), e);
+            e.printStackTrace();
          }
       }
       return result;
@@ -145,13 +154,14 @@ public class UserStore {
       try {
          result = this.stm.executeUpdate(request) > 0;
       } catch (SQLException e) {
-         LOG.error(e.getMessage(), e);
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
       }
       return result;
    }
 
-   public Queue getAllUsersQ() throws SQLException {
-      Queue<String> allLogins = new LinkedList<String>();
+   public List<String> getAlllogins() throws SQLException {
+      List<String> allLogins = new ArrayList<String>();
       String request = String.format("SELECT %s FROM users ORDER BY login", "login");
       this.pst = this.conn.prepareStatement(request);
       try {
@@ -167,23 +177,27 @@ public class UserStore {
       return allLogins;
    }
 
+   /**
+    *  Get all users List. Need it for servlet03
+    */
    public List getAllUsers() throws SQLException {
-      List allusersCS = new List();
+      java.util.List<User> allUsers = new ArrayList<User>();
       String request = String.format("SELECT name, login, email, inserted_date FROM users");
       this.pst = this.conn.prepareStatement(request);
       try {
          this.rst = this.pst.executeQuery();
          while (rst.next()) {
-            allusersCS.add(String.valueOf(new User(rst.getString("name"),
+            allUsers.add(new User(rst.getString("name"),
                     rst.getString("login"),
                     rst.getString("email"),
-                    rst.getTimestamp("inserted_date")
-            )));
+                    rst.getTimestamp("inserted_date"))
+            );
          }
       } catch (SQLException e) {
-         LOG.error(e.getMessage(), e);
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
       }
-      return allusersCS;
+      return (List) allUsers;
    }
 
    /**
@@ -194,28 +208,32 @@ public class UserStore {
          assert conn != null;
          this.conn.close();
       } catch (SQLException e) {
-         LOG.error(e.getMessage(), e);
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
       }
       try {
          if (this.pst != null) {
             this.pst.close();
          }
       } catch (SQLException e) {
-         LOG.error(e.getMessage(), e);
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
       }
       try {
          if (this.stm != null) {
             this.stm.close();
          }
       } catch (SQLException e) {
-         LOG.error(e.getMessage(), e);
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
       }
       try {
          if (this.rst != null) {
             this.rst.close();
          }
       } catch (SQLException e) {
-         LOG.error(e.getMessage(), e);
+         //LOG.error(e.getMessage(), e);
+         e.printStackTrace();
       }
    }
 
