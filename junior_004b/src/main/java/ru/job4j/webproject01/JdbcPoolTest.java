@@ -31,9 +31,8 @@ public class JdbcPoolTest {
       p.setMinIdle(10);
       p.setLogAbandoned(true);
       p.setRemoveAbandoned(true);
-      p.setJdbcInterceptors(
-              "org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;"+
-                      "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer");
+      p.setJdbcInterceptors("org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;"
+                      + "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer");
       DataSource datasource = new DataSource();
       datasource.setPoolProperties(p);
 
@@ -44,13 +43,18 @@ public class JdbcPoolTest {
          ResultSet rs = st.executeQuery("select * from users");
          int cnt = 1;
          while (rs.next()) {
-            System.out.println((cnt++)+ " Login:"+rs.getString("login")
-                    + " Password:"+rs.getString("Password"));
+            System.out.println((cnt++) + " Login:" + rs.getString("login")
+                    + " Password:" + rs.getString("Password"));
          }
          rs.close();
          st.close();
       } finally {
-         if (con!=null) try {con.close();}catch (Exception ignore) {}
+         if (con != null) {
+            try {
+               con.close();
+            } catch (Exception ignore) {
+            }
+         }
       }
    }
 
