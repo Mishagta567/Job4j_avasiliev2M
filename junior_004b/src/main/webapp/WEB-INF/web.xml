@@ -5,7 +5,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>EchoServlet</servlet-name>
-        <url-pattern>/echo</url-pattern>
+        <url-pattern>/echo01</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -15,6 +15,42 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>UsersServlet</servlet-name>
-        <url-pattern>/crud</url-pattern>
+        <url-pattern>/crud02</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>ru.job4j.servlet03.DeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/delete03</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditServlet</servlet-name>
+        <servlet-class>ru.job4j.servlet03.EditServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditServlet</servlet-name>
+        <url-pattern>/edit03</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewuserServlet</servlet-name>
+        <servlet-class>ru.job4j.servlet03.NewuserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewuserServlet</servlet-name>
+        <url-pattern>/newuser03</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserList</servlet-name>
+        <servlet-class>ru.job4j.servlet03.UserListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserList</servlet-name>
+        <url-pattern>/list03</url-pattern>
     </servlet-mapping>
 </web-app>

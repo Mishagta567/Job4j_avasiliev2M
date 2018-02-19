@@ -19,7 +19,7 @@
     </servlet>
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
-        <servlet-class>ru.job4j.servlet03.IndexServlet</servlet-class>
+        <servlet-class>ru.job4j.servlet03.UserListServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteServlet</servlet-name>
