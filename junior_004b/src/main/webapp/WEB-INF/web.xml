@@ -1,5 +1,14 @@
 <web-app>
     <servlet>
+        <servlet-name>UsersControler</servlet-name>
+        <servlet-class>ru.job4j.mvcjstl05.UsersControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UsersControler</servlet-name>
+        <url-pattern>/ucontr</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>EchoServlet</servlet-name>
         <servlet-class>ru.job4j.webproject01.EchoServlet</servlet-class>
     </servlet>
@@ -52,5 +61,14 @@
     <servlet-mapping>
         <servlet-name>UserList</servlet-name>
         <url-pattern>/list03</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UsersControler</servlet-name>
+        <servlet-class>ru.job4j.mvcjstl05.UsersControler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UsersControler</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>

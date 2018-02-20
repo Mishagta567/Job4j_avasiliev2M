@@ -62,8 +62,6 @@ public class EditServlet extends HttpServlet {
       String userName = req.getParameter("name");
       String userEmail = req.getParameter("email");
       PrintWriter writer = new PrintWriter(resp.getOutputStream());
-      writer.append(String.format("Login: %s, Name: %s, Email: %s", userLogin, userName, userEmail));
-      writer.flush();
       //if (!userName.equals(null)) { //&& !userName.equals("")) {
          try {
             this.userStore.updateUser(userLogin, userName, userEmail);
@@ -71,7 +69,7 @@ public class EditServlet extends HttpServlet {
             e.printStackTrace();
          }
       //}  */
-      doGet(req, resp);
+      resp.sendRedirect(String.format("%s/", req.getContextPath()));
    }
 
 }

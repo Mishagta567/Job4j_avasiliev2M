@@ -41,7 +41,7 @@ public class DeleteServlet extends HttpServlet {
       } catch (SQLException e) {
          e.printStackTrace();
       }
-      doGet(req, resp);
+      resp.sendRedirect(String.format("%s/", req.getContextPath()));
    }
 
    @Override
