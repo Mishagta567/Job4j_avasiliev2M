@@ -39,7 +39,7 @@
     </servlet>
     <servlet>
         <servlet-name>Signin</servlet-name>
-        <servlet-class>ru.job4j.filter06.SigninController</servlet-class>
+        <servlet-class>ru.job4j.filter06.SigninController06</servlet-class>
     </servlet>
 
     <servlet-mapping>
