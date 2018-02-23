@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class UsersControler extends HttpServlet {
+public class UsersControler05 extends HttpServlet {
 
    private List<String> users = new CopyOnWriteArrayList<String>();
 

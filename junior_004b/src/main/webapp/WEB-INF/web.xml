@@ -1,74 +1,138 @@
 <web-app>
-    <servlet>
-        <servlet-name>UsersControler</servlet-name>
-        <servlet-class>ru.job4j.mvcjstl05.UsersControler</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UsersControler</servlet-name>
-        <url-pattern>/ucontr</url-pattern>
-    </servlet-mapping>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>ru.job4j.filter06.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
 
     <servlet>
-        <servlet-name>EchoServlet</servlet-name>
+        <servlet-name>EchoServlet01</servlet-name>
         <servlet-class>ru.job4j.webproject01.EchoServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>EchoServlet</servlet-name>
+        <servlet-name>EchoServlet01</servlet-name>
         <url-pattern>/echo01</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>UsersServlet</servlet-name>
+        <servlet-name>UsersServlet02</servlet-name>
         <servlet-class>ru.job4j.crud02.UsersServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>UsersServlet</servlet-name>
+        <servlet-name>UsersServlet02</servlet-name>
         <url-pattern>/crud02</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-name>DeleteServlet03</servlet-name>
         <servlet-class>ru.job4j.servlet03.DeleteServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-name>DeleteServlet03</servlet-name>
         <url-pattern>/delete03</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>EditServlet</servlet-name>
+        <servlet-name>EditServlet03</servlet-name>
         <servlet-class>ru.job4j.servlet03.EditServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>EditServlet</servlet-name>
+        <servlet-name>EditServlet03</servlet-name>
         <url-pattern>/edit03</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>NewuserServlet</servlet-name>
+        <servlet-name>NewuserServlet03</servlet-name>
         <servlet-class>ru.job4j.servlet03.NewuserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>NewuserServlet</servlet-name>
+        <servlet-name>NewuserServlet03</servlet-name>
         <url-pattern>/newuser03</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>UserList</servlet-name>
+        <servlet-name>UserList03</servlet-name>
         <servlet-class>ru.job4j.servlet03.UserListServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>UserList</servlet-name>
+        <servlet-name>UserList03</servlet-name>
         <url-pattern>/list03</url-pattern>
     </servlet-mapping>
 
+    <!--<servlet>-->
+        <!--<servlet-name>UsersControler05</servlet-name>-->
+        <!--<servlet-class>ru.job4j.mvcjstl05.UsersControler05</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>UsersControler05</servlet-name>-->
+        <!--<url-pattern>/</url-pattern>-->
+    <!--</servlet-mapping>-->
+
     <servlet>
-        <servlet-name>UsersControler</servlet-name>
-        <servlet-class>ru.job4j.mvcjstl05.UsersControler</servlet-class>
+        <servlet-name>UsersControler05</servlet-name>
+        <servlet-class>ru.job4j.mvcjstl05.UsersControler05</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>UsersControler</servlet-name>
-        <url-pattern>/</url-pattern>
+        <servlet-name>UsersControler05</servlet-name>
+        <url-pattern>/ucontr05</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SigninController06</servlet-name>
+        <servlet-class>ru.job4j.filter06.SigninController06</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SigninController06</servlet-name>
+        <url-pattern>/signin06</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditUserServlet06</servlet-name>
+        <servlet-class>ru.job4j.filter06.EditUserServlet06</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditUserServlet06</servlet-name>
+        <url-pattern>/editUser06</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>InsertUserServlet06</servlet-name>
+        <servlet-class>ru.job4j.filter06.InsertUserServlet06</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertUserServlet06</servlet-name>
+        <url-pattern>/insertUser06</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditRoleServlet06</servlet-name>
+        <servlet-class>ru.job4j.filter06.EditRoleServlet06</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditRoleServlet06</servlet-name>
+        <url-pattern>/editRole06</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>InsertRoleServlet06</servlet-name>
+        <servlet-class>ru.job4j.filter06.InsertRoleServlet06</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InsertRoleServlet06</servlet-name>
+        <url-pattern>/insertRole06</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SigninOutController06</servlet-name>
+        <servlet-class>ru.job4j.filter06.SigninOutController06</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SigninOutController06</servlet-name>
+        <url-pattern>/signout06</url-pattern>
+    </servlet-mapping>
+
 </web-app>
