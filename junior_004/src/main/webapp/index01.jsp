@@ -27,7 +27,7 @@
                <input type='hidden' name='login' value='<%=login %>'>
             </form></td>
         <td>
-           <a href='/items/newuser03'>Create new user</a>
+           <a href='/items/newuser03'>Create new user01</a>
         </td>
     </tr>
     <% } %>

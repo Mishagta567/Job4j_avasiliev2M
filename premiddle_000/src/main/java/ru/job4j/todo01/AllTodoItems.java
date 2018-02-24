@@ -3,9 +3,7 @@ package ru.job4j.todo01;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import ru.job4j.video00.User;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public class AllTodoItems {

@@ -1,5 +1,5 @@
 <hibernate-mapping>
-    <class name="ru.job4j.video00.User" table="users">
+    <class name="ru.job4j.video00.User01" table="users">
         <id name="id" column="id">
             <generator class="identity"/>
         </id>

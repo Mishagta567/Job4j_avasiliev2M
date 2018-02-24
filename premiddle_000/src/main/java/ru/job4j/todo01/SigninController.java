@@ -4,7 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-import ru.job4j.video00.User;
+import ru.job4j.video00.User01;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,14 +44,14 @@ public class SigninController extends HttpServlet {
                  .buildSessionFactory();
          Session session = factory.openSession();
          session.beginTransaction();
-         User user = new User();
-         user.setLogin(login);
-         user.setPassword(pass);
-         Query query = session.createQuery(String.format("FROM User WHERE login = '%s' AND password = '%s'", login, pass));
-         List<User> myUser = query.list();
+         User01 user01 = new User01();
+         user01.setLogin(login);
+         user01.setPassword(pass);
+         Query query = session.createQuery(String.format("FROM User01 WHERE login = '%s' AND password = '%s'", login, pass));
+         List<User01> myUser01 = query.list();
          session.close();
          factory.close();
-         if (myUser.size() > 0) {
+         if (myUser01.size() > 0) {
             HttpSession userSession = req.getSession();
             synchronized (session) {
                userSession.setAttribute("login", login);

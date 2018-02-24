@@ -3,7 +3,6 @@ package ru.job4j.video00;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import ru.job4j.video00.User;
 
 import java.sql.Timestamp;
 
@@ -15,16 +14,16 @@ public class UserChange {
               .buildSessionFactory();
       Session session = factory.openSession();
       session.beginTransaction();
-      User user = new User();
-      user.setId(11);
-      user.setLogin("login-88//88");
-      user.setPassword("88//88");
-      user.setName("Name 88//88");
-      user.setEmail("-------=======@mail.ru");
-      user.setRole(1);
-      user.setInsertedDate(new Timestamp(System.currentTimeMillis()));
+      User01 user01 = new User01();
+      user01.setId(18);
+      user01.setLogin("agent007");
+      user01.setPassword("007");
+      user01.setName("Agent 0 0 7");
+      user01.setEmail("007@mail.ru");
+      user01.setRole(2);
+      user01.setInsertedDate(new Timestamp(System.currentTimeMillis()));
 
-      session.update(user);
+      session.update(user01);
       //System.out.println(session.createQuery("from users").list());
       session.getTransaction().commit();
       session.close();

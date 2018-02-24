@@ -7,6 +7,9 @@
 </head>
 <body>
 
+webapp/WEB-INF/views/todo01/login.jsp <br><br><br>
+
+
 <% String err = request.getParameter("error"); %>
 <%=err%> <br><br>
 
