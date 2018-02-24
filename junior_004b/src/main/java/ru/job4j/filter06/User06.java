@@ -3,6 +3,7 @@ package ru.job4j.filter06;
 import java.sql.Timestamp;
 
 /**
+ *
  * Simple class for UserStore class, to work with user-data as an object
  */
 
