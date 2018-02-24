@@ -27,23 +27,23 @@ Page webapp/WEB-INF/filter06/userList.jsp<br/><br/>
             <td></td>
     </tr>
 
-    <c:forEach items="<%=userStore.getAllUsers()%>" var="user01">
+    <c:forEach items="<%=userStore.getAllUsers()%>" var="user00">
         <tr>
             <%--<form action='<%= request.getContextPath()%>/editUser06' method='post'>--%>
             <form action="<c:out value="${pageContext.request.contextPath}"></c:out>/editUser06" method='post'>
-                <td>${user01.id}<input type="hidden" name="id" value='${user01.id}'></td>
-                <td><input type="text" name="login" value='${user01.login}'></td>
-                <td><input type="text" name="password" value='${user01.password}'></td>
-                <td><input type="text" name="name" value='${user01.name}'></td>
-                <td><input type="text" name="email" value='${user01.email}'></td>
-                <td>${user01.insertedDate}</td>
-                <td><input type="text" name="roleId" value='${user01.roleId}'></td>
-                <td>${user01.roleName}</td>
+                <td>${user00.id}<input type="hidden" name="id" value='${user00.id}'></td>
+                <td><input type="text" name="login" value='${user00.login}'></td>
+                <td><input type="text" name="password" value='${user00.password}'></td>
+                <td><input type="text" name="name" value='${user00.name}'></td>
+                <td><input type="text" name="email" value='${user00.email}'></td>
+                <td>${user00.insertedDate}</td>
+                <td><input type="text" name="roleId" value='${user00.roleId}'></td>
+                <td>${user00.roleName}</td>
                 <td><input type="submit" value="Save"></td>
             </form>
-            <form action="<c:out value="${pageContext.request.contextPath}"></c:out>/editUser06?login=${user01.login}&&id=${user01.id}" method='get'>
-                <input type='hidden' name='login' value='${user01.login}'>
-                <input type='hidden' name='id' value='${user01.id}'>
+            <form action="<c:out value="${pageContext.request.contextPath}"></c:out>/editUser06?login=${user00.login}&&id=${user00.id}" method='get'>
+                <input type='hidden' name='login' value='${user00.login}'>
+                <input type='hidden' name='id' value='${user00.id}'>
                 <td><input type="submit" value="Delete"></td>
             </form>
         </tr>

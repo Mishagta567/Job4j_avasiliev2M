@@ -6,7 +6,7 @@ import java.sql.Timestamp;
  * Simple class for UserStore class, to work with user-data as an object
  */
 
-public class User01 {
+public class User00 {
    private int id;
    private int role;
    private String name;
@@ -15,14 +15,14 @@ public class User01 {
    private String password;
    private Timestamp insertedDate;
 
-   public User01(String name, String logn, String eml, Timestamp insertedDate) {
+   public User00(String name, String logn, String eml, Timestamp insertedDate) {
       this.name = name;
       this.login = logn;
       this.email = eml;
       this.insertedDate = insertedDate;
    }
 
-   public User01(String name, String logn, String password, String eml, Timestamp insertedDate) {
+   public User00(String name, String logn, String password, String eml, Timestamp insertedDate) {
       this.name = name;
       this.login = logn;
       this.password = password;
@@ -30,7 +30,7 @@ public class User01 {
       this.insertedDate = insertedDate;
    }
 
-   public User01() {
+   public User00() {
 
    }
 

@@ -28,7 +28,7 @@ public class AuthFilter implements Filter {
                //req.getRequestDispatcher("/WEB-INF/filter06/loginView.jsp?Out_get=From_signinController_Not_signed").forward(req, resp); // or //
                return;
             }
-            if (request.getRequestURI().contains("User01")) {
+            if (request.getRequestURI().contains("User00")) {
                if (!session.getAttribute("role").equals("admin") && !session.getAttribute("login").equals(req.getParameter("login"))) {
                   //((HttpServletResponse) resp).sendRedirect("/j004b/filter06/notAdmin.jsp");  // Work
                   // Могу ли вместо этого использовать что ниже? Если нет почему и что делать? (этот не работал)

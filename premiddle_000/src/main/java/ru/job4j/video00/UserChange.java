@@ -14,16 +14,16 @@ public class UserChange {
               .buildSessionFactory();
       Session session = factory.openSession();
       session.beginTransaction();
-      User01 user01 = new User01();
-      user01.setId(18);
-      user01.setLogin("agent007");
-      user01.setPassword("007");
-      user01.setName("Agent 0 0 7");
-      user01.setEmail("007@mail.ru");
-      user01.setRole(2);
-      user01.setInsertedDate(new Timestamp(System.currentTimeMillis()));
+      User00 user00 = new User00();
+      user00.setId(18);
+      user00.setLogin("agent007");
+      user00.setPassword("007");
+      user00.setName("Agent 0 0 7");
+      user00.setEmail("007@mail.ru");
+      user00.setRole(2);
+      user00.setInsertedDate(new Timestamp(System.currentTimeMillis()));
 
-      session.update(user01);
+      session.update(user00);
       //System.out.println(session.createQuery("from users").list());
       session.getTransaction().commit();
       session.close();

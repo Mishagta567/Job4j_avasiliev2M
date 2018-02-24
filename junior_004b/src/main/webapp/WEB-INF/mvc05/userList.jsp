@@ -15,19 +15,19 @@ Page webapp/WEB-INF/mvc05/userList.jsp<br/><br/>
 <% final UserStore03 userStore = UserStore03.SingletonEnum.INSTANCE.getInstance(); %>
 
 <table>
-    <c:forEach items="<%=userStore.getAllUsers()%>" var="user01">
+    <c:forEach items="<%=userStore.getAllUsers()%>" var="user00">
     <tr>
-        <td><c:out value="${user01.login}"></c:out></td>
-        <td><form action="<c:out value="${pageContext.request.contextPath}"></c:out>/edit03?login='<c:out value="${user01.login}"></c:out>" method='get'>
+        <td><c:out value="${user00.login}"></c:out></td>
+        <td><form action="<c:out value="${pageContext.request.contextPath}"></c:out>/edit03?login='<c:out value="${user00.login}"></c:out>" method='get'>
                <input type="submit" value="Edit">
-               <input type='hidden' name='login' value='<c:out value="${user01.login}"></c:out>'></form>
+               <input type='hidden' name='login' value='<c:out value="${user00.login}"></c:out>'></form>
         </td>
-        <td><form action="<c:out value="${pageContext.request.contextPath}"></c:out>/delete03?login=<c:out value="${user01.login}"></c:out>" method='post'>
+        <td><form action="<c:out value="${pageContext.request.contextPath}"></c:out>/delete03?login=<c:out value="${user00.login}"></c:out>" method='post'>
                <input type="submit" value="Delete">
-               <input type='hidden' name='login' value='<c:out value="${user01.login}"></c:out>'></form>
+               <input type='hidden' name='login' value='<c:out value="${user00.login}"></c:out>'></form>
         </td>
         <td>
-           <a href="${pageContext.request.contextPath}/newuser03">Create new user01</a>
+           <a href="${pageContext.request.contextPath}/newuser03">Create new user00</a>
         </td>
     </tr>
     </c:forEach>

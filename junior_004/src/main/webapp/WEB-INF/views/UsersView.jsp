@@ -20,20 +20,20 @@
 
 <table>
 
-    <c:forEach items="<%=userStore.getAllUsers()%>" var="user01">
+    <c:forEach items="<%=userStore.getAllUsers()%>" var="user00">
 
         <tr>
-            <% // td>${user01}<!--c:out value="${user01.getLogin()}"></c:out> </td %>
+            <% // td>${user00}<!--c:out value="${user00.getLogin()}"></c:out> </td %>
 
-            <td><c:out value="${user01}"></c:out></td>
-            <td><form action='/items/edit03?login=${user01}' method='get'><button>Edit</button>
-                <input type='hidden' name='login' value='${user01}'></form>
+            <td><c:out value="${user00}"></c:out></td>
+            <td><form action='/items/edit03?login=${user00}' method='get'><button>Edit</button>
+                <input type='hidden' name='login' value='${user00}'></form>
             </td>
-            <td><form action='/items/delete03?login=${user01}' method='post'><button>Delete</button>
-                <input type='hidden' name='login' value='${user01}'></form>
+            <td><form action='/items/delete03?login=${user00}' method='post'><button>Delete</button>
+                <input type='hidden' name='login' value='${user00}'></form>
             </td>
             <td>
-                <a href='/items/newuser03'>Create new user01</a>
+                <a href='/items/newuser03'>Create new user00</a>
             </td>
         </tr>
 
