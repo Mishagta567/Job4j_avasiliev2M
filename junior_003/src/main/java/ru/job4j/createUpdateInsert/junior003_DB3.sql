@@ -20,21 +20,21 @@ INSERT INTO state(name, descr) VALUES ('Отказ', 'Отказ в исполн
 INSERT INTO state(name, descr) VALUES ('Выполнена', 'Кто-то там начал выполнять');
 
 
-INSERT INTO item (users_id, category_id,  name, descr, inserted_date)  VALUES ((SELECT id FROM users WHERE login = 'alex'),
+INSERT INTO todoItem (users_id, category_id,  name, descr, inserted_date)  VALUES ((SELECT id FROM users WHERE login = 'alex'),
                     1, 'Посчитать овец', 'Пересчетать всех овец в стаде', CURRENT_TIMESTAMP(0));
-INSERT INTO item (users_id, category_id,  name, descr, inserted_date)  VALUES ((SELECT id FROM users WHERE login = 'alex'),
+INSERT INTO todoItem (users_id, category_id,  name, descr, inserted_date)  VALUES ((SELECT id FROM users WHERE login = 'alex'),
                     2, 'Постричь овец', 'Пострич всех овец в стаде', CURRENT_TIMESTAMP(0));
-INSERT INTO item (users_id, category_id,  name, descr, inserted_date)  VALUES ((SELECT id FROM users WHERE login = 'alex'),
+INSERT INTO todoItem (users_id, category_id,  name, descr, inserted_date)  VALUES ((SELECT id FROM users WHERE login = 'alex'),
                     3, 'Мыть овец', 'Помыть всех овец в стаде', CURRENT_TIMESTAMP(0));
-INSERT INTO item (users_id, category_id,  name, descr, inserted_date)  VALUES ((SELECT id FROM users WHERE login = 'alex'),
+INSERT INTO todoItem (users_id, category_id,  name, descr, inserted_date)  VALUES ((SELECT id FROM users WHERE login = 'alex'),
                     3, 'Мыть овец ТЩАТЕЛЬНО', 'Помыть всех овец в стаде ОЧЕНЬ ТЩАТЕЛЬНО', CURRENT_TIMESTAMP(0));
 
 
 
-INSERT INTO comments (item_id, comments, inserted_date) VALUES ((SELECT MIN(id) FROM item), 'считал Вася', CURRENT_TIMESTAMP(0));
-INSERT INTO comments (item_id, comments, inserted_date) VALUES ((SELECT MIN(id) FROM item), 'считал Петя', CURRENT_TIMESTAMP(0));
-INSERT INTO comments (item_id, comments, inserted_date) VALUES ((SELECT MIN(id) FROM item), 'считал Олег', CURRENT_TIMESTAMP(0));
+INSERT INTO comments (item_id, comments, inserted_date) VALUES ((SELECT MIN(id) FROM todoItem), 'считал Вася', CURRENT_TIMESTAMP(0));
+INSERT INTO comments (item_id, comments, inserted_date) VALUES ((SELECT MIN(id) FROM todoItem), 'считал Петя', CURRENT_TIMESTAMP(0));
+INSERT INTO comments (item_id, comments, inserted_date) VALUES ((SELECT MIN(id) FROM todoItem), 'считал Олег', CURRENT_TIMESTAMP(0));
 
 
-INSERT INTO attach(item_id, file, inserted_date) VALUES ((SELECT MIN(id) FROM item), 'Это файл - 1', CURRENT_TIMESTAMP(0));
-INSERT INTO attach(item_id, file, inserted_date) VALUES ((SELECT MIN(id) FROM item), 'Это файл - 2', CURRENT_TIMESTAMP(0));
+INSERT INTO attach(item_id, file, inserted_date) VALUES ((SELECT MIN(id) FROM todoItem), 'Это файл - 1', CURRENT_TIMESTAMP(0));
+INSERT INTO attach(item_id, file, inserted_date) VALUES ((SELECT MIN(id) FROM todoItem), 'Это файл - 2', CURRENT_TIMESTAMP(0));

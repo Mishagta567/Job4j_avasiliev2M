@@ -11,17 +11,18 @@ webapp/WEB-INF/views/todo01/login.jsp <br><br><br>
 
 
 <% String err = request.getParameter("error"); %>
-<%=err%> <br><br>
+
 
 <c:if test="${error != ''}">
     <div style="background-color: red">
         <c:out value="${error}"></c:out>
     </div>
 </c:if>
+<br><br><br>
 
 Login please (alex / 123 for example)<br><br><br>
 
-<form action="${pageContext.servletContext.contextPath}/signin" method="post">
+<form action="${pageContext.servletContext.contextPath}/signin01" method="post">
     Login:  <input type="text" name="login">
     Password:<input type="password" name="password">
     <input type="submit">

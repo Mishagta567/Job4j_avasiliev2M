@@ -27,13 +27,13 @@ webapp/WEB-INF/views/todo01/todoitems.jsp <br><br><br>
             <td>Created</td>
             <td>Done</td>
         </tr>
-    <% for (TodoItem item : allItems) { %>
+    <% for (TodoItem todoItem : allItems) { %>
         <tr>
-            <td><%=item.getId()%></td>
-            <td><%=item.getDescr()%></td>
-            <td><%=item.getCreated()%></td>
-            <td><input id="done" type="checkbox" value="<%=item.getDone()%>" name="done"
-                    <%if (item.getDone()) { %>
+            <td><%=todoItem.getId()%></td>
+            <td><%=todoItem.getDescr()%></td>
+            <td><%=todoItem.getCreated()%></td>
+            <td><input id="done" type="checkbox" value="<%=todoItem.getDone()%>" name="done"
+                    <%if (todoItem.getDone()) { %>
                        checked
                     <%} %>
             </td>
@@ -47,7 +47,7 @@ webapp/WEB-INF/views/todo01/todoitems.jsp <br><br><br>
         <td>Description</td>
         <td></td>
     </tr>
-    <tr><form action='todoinsert' method='post'>
+    <tr><form action='todoinsert01' method='post'>
             <td><input type='text' name='descr' value=''></td>
             <td><button>Create</button></td>
         </form>
@@ -57,7 +57,7 @@ webapp/WEB-INF/views/todo01/todoitems.jsp <br><br><br>
 <div class="container">
     <h2>Add new task</h2>
     <p>Добавыить новую задачу (bootstrap)</p>
-    <form class="form-inline" action="todoinsert" method="post">
+    <form class="form-inline" action="todoinsert01" method="post">
         <div class="form-group">
             <label for="descr">Description:</label>
             <input type="text" class="form-control" id="descr" placeholder="Enter ew task" name="descr">

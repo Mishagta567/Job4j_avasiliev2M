@@ -63,15 +63,6 @@
         <url-pattern>/list03</url-pattern>
     </servlet-mapping>
 
-    <!--<servlet>-->
-        <!--<servlet-name>UsersControler05</servlet-name>-->
-        <!--<servlet-class>ru.job4j.mvcjstl05.UsersControler05</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>UsersControler05</servlet-name>-->
-        <!--<url-pattern>/</url-pattern>-->
-    <!--</servlet-mapping>-->
-
     <servlet>
         <servlet-name>UsersControler05</servlet-name>
         <servlet-class>ru.job4j.mvcjstl05.UsersControler05</servlet-class>

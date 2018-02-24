@@ -33,7 +33,7 @@ CREATE TABLE state (
   descr         CHARACTER VARYING(2000)
 );
 
-CREATE TABLE item (
+CREATE TABLE todoItem (
   id            SERIAL PRIMARY KEY,
   users_id      INTEGER REFERENCES users(id),
   category_id   INTEGER REFERENCES category(id),
@@ -45,14 +45,14 @@ CREATE TABLE item (
 
 CREATE TABLE comments (
   id            SERIAL PRIMARY KEY,
-  item_id       INTEGER REFERENCES item(id),
+  item_id       INTEGER REFERENCES todoItem(id),
   comments      text,
   inserted_date TIMESTAMP
 );
 
 CREATE TABLE attach (
   id            SERIAL PRIMARY KEY,
-  item_id       INTEGER REFERENCES item(id),
+  item_id       INTEGER REFERENCES todoItem(id),
   file          text,
   inserted_date TIMESTAMP
 );

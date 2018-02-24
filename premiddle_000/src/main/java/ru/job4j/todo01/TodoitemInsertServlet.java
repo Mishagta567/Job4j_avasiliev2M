@@ -28,25 +28,27 @@ public class TodoitemInsertServlet extends HttpServlet {
       HttpSession session = req.getSession();
       synchronized (session) {
          if (session.getAttribute("login") == null || session == null) {
-            resp.sendRedirect("login.jsp?from=TodoitemInsertServlet");
+            //resp.sendRedirect("/WEB-INF/views/todo01/loginView.jsp?from=TodoitemInsertServlet");
+            req.getRequestDispatcher("/WEB-INF/views/todo01/loginView.jsp?from=TodoitemInsertServlet").forward(req, resp); // or //
          } else {
             SessionFactory factory = new Configuration()
                     .configure() // configure setting from hibernate,cfg,xml
                     .buildSessionFactory();
             Session dbSession = factory.openSession();
             dbSession.beginTransaction();
-            TodoItem item = new TodoItem();
+            TodoItem todoItem = new TodoItem();
             String descr = req.getParameter("descr");
-            if (!descr.equals(null) && !descr.equals("null")) {
-               item.setDescr(descr);
-               item.setDone(false);
-               item.setCreated(new Timestamp(System.currentTimeMillis()));
-               dbSession.save(item);
+            if (!descr.equals(null) && !descr.equals("")) {
+               todoItem.setDescr(descr);
+               todoItem.setDone(false);
+               todoItem.setCreated(new Timestamp(System.currentTimeMillis()));
+               dbSession.save(todoItem);
                dbSession.getTransaction().commit();
                dbSession.close();
                factory.close();
             }
-            resp.sendRedirect("todoitems.jsp?out=From_doPost_TodoitemInsertServlet");
+            //resp.sendRedirect("/WEB-INF/views/todo01/todoitems.jsp?out=From_doPost_TodoitemInsertServlet");
+            req.getRequestDispatcher("/WEB-INF/views/todo01/todoitems.jsp?out=From_doPost_TodoitemInsertServlet").forward(req, resp); // or //
          }
       }
    }

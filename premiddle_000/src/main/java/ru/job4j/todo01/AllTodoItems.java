@@ -14,12 +14,12 @@ public class AllTodoItems {
               .buildSessionFactory();
       Session session = factory.openSession();
       session.beginTransaction();
-      List<TodoItem> allItems = session.createQuery("from TodoItem").list();
+      List<TodoItem> allTodoItems = session.createQuery("from TodoItem").list();
       System.out.println(session.createQuery("from TodoItem").list());
       session.getTransaction().commit();
       session.close();
       factory.close();
-      return allItems;
+      return allTodoItems;
    }
 
 }

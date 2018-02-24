@@ -1,11 +1,20 @@
 <web-app>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>ru.job4j.todo01.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>Signin</servlet-name>
         <servlet-class>ru.job4j.todo01.SigninController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Signin</servlet-name>
-        <url-pattern>/signin</url-pattern>
+        <url-pattern>/signin01</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -14,16 +23,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>JsonController</servlet-name>
-        <url-pattern>/json</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>TodoItem</servlet-name>
-        <servlet-class>ru.job4j.todo01.TodoServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TodoItem</servlet-name>
-        <url-pattern>/todo</url-pattern>
+        <url-pattern>/json01</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -32,6 +32,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>TodoItemInsert</servlet-name>
-        <url-pattern>/todoinsert</url-pattern>
+        <url-pattern>/todoinsert01</url-pattern>
     </servlet-mapping>
 </web-app>
