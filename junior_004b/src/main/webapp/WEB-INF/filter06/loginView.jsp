@@ -7,9 +7,7 @@
 </head>
 <body>
 
-WEB-INF/filter06/loginView.jsp<br>
-
-<% String error = request.getParameter("error"); %>
+WEB-INF/filter06/loginView.jsp<br><br>
 
 <c:if test="${error != ''}">
    <div style="background-color: red">

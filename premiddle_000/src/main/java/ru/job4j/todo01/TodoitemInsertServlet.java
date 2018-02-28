@@ -21,6 +21,7 @@ public class TodoitemInsertServlet extends HttpServlet {
       resp.setContentType("text/html");
       PrintWriter writer = new PrintWriter(resp.getOutputStream());
       writer.append("This is servlet TodoitemInsertServlet, doGet method. There is no new description");
+      writer.flush();
    }
 
    @Override
