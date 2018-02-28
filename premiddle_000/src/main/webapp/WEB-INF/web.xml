@@ -1,12 +1,33 @@
-<web-app>
-    <filter>
-        <filter-name>AuthFilter</filter-name>
-        <filter-class>ru.job4j.todo01.AuthFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AuthFilter</filter-name>
-        <url-pattern>*</url-pattern>
-    </filter-mapping>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
+   <display-name>FileUploadServletExample</display-name>
+
+   <filter>
+      <filter-name>AuthFilter</filter-name>
+      <filter-class>ru.job4j.cars02.servlets.AuthFilter</filter-class>
+   </filter>
+   <filter-mapping>
+      <filter-name>AuthFilter</filter-name>
+      <url-pattern>/check/*</url-pattern>
+   </filter-mapping>
+
+   <welcome-file-list>
+      <welcome-file>carAd_JSTL.jsp</welcome-file>
+   </welcome-file-list>
+
+   <servlet>
+      <servlet-name>UploadServlet02</servlet-name>
+      <servlet-class>ru.job4j.cars02.servlets.UploadServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>UploadServlet02</servlet-name>
+      <url-pattern>/check/uploadServlet02</url-pattern>
+   </servlet-mapping>
 
     <servlet>
         <servlet-name>Signin</servlet-name>
@@ -34,4 +55,32 @@
         <servlet-name>TodoItemInsert</servlet-name>
         <url-pattern>/todoinsert01</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateEditAd02</servlet-name>
+        <servlet-class>ru.job4j.cars02.servlets.CreateEditAd</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateEditAd02</servlet-name>
+        <url-pattern>/check/createedit02</url-pattern>
+    </servlet-mapping>
+
+   <servlet>
+      <servlet-name>SigninController02</servlet-name>
+      <servlet-class>ru.job4j.cars02.servlets.SigninController02</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>SigninController02</servlet-name>
+      <url-pattern>/signin02</url-pattern>
+   </servlet-mapping>
+
+   <servlet>
+      <servlet-name>Soldout02</servlet-name>
+      <servlet-class>ru.job4j.cars02.servlets.Soldout</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>Soldout02</servlet-name>
+      <url-pattern>/check/soldout02</url-pattern>
+   </servlet-mapping>
+
 </web-app>

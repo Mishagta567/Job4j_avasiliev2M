@@ -6,9 +6,19 @@
         <property name="connection.username">postgres</property>
         <property name="connection.password">raduga</property>
         <property name="dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>
-
         <!-- mapping files -->
         <mapping resource="ru/job4j/todo01/TodoItem.hbm.xml"/>
         <mapping resource="ru/job4j/video00/User.hbm.xml"/>
+        <mapping resource="ru/job4j/cars02/models/CarsAds.hbm.xml"/>
+        <mapping resource="ru/job4j/cars02/models/CarsAdsHeatingDetails.hbm.xml"/>
+        <mapping resource="ru/job4j/cars02/models/CarsBodyType.hbm.xml"/>
+        <mapping resource="ru/job4j/cars02/models/CarsBrand.hbm.xml"/>
+        <mapping resource="ru/job4j/cars02/models/CarsDriveUnit.hbm.xml"/>
+        <mapping resource="ru/job4j/cars02/models/CarsEngineType.hbm.xml"/>
+        <mapping resource="ru/job4j/cars02/models/CarsHeating.hbm.xml"/>
+        <mapping resource="ru/job4j/cars02/models/CarsModel.hbm.xml"/>
+        <mapping resource="ru/job4j/cars02/models/CarsTransmission.hbm.xml"/>
+        <mapping resource="ru/job4j/cars02/models/CarsPhotos.hbm.xml"/>
+        <mapping resource="ru/job4j/cars02/models/User02.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

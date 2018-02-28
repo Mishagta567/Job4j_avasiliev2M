@@ -1,0 +1,33 @@
+<hibernate-mapping>
+    <class name="ru.job4j.cars02.models.CarsAds" table="cars_ads" lazy="false">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="carsBrand" column="cars_brand_id" unique="true"
+                     class="ru.job4j.cars02.models.CarsBrand" fetch="join"/>
+       <many-to-one name="carsModel" column="cars_model_id"  unique="true"
+                    class="ru.job4j.cars02.models.CarsModel" fetch="join"/>
+       <many-to-one name="carsBodyType" column="cars_body_type_id"
+                    class="ru.job4j.cars02.models.CarsBodyType" fetch="join"/>
+       <many-to-one name="carsTransmission" column="cars_transmission_id"
+                    class="ru.job4j.cars02.models.CarsTransmission" fetch="join"/>
+       <many-to-one name="carsEngineType" column="cars_engine_type_id"
+                    class="ru.job4j.cars02.models.CarsEngineType" fetch="join"/>
+       <many-to-one name="carsDriveUnit" column="cars_drive_unit_id"
+                    class="ru.job4j.cars02.models.CarsDriveUnit" fetch="join"/>
+        <property name="mileage" column="mileage"></property>
+        <property name="description" column="description"></property>
+        <property name="userId" column="user_id"></property>
+        <property name="insertedDate" column="inserted_date"></property>
+        <property name="photoId" column="photo_id"></property>
+        <property name="status" column="status"></property>
+       <bag name="carsPhotoslist" inverse="true">
+          <key column="ad_id" not-null="true"/>
+          <one-to-many  class="ru.job4j.cars02.models.CarsPhotos"/>
+       </bag>
+       <!--<bag name="CarsAdsHeatingDetails" inverse="true">
+       <key column="add_id" not-null="true"/>
+       <one-to-many  class="ru.job4j.cars02.models.CarsAdsHeatingDetails"/>
+       </bag>-->
+    </class>
+</hibernate-mapping>

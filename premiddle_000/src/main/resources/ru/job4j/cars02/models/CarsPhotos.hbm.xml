@@ -1,0 +1,9 @@
+<hibernate-mapping>
+    <class name="ru.job4j.cars02.models.CarsPhotos" table="cars_photos">
+        <id name="photoId" column="id">
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="carsAds" column="ad_id"
+                     class="ru.job4j.cars02.models.CarsAds" fetch="join"/>
+    </class>
+</hibernate-mapping>

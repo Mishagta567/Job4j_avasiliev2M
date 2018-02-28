@@ -1,0 +1,14 @@
+<hibernate-mapping>
+    <class name="ru.job4j.cars02.models.CarsAdsHeatingDetails" table="cars_ads_heating_details">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="carsHeating" column="cars_heating_id"
+                     class="ru.job4j.cars02.models.CarsHeating" fetch="join"/>
+        <property name="carsAdId" column="add_id"></property>
+        <!--<many-to-one name="carsAd" column="ad_id"-->
+                     <!--class="ru.job4j.cars02.models.CarsAds" fetch="join"/>-->
+
+        <!--<property name="carsHeatingId" column="cars_heating_id"></property>-->
+    </class>
+</hibernate-mapping>
