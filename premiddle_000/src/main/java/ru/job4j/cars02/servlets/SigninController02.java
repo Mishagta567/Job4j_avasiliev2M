@@ -33,13 +33,13 @@ public class SigninController02 extends HttpServlet {
       synchronized (session) {
          if (session == null || session.getAttribute("login") == null) {
             req.setAttribute("error", "Credentional invalid"); // Пашет
-            //req.getRequestDispatcher("/WEB-INF/views/cars02/loginView.jsp?out=get_UserController_NOT_Signed").forward(req, resp); // or //
-            writer.append("Пароль не верный <br> <a href=\"loginView.jsp\">Авторизоваться</a>");
-            writer.flush();
+            req.getRequestDispatcher("/WEB-INF/views/cars02/loginView.jsp?out=get_UserController_NOT_Signed").forward(req, resp); // or //
+//            writer.append("Пароль не верный <br> <a href=\"loginView.jsp\">Авторизоваться</a>");
+//            writer.flush();
          } else {
-            //req.getRequestDispatcher("/carsAds.jsp?out=get_UserController_Signed").forward(req, resp);  // Пашет
-            writer.append("Вы авторизованы <br> <a href=\"carsAds.jsp\">Все объявления</a>");
-            writer.flush();
+            req.getRequestDispatcher("/carsAds.jsp?out=get_UserController_Signed").forward(req, resp);  // Пашет
+//            writer.append("Вы авторизованы <br> <a href=\"carsAds.jsp\">Все объявления</a>");
+//            writer.flush();
          }
       }
    }
