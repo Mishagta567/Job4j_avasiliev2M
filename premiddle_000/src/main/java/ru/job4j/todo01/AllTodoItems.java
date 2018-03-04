@@ -14,7 +14,7 @@ public class AllTodoItems {
               .buildSessionFactory();
       Session session = factory.openSession();
       session.beginTransaction();
-      List<TodoItem> allTodoItems = session.createQuery("from TodoItem").list();
+      List<TodoItem> allTodoItems = session.createQuery("from TodoItem ORDER BY id").list();
       System.out.println(session.createQuery("from TodoItem").list());
       session.getTransaction().commit();
       session.close();
