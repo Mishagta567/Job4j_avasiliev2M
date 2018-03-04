@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Items to do</title>
-    <!-- bootstrap -->
+    <!-- bootstrap https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_ref_table-responsive&stacked=h -->
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -25,6 +25,7 @@ webapp/WEB-INF/views/todo01/todoitems.jsp <br><br>
    <p>Tale use Bootstrap CSS Tables Reference:</p>
    <div class="table-responsive">
       <table class="table">
+      <thead>
          <thead>
             <tr>
                 <td>ID</td>
@@ -32,8 +33,8 @@ webapp/WEB-INF/views/todo01/todoitems.jsp <br><br>
                 <td>Created</td>
                 <td>Done</td>
             </tr>
-         </thead>
-         <tbody>
+      </thead>
+      <tbody>
          <% for (TodoItem todoItem : allItems) { %>
              <tr>
                  <td><%=todoItem.getId()%></td>
@@ -46,26 +47,26 @@ webapp/WEB-INF/views/todo01/todoitems.jsp <br><br>
                  </td>
              </tr>
          <% } %>
+      </tbody>
+      </table><br><br><br>
+
+      <table class="table">
+         <thead>
+            <h2>Add new task</h2>
+            <tr>
+               <td>Description</td>
+               <td></td>
+            </tr>
+         </thead>
+         <tbody>
+            <tr><form action='todoinsert01' method='post'>
+                   <td><input type='text' name='descr' value=''></td>
+                   <td><button>Create</button></td>
+                </form>
+            </tr>
          </tbody>
-</table>
-   <br><br><br>
-<table border="1" cellspacing="4">
-   <h2>Add new task</h2>
-   <thead>
-      <tr>
-         <td>Description</td>
-         <td></td>
-      </tr>
-   </thead>
-   <tbody>
-      <tr><form action='todoinsert01' method='post'>
-             <td><input type='text' name='descr' value=''></td>
-             <td><button>Create</button></td>
-          </form>
-      </tr>
-   </tbody>
-</table><br><br>
-</div>
+      </table><br><br>
+</div></div>
 
 </body>
 </html>
