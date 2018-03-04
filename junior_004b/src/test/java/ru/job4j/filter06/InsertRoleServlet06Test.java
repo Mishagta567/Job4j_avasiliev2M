@@ -23,7 +23,6 @@ public class InsertRoleServlet06Test {
       HttpServletResponse resp = mock(HttpServletResponse.class);
       //setup the behaviour here (or do it in setup method or something)
       when(req.getParameter("role")).thenReturn("wahoo4");
-
       try {
          insertRole06.doPost(req, resp);
       } catch (ServletException e) {
@@ -32,7 +31,7 @@ public class InsertRoleServlet06Test {
          e.printStackTrace();
       }
 
-      assertThat(1, is(1));
+      //assertThat(1, is(1));
    }
 
 }

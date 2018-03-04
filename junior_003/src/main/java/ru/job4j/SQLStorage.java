@@ -6,7 +6,7 @@ import java.sql.*;
 //import java.util.logging.Logger;
 // А вот это наоборот. Но где нам взять пакет  org.slf4j и что с ним делать?
 
-import org.slf4j.Logger;
+//import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
 //import org.slf4j.Logger;

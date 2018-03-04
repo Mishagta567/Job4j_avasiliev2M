@@ -1,7 +1,7 @@
 package ru.job4j.crud02;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ import java.sql.SQLException;
 
 public class UsersServlet extends HttpServlet {
 
-   private static final Logger LOG = LoggerFactory.getLogger(UsersServlet.class);
+   //private static final Logger LOG = LoggerFactory.getLogger(UsersServlet.class);
    private final UserStore userStore = UserStore.SingletonEnum.INSTANCE.getInstance();
 
    @Override
@@ -33,7 +33,8 @@ public class UsersServlet extends HttpServlet {
       try {
          user = this.userStore.getUser(userLogin);
       } catch (SQLException e) {
-         LOG.error(e.getMessage());                               //  e.printStackTrace();
+         //LOG.error(e.getMessage());                               //
+         e.printStackTrace();
       }
       PrintWriter writer = new PrintWriter(resp.getOutputStream());
       if (user != null) {
@@ -54,7 +55,8 @@ public class UsersServlet extends HttpServlet {
       try {
          this.userStore.updateUser(login, newName, newEmail);
       } catch (SQLException e) {
-         LOG.error(e.getMessage());
+         //LOG.error(e.getMessage());
+         e.printStackTrace();
       }
    }
 
@@ -68,7 +70,8 @@ public class UsersServlet extends HttpServlet {
       try {
          this.userStore.addUser(userName, userLogin, userEmail);
       } catch (SQLException e) {
-         LOG.error(e.getMessage());
+         //LOG.error(e.getMessage());
+         e.printStackTrace();
       }
    }
 
@@ -80,7 +83,8 @@ public class UsersServlet extends HttpServlet {
       try {
          this.userStore.deleteUser(userLogin);
       } catch (SQLException e) {
-         LOG.error(e.getMessage());
+         //LOG.error(e.getMessage());
+         e.printStackTrace();
       }
    }
 

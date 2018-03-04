@@ -1,7 +1,7 @@
 package ru.job4j.webproject01;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class EchoServlet extends HttpServlet {
-   private static final Logger LOG = LoggerFactory.getLogger(EchoServlet.class);
+   //private static final Logger LOG = LoggerFactory.getLogger(EchoServlet.class);
 
    private List<String> users = new CopyOnWriteArrayList<String>();
 
