@@ -23,10 +23,6 @@
         <module>premiddle_000</module>
         <module>premiddle_002</module>
         <module>premiddle_003</module>
-        <module>premiddle_004</module>
-        <module>premiddle_006</module>
-        <module>premiddle_015</module>
-        <module>premiddle_100</module>
     </modules>
 
 	<dependencies>

@@ -1,7 +1,7 @@
 package ru.job4j.strctr01;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ public class EchoServlet extends HttpServlet {
    /**
     * Logger for database errors.
     */
-   private static final Logger LOG = LoggerFactory.getLogger(ru.job4j.strctr01.EchoServlet.class);
+   //private static final Logger LOG = LoggerFactory.getLogger(ru.job4j.strctr01.EchoServlet.class);
 
    private List<String> users = new CopyOnWriteArrayList<String>();
 
